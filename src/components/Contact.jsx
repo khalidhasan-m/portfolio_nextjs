@@ -81,10 +81,10 @@ export default function Contact() {
         <div ref={ref} className="section-fade">
           <div className="text-center mb-14">
             <h2 className="text-4xl sm:text-5xl font-bold dark:text-white text-gray-900 font-mono mb-4">
-              Let&apos;s <span className="gradient-text">Work Together</span>
+              Let's <span className="gradient-text">Work Together</span>
             </h2>
             <p className="dark:text-gray-400 text-gray-600 max-w-xl mx-auto leading-relaxed">
-              I&apos;m currently open to new opportunities. Whether you have a project in mind,
+              I'm currently open to new opportunities. Whether you have a project in mind,
               want to collaborate, or just want to say hi — my inbox is always open!
             </p>
           </div>
@@ -168,9 +168,8 @@ export default function Contact() {
                     Available for hire
                   </h3>
                   <p className="dark:text-gray-400 text-gray-600 text-sm leading-relaxed">
-                    I&apos;m a Junior Frontend Developer actively looking for my first professional
-                    role. I bring dedication, clean code, and a passion for great UI to every
-                    project.
+                    I'm a Frontend Developer actively looking for professional opportunities.
+                    I bring dedication, clean code, and a passion for great UI to every project.
                   </p>
                 </div>
 
