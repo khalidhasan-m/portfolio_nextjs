@@ -117,14 +117,14 @@ export default function Hero() {
                 />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                React + Next.js
+                Open Source
               </div>
             </div>
 
             {/* Stats */}
             <div className="flex items-center gap-6">
               {[
-                { value: "3+", label: "Projects" },
+                { value: "20+", label: "Repos" },
                 { value: "1+", label: "Year Exp." },
                 { value: "10+", label: "Skills" },
               ].map((stat) => (

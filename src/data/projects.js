@@ -5,7 +5,7 @@ export const projects = [
     tagline: "Full-stack travel booking platform",
     description:
       "A full-stack travel platform built with Next.js where users can explore destinations, create and manage listings, and book trips. Authenticated users can add, update, and delete destinations through a clean, responsive interface backed by MongoDB.",
-    image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80",
+    image: "/projects/wanderlust.jpg",
     tech: ["Next.js", "React", "Tailwind CSS", "Better Auth", "MongoDB"],
     liveLink: "https://wanderlust-seven-gules.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/wanderlust",
@@ -27,7 +27,7 @@ export const projects = [
     tagline: "Summer essentials eCommerce store",
     description:
       "A modern eCommerce store for seasonal summer essentials, built with Next.js and HeroUI. Features Google OAuth authentication, protected order pages, product search, and an auto-scrolling hero slider for a polished shopping experience.",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80",
+    image: "/projects/suncart.jpg",
     tech: ["Next.js", "HeroUI", "Tailwind CSS", "Better Auth", "React Hook Form", "Embla Carousel"],
     liveLink: "https://assignment8-kappa.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/assignment8",
@@ -49,7 +49,7 @@ export const projects = [
     tagline: "Pet adoption platform with owner dashboard",
     description:
       "A MERN stack pet adoption platform where users can explore available pets and submit adoption requests. Includes an automated approval workflow and an owner dashboard with search and filtering for managing listings.",
-    image: "https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80",
+    image: "/projects/pawfectmatch.jpg",
     tech: ["React", "Express.js", "MongoDB", "Node.js"],
     liveLink: "https://pet-adoption-client-gamma.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/pet-adoption-client",
