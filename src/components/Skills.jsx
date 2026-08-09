@@ -1,44 +1,76 @@
 "use client";
 import { useEffect, useRef } from "react";
 import {
-  SiJavascript, SiReact, SiNextdotjs, SiHtml5,
-  SiTailwindcss, SiGit, SiGithub, SiVite, SiNetlify
+  SiJavascript,
+  SiReact,
+  SiNextdotjs,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiDaisyui,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiGit,
+  SiGithub,
+  SiVisualstudiocode,
+  SiPostman,
+  SiVercel,
+  SiVite,
+  SiFigma,
+  SiTypescript,
+  SiDocker,
+  SiAmazonwebservices,
 } from "react-icons/si";
-import { FiLayout, FiMonitor, FiShield, FiGlobe, FiCode } from "react-icons/fi";
+import { FiShield, FiGlobe } from "react-icons/fi";
 
 const skillCategories = [
   {
-    category: "Languages & Frameworks",
-    emoji: "🧱",
+    category: "Frontend",
+    emoji: "🎨",
     skills: [
+      { name: "HTML5", icon: <SiHtml5 />, color: "#e34f26" },
+      { name: "CSS3", icon: <SiCss3 />, color: "#1572b6" },
       { name: "JavaScript (ES6+)", icon: <SiJavascript />, color: "#f7df1e" },
       { name: "React", icon: <SiReact />, color: "#61dafb" },
       { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
-      { name: "HTML5", icon: <SiHtml5 />, color: "#e34f26" },
-      { name: "CSS3", icon: <FiCode />, color: "#1572b6" },
+      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38bdf8" },
+      { name: "DaisyUI", icon: <SiDaisyui />, color: "#5a0ef8" },
     ],
   },
   {
-    category: "Styling & UI",
-    emoji: "🎨",
+    category: "Backend",
+    emoji: "⚙️",
     skills: [
-      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#06b6d4" },
-      { name: "DaisyUI", icon: <FiLayout />, color: "#f59e0b" },
-      { name: "Responsive Design", icon: <FiMonitor />, color: "#a855f7" },
+      { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
+      { name: "Express.js", icon: <SiExpress />, color: "#e5e5e5" },
+      { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
+      { name: "REST API", icon: <FiGlobe />, color: "#22c55e" },
+      { name: "Better Auth", icon: <FiShield />, color: "#f59e0b" },
     ],
   },
   {
-    category: "Tools & Technologies",
-    emoji: "🛠️",
+    category: "Tools",
+    emoji: "🧰",
     skills: [
       { name: "Git", icon: <SiGit />, color: "#f05032" },
       { name: "GitHub", icon: <SiGithub />, color: "#e5e5e5" },
+      { name: "VS Code", icon: <SiVisualstudiocode />, color: "#007acc" },
+      { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
+      { name: "Vercel", icon: <SiVercel />, color: "#e5e5e5" },
       { name: "Vite", icon: <SiVite />, color: "#646cff" },
-      { name: "REST API", icon: <FiGlobe />, color: "#22c55e" },
-      { name: "Better Auth", icon: <FiShield />, color: "#f59e0b" },
-      { name: "Netlify", icon: <SiNetlify />, color: "#00c7b7" },
+      { name: "Figma", icon: <SiFigma />, color: "#f24e1e" },
     ],
   },
+];
+
+const learning = [
+  { name: "Node.js", status: "learning", icon: <SiNodedotjs />, color: "#339933" },
+  { name: "Express.js", status: "learning", icon: <SiExpress />, color: "#e5e5e5" },
+  { name: "MongoDB", status: "learning", icon: <SiMongodb />, color: "#47a248" },
+  { name: "TypeScript", status: "upcoming", icon: <SiTypescript />, color: "#3178c6" },
+  { name: "Docker", status: "upcoming", icon: <SiDocker />, color: "#2496ed" },
+  { name: "AWS", status: "upcoming", icon: <SiAmazonwebservices />, color: "#ff9900" },
 ];
 
 export default function Skills() {
@@ -72,7 +104,7 @@ export default function Skills() {
               My <span className="gradient-text">Tech Stack</span>
             </h2>
             <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto px-2">
-              Technologies I use to build fast, responsive, and scalable web applications.
+              Technologies I use to build modern, responsive web applications — aligned with my GitHub profile.
             </p>
           </div>
 
@@ -113,7 +145,35 @@ export default function Skills() {
             </div>
           </div>
 
+          {/* Currently Learning */}
           <div className="mt-4 sm:mt-6 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+            <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
+              <span>📚</span> Currently Learning
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {learning.map((item) => (
+                <span
+                  key={item.name}
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full border ${
+                    item.status === "learning"
+                      ? "dark:bg-amber-500/10 bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
+                      : "dark:bg-white/5 bg-black/5 dark:text-gray-400 text-gray-600 dark:border-white/10 border-black/10"
+                  }`}
+                >
+                  <span style={{ color: item.color }} className="text-sm">
+                    {item.icon}
+                  </span>
+                  {item.name}
+                  <span className="opacity-70">
+                    {item.status === "learning" ? "🟡" : "🔜"}
+                  </span>
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Soft skills */}
+          <div className="mt-4 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>💡</span> Soft Skills
             </h3>
