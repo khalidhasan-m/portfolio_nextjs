@@ -17,9 +17,8 @@ export default function Education() {
   }, []);
 
   return (
-    <section id="education" className="py-16 sm:py-20 lg:py-24">
+    <section id="education" className="py-16 sm:py-20 lg:py-24 cq-section">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
-        {/* Header */}
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
           <span className="section-label text-amber-500 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
@@ -28,8 +27,7 @@ export default function Education() {
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
 
-        <div ref={ref} className="section-fade grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12">
-          {/* Education */}
+        <div ref={ref} className="section-fade cq-split">
           <div className="min-w-0">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
               <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
@@ -40,7 +38,7 @@ export default function Education() {
               </h2>
             </div>
 
-            <div className="relative pl-8 sm:pl-10">
+            <div className="relative cq-timeline">
               <div className="timeline-line" />
 
               <div className="relative mb-6 sm:mb-8">
@@ -97,7 +95,6 @@ export default function Education() {
             </div>
           </div>
 
-          {/* Experience */}
           <div className="min-w-0">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
               <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
@@ -108,7 +105,7 @@ export default function Education() {
               </h2>
             </div>
 
-            <div className="relative pl-8 sm:pl-10">
+            <div className="relative cq-timeline">
               <div className="timeline-line" />
 
               <div className="relative mb-6 sm:mb-8">
@@ -167,7 +164,6 @@ export default function Education() {
           </div>
         </div>
 
-        {/* Certifications & Courses */}
         <div className="mt-12 sm:mt-16">
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
@@ -178,37 +174,39 @@ export default function Education() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-            <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
-              <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
-                <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
-                  Web Development (6-month course)
-                </h3>
-                <span className="text-xs px-2 py-0.5 rounded-full dark:bg-green-500/10 bg-green-500/15 text-green-600 dark:text-green-400 font-mono flex items-center gap-1">
-                  <FiCheckCircle size={12} />
-                  Passed
-                </span>
+          <div className="cq-grid">
+            <div className="cq-cols">
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
+                    Web Development (6-month course)
+                  </h3>
+                  <span className="text-xs px-2 py-0.5 rounded-full dark:bg-green-500/10 bg-green-500/15 text-green-600 dark:text-green-400 font-mono flex items-center gap-1">
+                    <FiCheckCircle size={12} />
+                    Passed
+                  </span>
+                </div>
+                <p className="text-sm dark:text-gray-300 text-gray-600">
+                  Programming Hero
+                </p>
               </div>
-              <p className="text-sm dark:text-gray-300 text-gray-600">
-                Programming Hero
-              </p>
-            </div>
 
-            <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
-              <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
-                <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
-                  Computer Office Application
-                </h3>
-                <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
-                  2020
-                </span>
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
+                    Computer Office Application
+                  </h3>
+                  <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
+                    2020
+                  </span>
+                </div>
+                <p className="text-sm dark:text-gray-300 text-gray-600 mb-1">
+                  Bangladesh Technical Education Board
+                </p>
+                <p className="text-sm dark:text-gray-400 text-gray-600">
+                  Grade: <span className="text-amber-500 font-medium">4.00 / 5.00</span>
+                </p>
               </div>
-              <p className="text-sm dark:text-gray-300 text-gray-600 mb-1">
-                Bangladesh Technical Education Board
-              </p>
-              <p className="text-sm dark:text-gray-400 text-gray-600">
-                Grade: <span className="text-amber-500 font-medium">4.00 / 5.00</span>
-              </p>
             </div>
           </div>
         </div>
