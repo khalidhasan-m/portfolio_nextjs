@@ -41,7 +41,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-24">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 cq-section">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
@@ -51,9 +51,9 @@ export default function About() {
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
 
-        <div ref={ref} className="section-fade grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
+        <div ref={ref} className="section-fade cq-split">
           <div className="space-y-4 sm:space-y-6 min-w-0">
-            <h2 className="text-3xl sm:text-4xl font-bold dark:text-white text-gray-900 font-mono">
+            <h2 className="cq-heading font-bold dark:text-white text-gray-900 font-mono">
               A bit about <span className="gradient-text">myself</span>
             </h2>
 
@@ -82,23 +82,25 @@ export default function About() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            {highlights.map((item) => (
-              <div
-                key={item.title}
-                className="p-3 sm:p-5 rounded-2xl dark:bg-white/5 bg-black/3 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group"
-              >
-                <div className="p-2 sm:p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 w-fit mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-200">
-                  {item.icon}
+          <div className="cq-grid">
+            <div className="cq-cols" style={{ gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
+              {highlights.map((item) => (
+                <div
+                  key={item.title}
+                  className="cq-card cq-highlight rounded-2xl dark:bg-white/5 bg-black/3 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group"
+                >
+                  <div className="p-2 sm:p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 w-fit mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-200">
+                    {item.icon}
+                  </div>
+                  <h3 className="cq-highlight-title font-semibold dark:text-white text-gray-900 mb-1">
+                    {item.title}
+                  </h3>
+                  <p className="cq-highlight-desc dark:text-gray-400 text-gray-500 leading-relaxed">
+                    {item.desc}
+                  </p>
                 </div>
-                <h3 className="font-semibold dark:text-white text-gray-900 mb-1 text-xs sm:text-sm">
-                  {item.title}
-                </h3>
-                <p className="text-[11px] sm:text-xs dark:text-gray-400 text-gray-500 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

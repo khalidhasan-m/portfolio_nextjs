@@ -21,22 +21,19 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-center justify-center dot-grid overflow-hidden">
-      {/* Decorative blurs — scaled down on mobile to avoid overflow */}
+    <section id="home" className="relative min-h-[100svh] flex items-center justify-center dot-grid overflow-hidden cq-section">
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/4 right-1/4 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0" ref={heroRef}>
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-10 lg:gap-12 pt-24 sm:pt-20 pb-8 sm:pb-10">
+        <div className="cq-hero pt-24 sm:pt-20 pb-8 sm:pb-10">
           {/* Text Content */}
-          <div className="flex-1 text-center lg:text-left space-y-4 sm:space-y-6 min-w-0 w-full">
-            {/* Badge */}
+          <div className="cq-hero-text space-y-4 sm:space-y-6 min-w-0">
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
               <span className="w-2 h-2 rounded-full bg-amber-500 pulse-ring inline-block flex-shrink-0" />
               <span className="text-xs sm:text-sm font-medium text-amber-600 dark:text-amber-400 font-mono">Available for work</span>
             </div>
 
-            {/* Name */}
             <div className="space-y-1 sm:space-y-2">
               <p className="text-sm sm:text-base dark:text-gray-400 text-gray-600 font-mono tracking-widest uppercase">Hi, I&apos;m</p>
               <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight font-mono leading-[1.1]">
@@ -46,21 +43,18 @@ export default function Hero() {
               </h1>
             </div>
 
-            {/* Designation */}
-            <div className="flex items-center gap-3 justify-center lg:justify-start">
+            <div className="flex items-center gap-3 cq-hero-cta">
               <div className="h-px w-6 sm:w-8 bg-amber-500 flex-shrink-0" />
               <p className="text-lg sm:text-xl dark:text-gray-300 text-gray-700 font-medium">Frontend Developer</p>
             </div>
 
-            {/* Bio */}
             <p className="text-sm sm:text-base dark:text-gray-400 text-gray-600 max-w-lg leading-relaxed mx-auto lg:mx-0">
               Crafting responsive, user-friendly web experiences with{" "}
               <span className="text-amber-500 font-medium">React</span> &{" "}
               <span className="text-amber-500 font-medium">Next.js</span>. Passionate about clean code and polished UI.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col xs:flex-row flex-wrap gap-3 justify-center lg:justify-start">
+            <div className="flex flex-col xs:flex-row flex-wrap gap-3 cq-hero-cta">
               <a
                 href={RESUME_PDF}
                 download="Khalid_Hasan_Meskat_Resume.pdf"
@@ -77,8 +71,7 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* Social Links */}
-            <div className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start pt-1 sm:pt-2">
+            <div className="flex items-center gap-3 sm:gap-4 cq-hero-social pt-1 sm:pt-2">
               <span className="text-xs sm:text-sm dark:text-gray-500 text-gray-500 font-mono">Find me on</span>
               <div className="flex items-center gap-2 sm:gap-3">
                 <a
@@ -104,7 +97,7 @@ export default function Hero() {
           </div>
 
           {/* Profile Image */}
-          <div className="flex-shrink-0 flex flex-col items-center gap-4 sm:gap-6 order-first lg:order-last">
+          <div className="cq-hero-photo flex flex-col items-center gap-4 sm:gap-6">
             <div className="relative float-animation">
               <div className="absolute inset-0 rounded-full border-2 border-amber-500/30 scale-110 animate-ping hidden sm:block" style={{ animationDuration: "3s" }} />
               <div className="absolute inset-0 rounded-full border border-amber-500/20 scale-125 hidden sm:block" />
@@ -121,7 +114,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Stats */}
             <div className="flex items-center gap-4 sm:gap-6">
               {[
                 { value: "20+", label: "Repos" },
@@ -137,7 +129,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Scroll indicator */}
         <div className="flex justify-center pb-4 sm:pb-8">
           <button
             onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
