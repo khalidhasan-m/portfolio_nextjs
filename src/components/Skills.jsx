@@ -7,22 +7,21 @@ import {
   SiHtml5,
   SiCss3,
   SiTailwindcss,
-  SiDaisyui,
   SiNodedotjs,
   SiExpress,
   SiMongodb,
   SiGit,
   SiGithub,
-  SiVisualstudiocode,
   SiPostman,
   SiVercel,
   SiVite,
   SiFigma,
   SiTypescript,
   SiDocker,
-  SiAmazonwebservices,
 } from "react-icons/si";
-import { FiShield, FiGlobe } from "react-icons/fi";
+import { VscCode } from "react-icons/vsc";
+import { FaAws } from "react-icons/fa";
+import { FiShield, FiGlobe, FiLayout } from "react-icons/fi";
 
 const skillCategories = [
   {
@@ -35,7 +34,7 @@ const skillCategories = [
       { name: "React", icon: <SiReact />, color: "#61dafb" },
       { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
       { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38bdf8" },
-      { name: "DaisyUI", icon: <SiDaisyui />, color: "#5a0ef8" },
+      { name: "DaisyUI", icon: <FiLayout />, color: "#5a0ef8" },
     ],
   },
   {
@@ -55,7 +54,7 @@ const skillCategories = [
     skills: [
       { name: "Git", icon: <SiGit />, color: "#f05032" },
       { name: "GitHub", icon: <SiGithub />, color: "#e5e5e5" },
-      { name: "VS Code", icon: <SiVisualstudiocode />, color: "#007acc" },
+      { name: "VS Code", icon: <VscCode />, color: "#007acc" },
       { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
       { name: "Vercel", icon: <SiVercel />, color: "#e5e5e5" },
       { name: "Vite", icon: <SiVite />, color: "#646cff" },
@@ -70,7 +69,7 @@ const learning = [
   { name: "MongoDB", status: "learning", icon: <SiMongodb />, color: "#47a248" },
   { name: "TypeScript", status: "upcoming", icon: <SiTypescript />, color: "#3178c6" },
   { name: "Docker", status: "upcoming", icon: <SiDocker />, color: "#2496ed" },
-  { name: "AWS", status: "upcoming", icon: <SiAmazonwebservices />, color: "#ff9900" },
+  { name: "AWS", status: "upcoming", icon: <FaAws />, color: "#ff9900" },
 ];
 
 export default function Skills() {
@@ -145,7 +144,6 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Currently Learning */}
           <div className="mt-4 sm:mt-6 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>📚</span> Currently Learning
@@ -172,7 +170,6 @@ export default function Skills() {
             </div>
           </div>
 
-          {/* Soft skills */}
           <div className="mt-4 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>💡</span> Soft Skills
