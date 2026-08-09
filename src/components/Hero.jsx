@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiGithub, FiLinkedin, FiDownload, FiArrowDown } from "react-icons/fi";
 import { PROFILE_IMAGE, RESUME_PDF } from "@/data/assets";
 
 export default function Hero() {
   const heroRef = useRef(null);
+  const [imgSrc, setImgSrc] = useState("/profile.jpg");
 
   useEffect(() => {
     const el = heroRef.current;
@@ -108,9 +109,10 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full border border-amber-500/20 scale-125" />
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-amber-500/40 amber-glow">
                 <img
-                  src={PROFILE_IMAGE}
+                  src={imgSrc}
                   alt="Khalid Hasan Meskat"
                   className="absolute inset-0 w-full h-full object-cover"
+                  onError={() => setImgSrc(PROFILE_IMAGE)}
                 />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
