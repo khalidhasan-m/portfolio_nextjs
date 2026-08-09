@@ -105,13 +105,13 @@ export default function Contact() {
                       href={item.href}
                       target={item.href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group"
+                      className="flex items-center gap-4 p-4 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group"
                     >
                       <div className={`p-2.5 rounded-xl ${item.bg} ${item.color} flex-shrink-0`}>
                         {item.icon}
                       </div>
                       <div>
-                        <p className="text-xs dark:text-gray-500 text-gray-500 mb-0.5">
+                        <p className="text-xs dark:text-gray-400 text-gray-500 mb-0.5">
                           {item.label}
                         </p>
                         <p className="text-sm font-medium dark:text-gray-200 text-gray-800 group-hover:text-amber-500 transition-colors duration-200">
@@ -120,12 +120,12 @@ export default function Contact() {
                       </div>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-4 p-4 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+                    <div className="flex items-center gap-4 p-4 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
                       <div className={`p-2.5 rounded-xl ${item.bg} ${item.color} flex-shrink-0`}>
                         {item.icon}
                       </div>
                       <div>
-                        <p className="text-xs dark:text-gray-500 text-gray-500 mb-0.5">
+                        <p className="text-xs dark:text-gray-400 text-gray-500 mb-0.5">
                           {item.label}
                         </p>
                         <p className="text-sm font-medium dark:text-gray-200 text-gray-800">
@@ -139,7 +139,7 @@ export default function Contact() {
 
               {/* Social links */}
               <div className="pt-4">
-                <p className="text-xs dark:text-gray-500 text-gray-500 mb-3 font-mono tracking-widest uppercase">
+                <p className="text-xs dark:text-gray-400 text-gray-500 mb-3 font-mono tracking-widest uppercase">
                   Find me on
                 </p>
                 <div className="flex gap-3">
@@ -160,7 +160,7 @@ export default function Contact() {
             </div>
 
             {/* Right — CTA Card */}
-            <div className="rounded-2xl p-8 dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8 relative overflow-hidden">
+            <div className="rounded-2xl p-8 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 relative overflow-hidden">
               {/* Decorative corner */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full" />
 
