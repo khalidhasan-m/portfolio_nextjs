@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
-import { PROFILE_IMAGE, RESUME_PDF } from "@/data/assets";
+import { PROFILE_IMAGE, PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
 
 export default function Hero() {
   const [imgSrc, setImgSrc] = useState("/profile.jpg");
@@ -106,7 +106,7 @@ export default function Hero() {
                   src={imgSrc}
                   alt="Khalid Hasan Meskat"
                   className="absolute inset-0 w-full h-full object-cover"
-                  onError={() => setImgSrc(PROFILE_IMAGE)}
+                  onError={() => setImgSrc(PROFILE_AVATAR_FALLBACK)}
                 />
               </div>
               <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-amber-500 text-black text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
