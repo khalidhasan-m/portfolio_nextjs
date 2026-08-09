@@ -41,23 +41,23 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-24">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4 mb-16">
-          <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[60px]" />
-          <span className="text-amber-500 font-mono text-sm tracking-widest uppercase">
+    <section id="about" className="py-16 sm:py-20 lg:py-24">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
+          <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
+          <span className="section-label text-amber-500 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
             01. About Me
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
 
-        <div ref={ref} className="section-fade grid lg:grid-cols-2 gap-12 items-start">
-          <div className="space-y-6">
-            <h2 className="text-4xl font-bold dark:text-white text-gray-900 font-mono">
+        <div ref={ref} className="section-fade grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
+          <div className="space-y-4 sm:space-y-6 min-w-0">
+            <h2 className="text-3xl sm:text-4xl font-bold dark:text-white text-gray-900 font-mono">
               A bit about <span className="gradient-text">myself</span>
             </h2>
 
-            <div className="space-y-4 text-base dark:text-gray-300 text-gray-600 leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base dark:text-gray-300 text-gray-600 leading-relaxed">
               <p>
                 I&apos;m a frontend developer based in Bangladesh with a passion for building clean,
                 responsive, and user-friendly web experiences. My background in English literature
@@ -75,26 +75,26 @@ export default function About() {
             </div>
 
             <div className="flex items-center gap-3 pt-2">
-              <FiCoffee size={18} className="text-amber-500" />
+              <FiCoffee size={18} className="text-amber-500 flex-shrink-0" />
               <span className="text-sm dark:text-gray-400 text-gray-500 font-mono">
-                Fueled by coffee & curiosity
+                Fueled by coffee &amp; curiosity
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {highlights.map((item) => (
               <div
                 key={item.title}
-                className="p-5 rounded-2xl dark:bg-white/5 bg-black/3 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group"
+                className="p-3 sm:p-5 rounded-2xl dark:bg-white/5 bg-black/3 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group"
               >
-                <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 w-fit mb-3 group-hover:scale-110 transition-transform duration-200">
+                <div className="p-2 sm:p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 w-fit mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-200">
                   {item.icon}
                 </div>
-                <h3 className="font-semibold dark:text-white text-gray-900 mb-1 text-sm">
+                <h3 className="font-semibold dark:text-white text-gray-900 mb-1 text-xs sm:text-sm">
                   {item.title}
                 </h3>
-                <p className="text-xs dark:text-gray-400 text-gray-500 leading-relaxed">
+                <p className="text-[11px] sm:text-xs dark:text-gray-400 text-gray-500 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

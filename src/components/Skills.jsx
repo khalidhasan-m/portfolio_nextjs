@@ -56,43 +56,40 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" className="py-24 dark:bg-white/[0.01] bg-black/[0.01] relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="flex items-center gap-4 mb-16">
-          <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[60px]" />
-          <span className="text-amber-500 font-mono text-sm tracking-widest uppercase">
+    <section id="skills" className="py-16 sm:py-20 lg:py-24 dark:bg-white/[0.01] bg-black/[0.01] relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
+        <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
+          <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
+          <span className="section-label text-amber-500 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
             02. Skills
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
 
         <div ref={ref} className="section-fade space-y-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold dark:text-white text-gray-900 font-mono mb-3">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold dark:text-white text-gray-900 font-mono mb-3">
               My <span className="gradient-text">Tech Stack</span>
             </h2>
-            <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto">
+            <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto px-2">
               Technologies I use to build fast, responsive, and scalable web applications.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             {skillCategories.map((cat, ci) => (
               <div
                 key={ci}
-                className="rounded-2xl p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/20 hover:border-amber-500/20 transition-all duration-300"
+                className="rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/20 hover:border-amber-500/20 transition-all duration-300"
               >
-                {/* Category header */}
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-4 sm:mb-5">
                   <span className="text-2xl">{cat.emoji}</span>
                   <h3 className="font-semibold dark:text-white text-gray-900 text-sm">
                     {cat.category}
                   </h3>
                 </div>
 
-                {/* Skills list */}
-                <div className="space-y-3">
+                <div className="space-y-2 sm:space-y-3">
                   {cat.skills.map((skill, si) => (
                     <div
                       key={si}
@@ -114,8 +111,7 @@ export default function Skills() {
             ))}
           </div>
 
-          {/* Soft skills */}
-          <div className="mt-6 rounded-2xl p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+          <div className="mt-4 sm:mt-6 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>💡</span> Soft Skills
             </h3>
