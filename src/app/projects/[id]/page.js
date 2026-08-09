@@ -47,7 +47,7 @@ export default function ProjectDetail({ params }) {
         </div>
 
         {/* Project image */}
-        <div className="rounded-2xl overflow-hidden mb-10 border dark:border-white/8 border-black/8 shadow-2xl">
+        <div className="rounded-2xl overflow-hidden mb-10 border dark:border-white/10 border-black/8 shadow-2xl">
           <img src={project.image} alt={project.name} className="w-full h-72 sm:h-96 object-cover" />
         </div>
 
@@ -75,7 +75,7 @@ export default function ProjectDetail({ params }) {
         {/* Content */}
         <div className="space-y-6">
           {/* Description */}
-          <div className="p-6 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+          <div className="p-6 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500">
                 <FiLayers size={18} />
@@ -86,7 +86,7 @@ export default function ProjectDetail({ params }) {
           </div>
 
           {/* Tech Stack */}
-          <div className="p-6 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+          <div className="p-6 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500">
                 <FiLayers size={18} />
@@ -95,7 +95,7 @@ export default function ProjectDetail({ params }) {
             </div>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
-                <span key={t} className="px-3 py-1.5 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-700 text-sm font-mono border dark:border-white/8 border-black/8">
+                <span key={t} className="px-3 py-1.5 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-700 text-sm font-mono border dark:border-white/10 border-black/8">
                   {t}
                 </span>
               ))}
@@ -103,7 +103,7 @@ export default function ProjectDetail({ params }) {
           </div>
 
           {/* Features */}
-          <div className="p-6 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+          <div className="p-6 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 rounded-xl dark:bg-green-500/10 bg-green-500/10 text-green-500">
                 <FiCheckCircle size={18} />
@@ -122,7 +122,7 @@ export default function ProjectDetail({ params }) {
 
           <div className="grid sm:grid-cols-2 gap-6">
             {/* Challenges */}
-            <div className="p-6 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+            <div className="p-6 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl dark:bg-red-500/10 bg-red-500/10 text-red-400">
                   <FiAlertCircle size={18} />
@@ -133,7 +133,7 @@ export default function ProjectDetail({ params }) {
             </div>
 
             {/* Future Plans */}
-            <div className="p-6 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+            <div className="p-6 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 rounded-xl dark:bg-blue-500/10 bg-blue-500/10 text-blue-400">
                   <FiZap size={18} />
@@ -146,18 +146,18 @@ export default function ProjectDetail({ params }) {
         </div>
 
         {/* Other projects */}
-        <div className="mt-16 pt-10 border-t dark:border-white/8 border-black/8">
-          <p className="text-sm dark:text-gray-500 text-gray-500 font-mono mb-6 tracking-widest uppercase">Other Projects</p>
+        <div className="mt-16 pt-10 border-t dark:border-white/10 border-black/8">
+          <p className="text-sm dark:text-gray-400 text-gray-500 font-mono mb-6 tracking-widest uppercase">Other Projects</p>
           <div className="grid sm:grid-cols-2 gap-4">
             {projects.filter((p) => p.id !== project.id).slice(0, 2).map((p) => (
               <Link key={p.id} href={`/projects/${p.id}`}>
-                <div className="group p-4 rounded-2xl dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 flex items-center gap-4">
+                <div className="group p-4 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 flex items-center gap-4">
                   <img src={p.image} alt={p.name} className="w-16 h-16 rounded-xl object-cover flex-shrink-0" />
                   <div className="min-w-0">
                     <p className="text-sm font-semibold dark:text-white text-gray-900 group-hover:text-amber-500 transition-colors duration-200 truncate">{p.name}</p>
-                    <p className="text-xs dark:text-gray-500 text-gray-500 truncate mt-0.5">{p.tagline}</p>
+                    <p className="text-xs dark:text-gray-400 text-gray-500 truncate mt-0.5">{p.tagline}</p>
                   </div>
-                  <FiArrowLeft size={14} className="flex-shrink-0 rotate-180 dark:text-gray-600 text-gray-400 group-hover:text-amber-500 transition-colors duration-200" />
+                  <FiArrowLeft size={14} className="flex-shrink-0 rotate-180 dark:text-gray-400 text-gray-400 group-hover:text-amber-500 transition-colors duration-200" />
                 </div>
               </Link>
             ))}
