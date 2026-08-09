@@ -1,24 +1,11 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { FiGithub, FiLinkedin, FiDownload, FiArrowDown } from "react-icons/fi";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 import { PROFILE_IMAGE, RESUME_PDF } from "@/data/assets";
 
 export default function Hero() {
-  const heroRef = useRef(null);
   const [imgSrc, setImgSrc] = useState("/profile.jpg");
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (el) {
-      el.style.opacity = "0";
-      el.style.transform = "translateY(20px)";
-      setTimeout(() => {
-        el.style.transition = "opacity 0.8s ease, transform 0.8s ease";
-        el.style.opacity = "1";
-        el.style.transform = "translateY(0)";
-      }, 100);
-    }
-  }, []);
 
   return (
     <section
@@ -29,9 +16,14 @@ export default function Hero() {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
       <div className="absolute top-1/4 right-1/4 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0" ref={heroRef}>
-        <div className="cq-hero pt-20 sm:pt-22 lg:pt-24 pb-6 sm:pb-8 lg:pb-10 gap-6 sm:gap-8 lg:gap-12">
-          <div className="cq-hero-text space-y-3 sm:space-y-4 lg:space-y-6 min-w-0">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
+        <div className="cq-hero pt-20 sm:pt-22 lg:pt-24 pb-10 sm:pb-12 lg:pb-16 gap-6 sm:gap-8 lg:gap-12">
+          <motion.div
+            className="cq-hero-text space-y-3 sm:space-y-4 lg:space-y-6 min-w-0 text-left"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
             <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
               <span className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400 pulse-ring inline-block flex-shrink-0" aria-hidden="true" />
               <span className="text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-400 font-mono">Available for work</span>
@@ -46,18 +38,18 @@ export default function Hero() {
               </h1>
             </div>
 
-            <div className="flex items-center gap-3 cq-hero-cta">
+            <div className="flex items-center gap-3 justify-start">
               <div className="h-px w-6 sm:w-8 bg-amber-600 dark:bg-amber-400 flex-shrink-0" aria-hidden="true" />
               <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">Frontend Developer</p>
             </div>
 
-            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed text-left mx-0">
               Crafting responsive, user-friendly web experiences with{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> &{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>. Passionate about clean code and polished UI.
             </p>
 
-            <div className="flex flex-col xs:flex-row flex-wrap gap-3 cq-hero-cta">
+            <div className="flex flex-col xs:flex-row flex-wrap gap-3 justify-start">
               <a
                 href={RESUME_PDF}
                 download="Khalid_Hasan_Meskat_Resume.pdf"
@@ -75,7 +67,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="flex items-center gap-3 sm:gap-4 cq-hero-social">
+            <div className="flex items-center gap-3 sm:gap-4 justify-start">
               <span className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 font-mono">Find me on</span>
               <div className="flex items-center gap-2 sm:gap-3">
                 <a
@@ -98,9 +90,14 @@ export default function Hero() {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="cq-hero-photo flex flex-col items-center gap-3 sm:gap-4 lg:gap-6">
+          <motion.div
+            className="cq-hero-photo flex flex-col items-center gap-3 sm:gap-4 lg:gap-6"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+          >
             <div className="relative float-animation">
               <div className="absolute inset-0 rounded-full border-2 border-amber-500/30 scale-110 animate-ping hidden sm:block" style={{ animationDuration: "3s" }} aria-hidden="true" />
               <div className="absolute inset-0 rounded-full border border-amber-500/20 scale-125 hidden sm:block" aria-hidden="true" />
@@ -129,19 +126,7 @@ export default function Hero() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-
-        <div className="flex justify-center pb-4 sm:pb-6 lg:pb-8">
-          <button
-            type="button"
-            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-            className="flex flex-col items-center gap-1 dark:text-gray-400 text-gray-600 hover:text-amber-600 transition-colors duration-200 group min-h-[44px]"
-            aria-label="Scroll to About section"
-          >
-            <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
-            <FiArrowDown size={16} className="group-hover:translate-y-1 transition-transform duration-200" aria-hidden="true" />
-          </button>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import {
   SiJavascript,
   SiReact,
@@ -20,7 +21,7 @@ import {
 } from "react-icons/si";
 import { FaAws, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
-import { FiShield, FiGlobe, FiLayout } from "react-icons/fi";
+import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap } from "react-icons/fi";
 
 const skillCategories = [
   {
@@ -34,6 +35,8 @@ const skillCategories = [
       { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
       { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38bdf8" },
       { name: "DaisyUI", icon: <FiLayout />, color: "#5a0ef8" },
+      { name: "HeroUI", icon: <FiLayout />, color: "#f59e0b" },
+      { name: "Framer Motion", icon: <FiZap />, color: "#ec4899" },
     ],
   },
   {
@@ -45,6 +48,7 @@ const skillCategories = [
       { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
       { name: "REST API", icon: <FiGlobe />, color: "#22c55e" },
       { name: "Better Auth", icon: <FiShield />, color: "#f59e0b" },
+      { name: "JWT", icon: <FiKey />, color: "#eab308" },
     ],
   },
   {
@@ -63,12 +67,10 @@ const skillCategories = [
 ];
 
 const learning = [
-  { name: "Node.js", status: "learning", icon: <SiNodedotjs />, color: "#339933" },
-  { name: "Express.js", status: "learning", icon: <SiExpress />, color: "#e5e5e5" },
-  { name: "MongoDB", status: "learning", icon: <SiMongodb />, color: "#47a248" },
-  { name: "TypeScript", status: "upcoming", icon: <SiTypescript />, color: "#3178c6" },
-  { name: "Docker", status: "upcoming", icon: <SiDocker />, color: "#2496ed" },
-  { name: "AWS", status: "upcoming", icon: <FaAws />, color: "#ff9900" },
+  { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6" },
+  { name: "SQL", icon: <FiDatabase />, color: "#336791" },
+  { name: "Docker", icon: <SiDocker />, color: "#2496ed" },
+  { name: "AWS", icon: <FaAws />, color: "#ff9900" },
 ];
 
 export default function Skills() {
@@ -102,15 +104,19 @@ export default function Skills() {
               My <span className="gradient-text">Tech Stack</span>
             </h2>
             <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto px-2">
-              Technologies I use to build modern, responsive web applications — aligned with my GitHub profile.
+              Technologies I use to build modern, responsive web applications.
             </p>
           </div>
 
           <div className="cq-grid">
             <div className="cq-cols">
               {skillCategories.map((cat, ci) => (
-                <div
+                <motion.div
                   key={ci}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: ci * 0.08 }}
                   className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/20 hover:border-amber-500/20 transition-all duration-300"
                 >
                   <div className="flex items-center gap-3 mb-4 sm:mb-5">
@@ -138,7 +144,7 @@ export default function Skills() {
                       </div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -151,19 +157,13 @@ export default function Skills() {
               {learning.map((item) => (
                 <span
                   key={item.name}
-                  className={`inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full border ${
-                    item.status === "learning"
-                      ? "dark:bg-amber-500/10 bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
-                      : "dark:bg-white/5 bg-black/5 dark:text-gray-400 text-gray-600 dark:border-white/10 border-black/10"
-                  }`}
+                  className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full border dark:bg-amber-500/10 bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
                 >
                   <span style={{ color: item.color }} className="text-sm">
                     {item.icon}
                   </span>
                   {item.name}
-                  <span className="opacity-70">
-                    {item.status === "learning" ? "🟡" : "🔜"}
-                  </span>
+                  <span className="opacity-70">🟡</span>
                 </span>
               ))}
             </div>
