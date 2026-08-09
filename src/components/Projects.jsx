@@ -1,8 +1,30 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { FiArrowRight, FiGithub, FiExternalLink } from "react-icons/fi";
+import { FiArrowRight, FiGithub, FiExternalLink, FiImage } from "react-icons/fi";
 import { projects } from "@/data/projects";
+
+function ProjectImage({ src, alt }) {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center dark:bg-white/5 bg-black/5 gap-2">
+        <FiImage size={32} className="text-amber-500/50" />
+        <span className="text-xs dark:text-gray-500 text-gray-400 font-mono">{alt}</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      onError={() => setError(true)}
+    />
+  );
+}
 
 export default function Projects() {
   const ref = useRef(null);
@@ -29,7 +51,7 @@ export default function Projects() {
 
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold dark:text-white text-gray-900 font-mono mb-3">
-            Things I&apos;ve <span className="gradient-text">Built</span>
+            Things I've <span className="gradient-text">Built</span>
           </h2>
           <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto">
             A selection of projects that demonstrate my skills in frontend development.
@@ -43,12 +65,8 @@ export default function Projects() {
               className="project-card group rounded-2xl overflow-hidden dark:bg-white/5 bg-white/90 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300"
             >
               <div className="relative h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <ProjectImage src={project.image} alt={project.name} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-3 right-3 flex gap-2">
                   <a
                     href={project.liveLink}
