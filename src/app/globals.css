@@ -50,11 +50,8 @@ h1, h2, h3, h4, p, span, a, li {
 
 /* ─────────────────────────────────────────
    CSS Container Queries
-   Components adapt to their parent width,
-   not only the viewport.
    ───────────────────────────────────────── */
 
-/* Establish query containers */
 .cq {
   container-type: inline-size;
   container-name: cq;
@@ -75,7 +72,6 @@ h1, h2, h3, h4, p, span, a, li {
   container-name: grid;
 }
 
-/* Section grid: 1 → 2 → 3 columns by container width */
 .cq-cols {
   display: grid;
   grid-template-columns: 1fr;
@@ -96,7 +92,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* 2-column layout that stacks when container is narrow */
 .cq-split {
   display: grid;
   grid-template-columns: 1fr;
@@ -117,7 +112,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Project card internals */
 .project-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -146,7 +140,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Skill / highlight cards */
 .cq-skill-pad {
   padding: 1rem;
 }
@@ -157,7 +150,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* About highlight tiles: tighter on narrow containers */
 .cq-highlight {
   padding: 0.75rem;
 }
@@ -182,7 +174,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Contact list items */
 .cq-contact-item {
   padding: 0.75rem;
   gap: 0.75rem;
@@ -195,12 +186,12 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Hero: stack vs side-by-side based on section container */
+/* Hero: tighter default gap; side-by-side from 900px container */
 .cq-hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .cq-hero-text {
@@ -220,12 +211,18 @@ h1, h2, h3, h4, p, span, a, li {
   order: -1;
 }
 
+@container section (min-width: 640px) {
+  .cq-hero {
+    gap: 1.75rem;
+  }
+}
+
 @container section (min-width: 900px) {
   .cq-hero {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
   }
   .cq-hero-text {
     text-align: left;
@@ -242,7 +239,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Section heading scale by container */
 .cq-heading {
   font-size: 1.875rem;
 }
@@ -259,7 +255,6 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Education timeline padding by container */
 .cq-timeline {
   padding-left: 2rem;
 }
