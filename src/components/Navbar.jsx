@@ -36,7 +36,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on Escape
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") setMobileOpen(false);
@@ -63,25 +62,31 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <button
+            type="button"
             onClick={() => scrollTo("#home")}
             className="font-mono text-lg font-bold tracking-tight"
-            aria-label="Go to home"
+            aria-label="Go to home — Khalid Hasan Meskat"
           >
-            <span className="text-amber-500" aria-hidden="true">&lt;</span>
+            <span className="text-amber-600 dark:text-amber-400" aria-hidden="true">
+              &lt;
+            </span>
             <span className="dark:text-white text-gray-900">KHM</span>
-            <span className="text-amber-500" aria-hidden="true"> /&gt;</span>
+            <span className="text-amber-600 dark:text-amber-400" aria-hidden="true">
+              {" "}/&gt;
+            </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-1" role="list">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
+                type="button"
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 aria-current={active === link.href.replace("#", "") ? "page" : undefined}
                 className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   active === link.href.replace("#", "")
-                    ? "text-amber-600 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
-                    : "dark:text-gray-300 text-gray-700 dark:hover:text-white hover:text-gray-900 dark:hover:bg-white/5 hover:bg-black/5"
+                    ? "text-amber-700 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
+                    : "dark:text-gray-300 text-gray-800 dark:hover:text-white hover:text-gray-900 dark:hover:bg-white/5 hover:bg-black/5"
                 }`}
               >
                 {link.label}
@@ -92,61 +97,64 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             {mounted ? (
               <button
+                type="button"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 transition-all duration-200 dark:text-gray-300 text-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                className="p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 transition-all duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
                 aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               >
                 {theme === "dark" ? (
                   <FiSun size={18} className="text-amber-400" aria-hidden="true" />
                 ) : (
-                  <FiMoon size={18} className="text-amber-700" aria-hidden="true" />
+                  <FiMoon size={18} className="text-amber-800" aria-hidden="true" />
                 )}
               </button>
             ) : (
               <span className="w-11 h-11" aria-hidden="true" />
             )}
             <button
+              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-700 min-w-[44px] min-h-[44px] flex items-center justify-center"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              className="md:hidden p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-800 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
             >
-              {mobileOpen ? <FiX size={18} aria-hidden="true" /> : <FiMenu size={18} aria-hidden="true" />}
+              {mobileOpen ? (
+                <FiX size={18} aria-hidden="true" />
+              ) : (
+                <FiMenu size={18} aria-hidden="true" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu — inert + aria-hidden when closed so focusable children are not reachable */}
-      <div
-        id="mobile-menu"
-        role="navigation"
-        aria-label="Mobile"
-        aria-hidden={!mobileOpen}
-        inert={!mobileOpen ? true : undefined}
-        className={`md:hidden transition-all duration-300 ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
-        } overflow-hidden dark:bg-[#0a0a0f]/95 bg-[#f8f7f4]/95 backdrop-blur-xl border-b dark:border-white/5 border-black/5`}
-      >
-        <div className="px-4 py-3 flex flex-col gap-1">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => scrollTo(link.href)}
-              tabIndex={mobileOpen ? 0 : -1}
-              aria-current={active === link.href.replace("#", "") ? "page" : undefined}
-              className={`px-4 py-2.5 rounded-lg text-sm font-medium text-left transition-all duration-200 min-h-[44px] ${
-                active === link.href.replace("#", "")
-                  ? "text-amber-600 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
-                  : "dark:text-gray-300 text-gray-700 dark:hover:text-white hover:text-gray-900"
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
+      {/* Only mount menu panel when open — avoids aria-hidden + focusable children */}
+      {mobileOpen && (
+        <div
+          id="mobile-menu"
+          className="md:hidden dark:bg-[#0a0a0f]/95 bg-[#f8f7f4]/95 backdrop-blur-xl border-b dark:border-white/5 border-black/5"
+        >
+          <div className="px-4 py-3 flex flex-col gap-1" role="menu">
+            {navLinks.map((link) => (
+              <button
+                type="button"
+                key={link.href}
+                role="menuitem"
+                onClick={() => scrollTo(link.href)}
+                aria-current={active === link.href.replace("#", "") ? "page" : undefined}
+                className={`px-4 py-2.5 rounded-lg text-sm font-medium text-left transition-all duration-200 min-h-[44px] ${
+                  active === link.href.replace("#", "")
+                    ? "text-amber-700 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
+                    : "dark:text-gray-300 text-gray-800 dark:hover:text-white hover:text-gray-900"
+                }`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 }
