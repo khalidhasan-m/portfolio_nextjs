@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { FiGithub, FiLinkedin, FiDownload, FiArrowDown } from "react-icons/fi";
 
 export default function Hero() {
@@ -106,14 +107,14 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full border-2 border-amber-500/30 scale-110 animate-ping" style={{ animationDuration: "3s" }} />
               <div className="absolute inset-0 rounded-full border border-amber-500/20 scale-125" />
               <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-amber-500/40 amber-glow">
-                <div className="w-full h-full dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-900 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="w-24 h-24 rounded-full dark:bg-amber-500/20 bg-amber-500/30 flex items-center justify-center">
-                      <span className="text-5xl">👨‍💻</span>
-                    </div>
-                    <span className="text-xs dark:text-gray-500 text-gray-500 font-mono">Photo coming soon</span>
-                  </div>
-                </div>
+                <Image
+                  src="/profile.jpg"
+                  alt="Khalid Hasan Meskat"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 640px) 224px, (max-width: 1024px) 256px, 288px"
+                />
               </div>
               <div className="absolute -bottom-2 -right-2 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                 React + Next.js
