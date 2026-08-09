@@ -66,7 +66,7 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 relative overflow-hidden cq-section">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[280px] sm:w-[400px] lg:w-[500px] h-[200px] sm:h-[300px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative min-w-0">
@@ -80,16 +80,16 @@ export default function Contact() {
 
         <div ref={ref} className="section-fade">
           <div className="text-center mb-10 sm:mb-14">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold dark:text-white text-gray-900 font-mono mb-4">
-              Let&apos;s <span className="gradient-text">Work Together</span>
+            <h2 className="cq-heading font-bold dark:text-white text-gray-900 font-mono mb-4">
+              Let's <span className="gradient-text">Work Together</span>
             </h2>
             <p className="dark:text-gray-400 text-gray-600 max-w-xl mx-auto leading-relaxed text-sm sm:text-base px-2">
-              I&apos;m currently open to new opportunities. Whether you have a project in mind,
+              I'm currently open to new opportunities. Whether you have a project in mind,
               want to collaborate, or just want to say hi — my inbox is always open!
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 items-start">
+          <div className="cq-split">
             <div className="space-y-3 sm:space-y-4 min-w-0">
               <h3 className="text-base sm:text-lg font-semibold dark:text-white text-gray-900 mb-4 sm:mb-6 font-mono">
                 Reach me directly
@@ -102,7 +102,7 @@ export default function Contact() {
                       href={item.href}
                       target={item.href.startsWith("http") ? "_blank" : undefined}
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group min-h-[56px]"
+                      className="cq-contact-item flex items-center rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 group min-h-[56px]"
                     >
                       <div className={`p-2.5 rounded-xl ${item.bg} ${item.color} flex-shrink-0`}>
                         {item.icon}
@@ -117,7 +117,7 @@ export default function Contact() {
                       </div>
                     </a>
                   ) : (
-                    <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 min-h-[56px]">
+                    <div className="cq-contact-item flex items-center rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 min-h-[56px]">
                       <div className={`p-2.5 rounded-xl ${item.bg} ${item.color} flex-shrink-0`}>
                         {item.icon}
                       </div>
@@ -168,7 +168,7 @@ export default function Contact() {
                     Available for hire
                   </h3>
                   <p className="dark:text-gray-400 text-gray-600 text-sm leading-relaxed">
-                    I&apos;m a Frontend Developer actively looking for professional opportunities.
+                    I'm a Frontend Developer actively looking for professional opportunities.
                     I bring dedication, clean code, and a passion for great UI to every project.
                   </p>
                 </div>
