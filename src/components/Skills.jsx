@@ -13,7 +13,7 @@ const skillCategories = [
     skills: [
       { name: "JavaScript (ES6+)", icon: <SiJavascript />, color: "#f7df1e" },
       { name: "React", icon: <SiReact />, color: "#61dafb" },
-      { name: "Next.js", icon: <SiNextdotjs />, color: "#ffffff" },
+      { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
       { name: "HTML5", icon: <SiHtml5 />, color: "#e34f26" },
       { name: "CSS3", icon: <FiCode />, color: "#1572b6" },
     ],
@@ -32,7 +32,7 @@ const skillCategories = [
     emoji: "🛠️",
     skills: [
       { name: "Git", icon: <SiGit />, color: "#f05032" },
-      { name: "GitHub", icon: <SiGithub />, color: "#ffffff" },
+      { name: "GitHub", icon: <SiGithub />, color: "#e5e5e5" },
       { name: "Vite", icon: <SiVite />, color: "#646cff" },
       { name: "REST API", icon: <FiGlobe />, color: "#22c55e" },
       { name: "Better Auth", icon: <FiShield />, color: "#f59e0b" },
@@ -72,7 +72,7 @@ export default function Skills() {
             <h2 className="text-4xl font-bold dark:text-white text-gray-900 font-mono mb-3">
               My <span className="gradient-text">Tech Stack</span>
             </h2>
-            <p className="dark:text-gray-500 text-gray-500 text-sm max-w-lg mx-auto">
+            <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto">
               Technologies I use to build fast, responsive, and scalable web applications.
             </p>
           </div>
@@ -81,7 +81,7 @@ export default function Skills() {
             {skillCategories.map((cat, ci) => (
               <div
                 key={ci}
-                className="rounded-2xl p-6 dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8 dark:hover:border-amber-500/20 hover:border-amber-500/20 transition-all duration-300"
+                className="rounded-2xl p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/20 hover:border-amber-500/20 transition-all duration-300"
               >
                 {/* Category header */}
                 <div className="flex items-center gap-3 mb-5">
@@ -99,12 +99,12 @@ export default function Skills() {
                       className="skill-card flex items-center gap-3 p-2.5 rounded-xl dark:hover:bg-white/5 hover:bg-black/5 transition-all duration-200 group cursor-default"
                     >
                       <div
-                        className="skill-icon text-xl flex-shrink-0 transition-all duration-200"
+                        className="skill-icon text-xl flex-shrink-0 transition-all duration-200 drop-shadow-sm"
                         style={{ color: skill.color }}
                       >
                         {skill.icon}
                       </div>
-                      <span className="text-sm dark:text-gray-300 text-gray-700 font-medium group-hover:text-amber-500 transition-colors duration-200">
+                      <span className="text-sm dark:text-gray-200 text-gray-700 font-medium group-hover:text-amber-500 transition-colors duration-200">
                         {skill.name}
                       </span>
                     </div>
@@ -115,7 +115,7 @@ export default function Skills() {
           </div>
 
           {/* Soft skills */}
-          <div className="mt-6 rounded-2xl p-6 dark:bg-white/3 bg-white/80 border dark:border-white/8 border-black/8">
+          <div className="mt-6 rounded-2xl p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>💡</span> Soft Skills
             </h3>
