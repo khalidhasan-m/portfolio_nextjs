@@ -1,5 +1,27 @@
 export const projects = [
   {
+    id: "pawfectmatch",
+    name: "PawfectMatch",
+    tagline: "Pet adoption platform with owner dashboard",
+    description:
+      "A MERN stack pet adoption platform where users can explore available pets and submit adoption requests. Includes an automated approval workflow and an owner dashboard with search and filtering for managing listings.",
+    image: "/projects/pawfectmatch.jpg",
+    tech: ["React", "Express.js", "MongoDB", "Node.js"],
+    liveLink: "https://pet-adoption-client-gamma.vercel.app/",
+    githubLink: "https://github.com/khalidhasan-m/pet-adoption-client",
+    features: [
+      "Browse adoptable pets with search and category filtering",
+      "Submit and track adoption requests",
+      "Owner dashboard for managing pet listings",
+      "Automated approval workflow for adoption requests",
+    ],
+    challenges:
+      "Building the automated approval workflow required designing a clear status model (pending, approved, rejected) shared between the owner dashboard and the public-facing pet listings, and keeping both in sync via the Express/MongoDB backend.",
+    improvements:
+      "Next steps include real-time notifications for adoption status updates, messaging between adopters and owners, and image uploads for pet profiles.",
+    category: "Full Stack",
+  },
+  {
     id: "wanderlust",
     name: "Wanderlust",
     tagline: "Full-stack travel booking platform",
@@ -41,28 +63,6 @@ export const projects = [
       "Wiring up Google OAuth alongside email/password auth in the same flow, then gating order pages behind that session, took careful handling of protected routing in the Next.js App Router.",
     improvements:
       "Future plans include a shopping cart with persistent state, checkout with a payment gateway, order history for users, and an admin dashboard for managing products.",
-    category: "Full Stack",
-  },
-  {
-    id: "pawfectmatch",
-    name: "PawfectMatch",
-    tagline: "Pet adoption platform with owner dashboard",
-    description:
-      "A MERN stack pet adoption platform where users can explore available pets and submit adoption requests. Includes an automated approval workflow and an owner dashboard with search and filtering for managing listings.",
-    image: "/projects/pawfectmatch.jpg",
-    tech: ["React", "Express.js", "MongoDB", "Node.js"],
-    liveLink: "https://pet-adoption-client-gamma.vercel.app/",
-    githubLink: "https://github.com/khalidhasan-m/pet-adoption-client",
-    features: [
-      "Browse adoptable pets with search and category filtering",
-      "Submit and track adoption requests",
-      "Owner dashboard for managing pet listings",
-      "Automated approval workflow for adoption requests",
-    ],
-    challenges:
-      "Building the automated approval workflow required designing a clear status model (pending, approved, rejected) shared between the owner dashboard and the public-facing pet listings, and keeping both in sync via the Express/MongoDB backend.",
-    improvements:
-      "Next steps include real-time notifications for adoption status updates, messaging between adopters and owners, and image uploads for pet profiles.",
     category: "Full Stack",
   },
 ];
