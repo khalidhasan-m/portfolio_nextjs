@@ -26,13 +26,11 @@ body {
   width: 100%;
 }
 
-/* Dark theme */
 .dark body {
   background-color: #0a0a0f;
   color: #e8e8f0;
 }
 
-/* Light theme */
 body {
   background-color: #f8f7f4;
   color: #1a1a2e;
@@ -47,10 +45,6 @@ h1, h2, h3, h4, p, span, a, li {
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
-
-/* ─────────────────────────────────────────
-   CSS Container Queries
-   ───────────────────────────────────────── */
 
 .cq {
   container-type: inline-size;
@@ -186,7 +180,7 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Hero: tighter default gap; side-by-side from 900px container */
+/* Hero — text left-aligned at all sizes */
 .cq-hero {
   display: flex;
   flex-direction: column;
@@ -195,16 +189,16 @@ h1, h2, h3, h4, p, span, a, li {
 }
 
 .cq-hero-text {
-  text-align: center;
+  text-align: left;
   width: 100%;
 }
 
 .cq-hero-cta {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .cq-hero-social {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .cq-hero-photo {
@@ -225,13 +219,8 @@ h1, h2, h3, h4, p, span, a, li {
     gap: 2.5rem;
   }
   .cq-hero-text {
-    text-align: left;
     flex: 1;
     min-width: 0;
-  }
-  .cq-hero-cta,
-  .cq-hero-social {
-    justify-content: flex-start;
   }
   .cq-hero-photo {
     order: 0;
@@ -264,10 +253,6 @@ h1, h2, h3, h4, p, span, a, li {
     padding-left: 2.5rem;
   }
 }
-
-/* ─────────────────────────────────────────
-   Existing utilities
-   ───────────────────────────────────────── */
 
 .gradient-text {
   background: linear-gradient(135deg, #f59e0b 0%, #fb923c 50%, #f59e0b 100%);
