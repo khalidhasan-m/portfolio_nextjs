@@ -5,7 +5,6 @@ import {
   SiReact,
   SiNextdotjs,
   SiHtml5,
-  SiCss3,
   SiTailwindcss,
   SiNodedotjs,
   SiExpress,
@@ -19,8 +18,8 @@ import {
   SiTypescript,
   SiDocker,
 } from "react-icons/si";
+import { FaAws, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
-import { FaAws } from "react-icons/fa";
 import { FiShield, FiGlobe, FiLayout } from "react-icons/fi";
 
 const skillCategories = [
@@ -29,7 +28,7 @@ const skillCategories = [
     emoji: "🎨",
     skills: [
       { name: "HTML5", icon: <SiHtml5 />, color: "#e34f26" },
-      { name: "CSS3", icon: <SiCss3 />, color: "#1572b6" },
+      { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6" },
       { name: "JavaScript (ES6+)", icon: <SiJavascript />, color: "#f7df1e" },
       { name: "React", icon: <SiReact />, color: "#61dafb" },
       { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
