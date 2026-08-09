@@ -5,7 +5,7 @@ export const projects = [
     tagline: "Pet adoption platform with owner dashboard",
     description:
       "A MERN stack pet adoption platform where users can explore available pets and submit adoption requests. Includes an automated approval workflow and an owner dashboard with search and filtering for managing listings.",
-    image: "/projects/pawfectmatch.svg",
+    image: "/projects/pawfectmatch.png",
     tech: ["React", "Express.js", "MongoDB", "Node.js"],
     liveLink: "https://pet-adoption-client-gamma.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/pet-adoption-client",
@@ -27,7 +27,7 @@ export const projects = [
     tagline: "Full-stack travel booking platform",
     description:
       "A full-stack travel platform built with Next.js where users can explore destinations, create and manage listings, and book trips. Authenticated users can add, update, and delete destinations through a clean, responsive interface backed by MongoDB.",
-    image: "/projects/wanderlust.svg",
+    image: "/projects/wanderlust.png",
     tech: ["Next.js", "React", "Tailwind CSS", "Better Auth", "MongoDB"],
     liveLink: "https://wanderlust-seven-gules.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/wanderlust",
@@ -49,7 +49,7 @@ export const projects = [
     tagline: "Summer essentials eCommerce store",
     description:
       "A modern eCommerce store for seasonal summer essentials, built with Next.js and HeroUI. Features Google OAuth authentication, protected order pages, product search, and an auto-scrolling hero slider for a polished shopping experience.",
-    image: "/projects/suncart.svg",
+    image: "/projects/suncart.png",
     tech: ["Next.js", "HeroUI", "Tailwind CSS", "Better Auth", "React Hook Form", "Embla Carousel"],
     liveLink: "https://assignment8-kappa.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/assignment8",
