@@ -26,12 +26,21 @@ import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap } from "react-ico
 
 function SkillIcon({ Icon, darkColor, lightColor }) {
   const { resolvedTheme } = useTheme();
-  // defaultTheme is dark — treat unknown as dark so icons stay visible
-  const isDark = resolvedTheme !== "light";
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  // Before mount use a neutral amber so light-mode never flashes white icons
+  const color = !mounted
+    ? "#d97706"
+    : resolvedTheme === "light"
+      ? lightColor
+      : darkColor;
+
   return (
     <div
-      className="skill-icon text-xl flex-shrink-0 transition-all duration-200 drop-shadow-sm"
-      style={{ color: isDark ? darkColor : lightColor }}
+      className="skill-icon text-xl flex-shrink-0 transition-transform duration-200 drop-shadow-sm"
+      style={{ color }}
     >
       <Icon />
     </div>
@@ -91,7 +100,10 @@ const learning = [
 export default function Skills() {
   const ref = useRef(null);
   const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme !== "light";
+  const [mounted, setMounted] = useState(false);
+  const isDark = !mounted || resolvedTheme !== "light";
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
