@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowRight, FiGithub, FiExternalLink, FiImage } from "react-icons/fi";
@@ -17,10 +18,29 @@ function ProjectImage({ src, alt }) {
     );
   }
 
+  // Local public assets work with next/image without remote config
+  const isLocal = typeof src === "string" && src.startsWith("/");
+
+  if (isLocal) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover group-hover:scale-105 transition-transform duration-500"
+        loading="lazy"
+        onError={() => setError(true)}
+      />
+    );
+  }
+
   return (
     <img
       src={src}
       alt={alt}
+      loading="lazy"
+      decoding="async"
       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       onError={() => setError(true)}
     />

@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
-import { PROFILE_IMAGE, PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
+import { PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
 
 export default function Hero() {
   const [imgSrc, setImgSrc] = useState("/profile.jpg");
+  const [useFallback, setUseFallback] = useState(false);
 
   return (
     <section
@@ -102,12 +104,23 @@ export default function Hero() {
               <div className="absolute inset-0 rounded-full border-2 border-amber-500/30 scale-110 animate-ping hidden sm:block" style={{ animationDuration: "3s" }} aria-hidden="true" />
               <div className="absolute inset-0 rounded-full border border-amber-500/20 scale-125 hidden sm:block" aria-hidden="true" />
               <div className="relative w-36 h-36 xs:w-44 xs:h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-amber-500/40 amber-glow">
-                <img
-                  src={imgSrc}
-                  alt="Khalid Hasan Meskat"
-                  className="absolute inset-0 w-full h-full object-cover"
-                  onError={() => setImgSrc(PROFILE_AVATAR_FALLBACK)}
-                />
+                {useFallback ? (
+                  <img
+                    src={PROFILE_AVATAR_FALLBACK}
+                    alt="Khalid Hasan Meskat"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={imgSrc}
+                    alt="Khalid Hasan Meskat"
+                    fill
+                    sizes="(max-width: 640px) 176px, (max-width: 1024px) 240px, 288px"
+                    className="object-cover"
+                    priority
+                    onError={() => setUseFallback(true)}
+                  />
+                )}
               </div>
               <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-amber-500 text-black text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
                 Open Source
