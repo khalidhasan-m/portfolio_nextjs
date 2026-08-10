@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
@@ -24,16 +24,15 @@ import { FaAws, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
 import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap } from "react-icons/fi";
 
-function useIconColor(darkColor, lightColor) {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-  return isDark ? darkColor : lightColor;
-}
-
 function SkillIcon({ Icon, darkColor, lightColor }) {
-  const color = useIconColor(darkColor, lightColor);
+  const { resolvedTheme } = useTheme();
+  // defaultTheme is dark — treat unknown as dark so icons stay visible
+  const isDark = resolvedTheme !== "light";
   return (
-    <div className="skill-icon text-xl flex-shrink-0 transition-all duration-200 drop-shadow-sm" style={{ color }}>
+    <div
+      className="skill-icon text-xl flex-shrink-0 transition-all duration-200 drop-shadow-sm"
+      style={{ color: isDark ? darkColor : lightColor }}
+    >
       <Icon />
     </div>
   );
@@ -46,13 +45,13 @@ const skillCategories = [
     skills: [
       { name: "HTML5", Icon: SiHtml5, dark: "#e34f26", light: "#c2410c" },
       { name: "CSS3", Icon: FaCss3Alt, dark: "#1572b6", light: "#1d4ed8" },
-      { name: "JavaScript (ES6+)", Icon: SiJavascript, dark: "#f7df1e", light: "#ca8a04" },
-      { name: "React", Icon: SiReact, dark: "#61dafb", light: "#0284c7" },
-      { name: "Next.js", Icon: SiNextdotjs, dark: "#f5f5f5", light: "#111111" },
-      { name: "Tailwind CSS", Icon: SiTailwindcss, dark: "#38bdf8", light: "#0891b2" },
-      { name: "DaisyUI", Icon: FiLayout, dark: "#a78bfa", light: "#7c3aed" },
-      { name: "HeroUI", Icon: FiLayout, dark: "#fbbf24", light: "#d97706" },
-      { name: "Framer Motion", Icon: FiZap, dark: "#f472b6", light: "#db2777" },
+      { name: "JavaScript (ES6+)", Icon: SiJavascript, dark: "#f7df1e", light: "#a16207" },
+      { name: "React", Icon: SiReact, dark: "#61dafb", light: "#0369a1" },
+      { name: "Next.js", Icon: SiNextdotjs, dark: "#f5f5f5", light: "#0a0a0a" },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, dark: "#38bdf8", light: "#0e7490" },
+      { name: "DaisyUI", Icon: FiLayout, dark: "#a78bfa", light: "#6d28d9" },
+      { name: "HeroUI", Icon: FiLayout, dark: "#fbbf24", light: "#b45309" },
+      { name: "Framer Motion", Icon: FiZap, dark: "#f472b6", light: "#be185d" },
     ],
   },
   {
@@ -60,10 +59,10 @@ const skillCategories = [
     emoji: "⚙️",
     skills: [
       { name: "Node.js", Icon: SiNodedotjs, dark: "#4ade80", light: "#15803d" },
-      { name: "Express.js", Icon: SiExpress, dark: "#f5f5f5", light: "#171717" },
+      { name: "Express.js", Icon: SiExpress, dark: "#f5f5f5", light: "#0a0a0a" },
       { name: "MongoDB", Icon: SiMongodb, dark: "#4ade80", light: "#166534" },
-      { name: "REST API", Icon: FiGlobe, dark: "#4ade80", light: "#16a34a" },
-      { name: "Better Auth", Icon: FiShield, dark: "#fbbf24", light: "#d97706" },
+      { name: "REST API", Icon: FiGlobe, dark: "#4ade80", light: "#15803d" },
+      { name: "Better Auth", Icon: FiShield, dark: "#fbbf24", light: "#b45309" },
       { name: "JWT", Icon: FiKey, dark: "#facc15", light: "#a16207" },
     ],
   },
@@ -71,13 +70,13 @@ const skillCategories = [
     category: "Tools",
     emoji: "🧰",
     skills: [
-      { name: "Git", Icon: SiGit, dark: "#f97066", light: "#c2410c" },
-      { name: "GitHub", Icon: SiGithub, dark: "#f5f5f5", light: "#111111" },
+      { name: "Git", Icon: SiGit, dark: "#f97066", light: "#b91c1c" },
+      { name: "GitHub", Icon: SiGithub, dark: "#f5f5f5", light: "#0a0a0a" },
       { name: "VS Code", Icon: VscCode, dark: "#60a5fa", light: "#1d4ed8" },
       { name: "Postman", Icon: SiPostman, dark: "#fb923c", light: "#c2410c" },
-      { name: "Vercel", Icon: SiVercel, dark: "#f5f5f5", light: "#111111" },
+      { name: "Vercel", Icon: SiVercel, dark: "#f5f5f5", light: "#0a0a0a" },
       { name: "Vite", Icon: SiVite, dark: "#a78bfa", light: "#6d28d9" },
-      { name: "Figma", Icon: SiFigma, dark: "#f472b6", light: "#db2777" },
+      { name: "Figma", Icon: SiFigma, dark: "#f472b6", light: "#be185d" },
     ],
   },
 ];
@@ -92,6 +91,7 @@ const learning = [
 export default function Skills() {
   const ref = useRef(null);
   const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme !== "light";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -167,7 +167,7 @@ export default function Skills() {
             </h3>
             <div className="flex flex-wrap gap-2">
               {learning.map((item) => {
-                const color = resolvedTheme === "dark" ? item.dark : item.light;
+                const color = isDark ? item.dark : item.light;
                 return (
                   <span
                     key={item.name}

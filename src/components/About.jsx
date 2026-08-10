@@ -1,29 +1,29 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiCode, FiHeart, FiBook, FiCoffee, FiMapPin, FiChevronDown } from "react-icons/fi";
+import { FiCode, FiHeart, FiBook, FiCoffee, FiChevronDown } from "react-icons/fi";
 import { GiSoccerBall } from "react-icons/gi";
 
 const highlights = [
   {
     icon: <FiCode size={20} />,
     title: "Clean Code",
-    desc: "I write readable, maintainable code with clear structure and thoughtful naming — so projects stay easy to extend.",
+    desc: "Readable structure, clear naming, and components that stay easy to extend months later.",
   },
   {
     icon: <FiHeart size={20} />,
-    title: "UI/UX Focus",
-    desc: "Interfaces should feel effortless. I care about spacing, motion, accessibility, and details users notice without realizing why.",
+    title: "UI that feels right",
+    desc: "Spacing, motion, and accessibility — the details people feel even when they can’t name them.",
   },
   {
     icon: <FiBook size={20} />,
-    title: "Always Learning",
-    desc: "From React patterns to auth and APIs — I keep sharpening skills through real projects, docs, and open source.",
+    title: "Always learning",
+    desc: "Real projects, docs, and open source keep me sharp — from React patterns to auth and APIs.",
   },
   {
     icon: <GiSoccerBall size={20} />,
-    title: "Team Player",
-    desc: "Clear communication and collaboration matter as much as code. I enjoy shipping with others and sharing what I learn.",
+    title: "Team player",
+    desc: "Clear communication and collaboration matter as much as code. I enjoy shipping with others.",
   },
 ];
 
@@ -69,32 +69,34 @@ export default function About() {
             <div className="space-y-4 text-sm sm:text-base dark:text-gray-300 text-gray-700 leading-relaxed">
               <p>
                 I&apos;m <strong className="dark:text-white text-gray-900">Khalid Hasan Meskat</strong> — a
-                frontend-focused developer from Bangladesh who builds responsive, accessible web apps
-                with <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> and{" "}
+                frontend developer from Bangladesh who turns ideas into responsive, accessible web
+                experiences with{" "}
+                <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> and{" "}
                 <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>.
               </p>
               <p>
-                My academic path in English literature trained me to think clearly and communicate well;
-                web development gave me a craft to apply that focus. I care about clean architecture,
-                secure auth flows, REST API integrations, and UI that feels polished on every device.
+                Studying English literature taught me to write clearly and think in structure. Building
+                for the web gave that skill a practical outlet: clean components, secure auth, REST
+                integrations, and interfaces that hold up on every screen size.
               </p>
               <p>
-                Day to day I work with Tailwind CSS, component libraries like HeroUI and shadcn/ui,
-                Framer Motion for motion, and tools like Better Auth and JWT for authentication. I
-                ship projects publicly on GitHub and deploy on Vercel.
+                My toolkit includes Tailwind CSS, HeroUI, shadcn/ui, Framer Motion, Better Auth, and
+                JWT. I keep projects public on GitHub and ship them on Vercel — because shipping is how
+                I learn fastest.
               </p>
               <p>
-                Away from the keyboard you&apos;ll find me following football, reading, or digging into a
-                new library. I&apos;m looking for roles and collaborations where I can grow as a developer
-                and ship products people enjoy using.
+                Off the screen I follow football, read, and tinker with new libraries. I&apos;m open to
+                roles and collaborations where I can grow, contribute, and help build products people
+                actually enjoy using.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
               {facts.map((f) => (
-                <div
+                <motion.div
                   key={f.label}
-                  className="rounded-xl px-3 py-2.5 dark:bg-white/5 bg-black/[0.03] border dark:border-white/10 border-black/8"
+                  whileHover={{ scale: 1.02 }}
+                  className="rounded-xl px-3 py-2.5 dark:bg-white/5 bg-black/[0.03] border dark:border-white/10 border-black/8 cursor-default"
                 >
                   <p className="text-[10px] sm:text-xs font-mono uppercase tracking-wider dark:text-gray-500 text-gray-500">
                     {f.label}
@@ -102,7 +104,7 @@ export default function About() {
                   <p className="text-xs sm:text-sm font-medium dark:text-gray-200 text-gray-800 mt-0.5">
                     {f.value}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
 
