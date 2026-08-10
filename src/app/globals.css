@@ -228,6 +228,9 @@ h1, h2, h3, h4, p, span, a, li {
     min-width: 0;
     text-align: left;
   }
+  .cq-hero-text > p {
+    text-align: left;
+  }
   .cq-hero-text .inline-flex,
   .cq-hero-text .flex {
     justify-content: flex-start;

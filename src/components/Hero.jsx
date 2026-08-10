@@ -43,7 +43,7 @@ export default function Hero() {
               <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">Frontend Developer</p>
             </div>
 
-            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed text-left mx-0 lg:mx-0 mx-auto">
+            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed lg:mx-0 mx-auto">
               Crafting responsive, user-friendly web experiences with{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> &{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>. Passionate about clean code and polished UI.
