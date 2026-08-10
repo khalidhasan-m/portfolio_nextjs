@@ -180,7 +180,7 @@ h1, h2, h3, h4, p, span, a, li {
   }
 }
 
-/* Hero — text left-aligned at all sizes */
+/* Hero — stacked and centered below 900px, two-column left-aligned at 900px+ */
 .cq-hero {
   display: flex;
   flex-direction: column;
@@ -189,8 +189,13 @@ h1, h2, h3, h4, p, span, a, li {
 }
 
 .cq-hero-text {
-  text-align: left;
+  text-align: center;
   width: 100%;
+}
+
+.cq-hero-text .inline-flex,
+.cq-hero-text .flex {
+  justify-content: center;
 }
 
 .cq-hero-cta {
@@ -221,6 +226,11 @@ h1, h2, h3, h4, p, span, a, li {
   .cq-hero-text {
     flex: 1;
     min-width: 0;
+    text-align: left;
+  }
+  .cq-hero-text .inline-flex,
+  .cq-hero-text .flex {
+    justify-content: flex-start;
   }
   .cq-hero-photo {
     order: 0;
