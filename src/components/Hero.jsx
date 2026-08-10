@@ -19,12 +19,12 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         <div className="cq-hero pt-20 sm:pt-22 lg:pt-24 pb-10 sm:pb-12 lg:pb-16 gap-6 sm:gap-8 lg:gap-12">
           <motion.div
-            className="cq-hero-text space-y-3 sm:space-y-4 lg:space-y-6 min-w-0 text-left"
+            className="cq-hero-text space-y-3 sm:space-y-4 lg:space-y-6 min-w-0 text-left lg:text-left text-center"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
+            <div className="inline-flex mx-auto lg:mx-0 items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
               <span className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400 pulse-ring inline-block flex-shrink-0" aria-hidden="true" />
               <span className="text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-400 font-mono">Available for work</span>
             </div>
@@ -38,18 +38,18 @@ export default function Hero() {
               </h1>
             </div>
 
-            <div className="flex items-center gap-3 justify-start">
+            <div className="flex items-center gap-3 justify-start lg:justify-start justify-center">
               <div className="h-px w-6 sm:w-8 bg-amber-600 dark:bg-amber-400 flex-shrink-0" aria-hidden="true" />
               <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">Frontend Developer</p>
             </div>
 
-            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed text-left mx-0">
+            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed text-left mx-0 lg:mx-0 mx-auto">
               Crafting responsive, user-friendly web experiences with{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> &{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>. Passionate about clean code and polished UI.
             </p>
 
-            <div className="flex flex-col xs:flex-row flex-wrap gap-3 justify-start">
+            <div className="flex flex-col xs:flex-row flex-wrap gap-3 justify-start lg:justify-start justify-center">
               <a
                 href={RESUME_PDF}
                 download="Khalid_Hasan_Meskat_Resume.pdf"
@@ -67,7 +67,7 @@ export default function Hero() {
               </button>
             </div>
 
-            <div className="flex items-center gap-3 sm:gap-4 justify-start">
+            <div className="flex items-center gap-3 sm:gap-4 justify-start lg:justify-start justify-center">
               <span className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 font-mono">Find me on</span>
               <div className="flex items-center gap-2 sm:gap-3">
                 <a
