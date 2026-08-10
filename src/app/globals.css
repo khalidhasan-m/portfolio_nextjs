@@ -339,12 +339,12 @@ h1, h2, h3, h4, p, span, a, li {
   background: linear-gradient(to bottom, #f59e0b, transparent);
 }
 
+/* Scale only — do not override brand icon colors (breaks light mode) */
 .skill-icon {
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition: transform 0.2s ease;
 }
 .skill-card:hover .skill-icon {
   transform: scale(1.2);
-  color: #f59e0b;
 }
 
 .mobile-menu {
