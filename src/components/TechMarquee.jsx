@@ -1,5 +1,6 @@
 "use client";
 import Marquee from "react-fast-marquee";
+import { useTheme } from "next-themes";
 import {
   SiReact,
   SiNextdotjs,
@@ -17,34 +18,41 @@ import {
 import { FaCss3Alt } from "react-icons/fa";
 
 const items = [
-  { name: "React", icon: <SiReact />, color: "#61dafb" },
-  { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
-  { name: "JavaScript", icon: <SiJavascript />, color: "#f7df1e" },
-  { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6" },
-  { name: "HTML5", icon: <SiHtml5 />, color: "#e34f26" },
-  { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6" },
-  { name: "Tailwind", icon: <SiTailwindcss />, color: "#38bdf8" },
-  { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
-  { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
-  { name: "Git", icon: <SiGit />, color: "#f05032" },
-  { name: "GitHub", icon: <SiGithub />, color: "#e5e5e5" },
-  { name: "Vercel", icon: <SiVercel />, color: "#e5e5e5" },
-  { name: "Figma", icon: <SiFigma />, color: "#f24e1e" },
+  { name: "React", Icon: SiReact, dark: "#61dafb", light: "#0284c7" },
+  { name: "Next.js", Icon: SiNextdotjs, dark: "#f5f5f5", light: "#111111" },
+  { name: "JavaScript", Icon: SiJavascript, dark: "#f7df1e", light: "#ca8a04" },
+  { name: "TypeScript", Icon: SiTypescript, dark: "#60a5fa", light: "#1d4ed8" },
+  { name: "HTML5", Icon: SiHtml5, dark: "#e34f26", light: "#c2410c" },
+  { name: "CSS3", Icon: FaCss3Alt, dark: "#1572b6", light: "#1d4ed8" },
+  { name: "Tailwind", Icon: SiTailwindcss, dark: "#38bdf8", light: "#0891b2" },
+  { name: "Node.js", Icon: SiNodedotjs, dark: "#4ade80", light: "#15803d" },
+  { name: "MongoDB", Icon: SiMongodb, dark: "#4ade80", light: "#166534" },
+  { name: "Git", Icon: SiGit, dark: "#f97066", light: "#c2410c" },
+  { name: "GitHub", Icon: SiGithub, dark: "#f5f5f5", light: "#111111" },
+  { name: "Vercel", Icon: SiVercel, dark: "#f5f5f5", light: "#111111" },
+  { name: "Figma", Icon: SiFigma, dark: "#f472b6", light: "#db2777" },
 ];
 
 export default function TechMarquee() {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   return (
     <section aria-label="Technologies" className="py-8 sm:py-10 border-y dark:border-white/5 border-black/5 dark:bg-white/[0.02] bg-black/[0.02]">
       <Marquee pauseOnHover speed={40} gradient={false}>
         {items.map((item) => (
           <div
             key={item.name}
-            className="mx-6 sm:mx-8 flex items-center gap-2.5 opacity-80 hover:opacity-100 transition-opacity"
+            className="mx-6 sm:mx-8 flex items-center gap-2.5 opacity-90 hover:opacity-100 transition-opacity"
           >
-            <span className="text-2xl" style={{ color: item.color }} aria-hidden="true">
-              {item.icon}
+            <span
+              className="text-2xl"
+              style={{ color: isDark ? item.dark : item.light }}
+              aria-hidden="true"
+            >
+              <item.Icon />
             </span>
-            <span className="font-medium text-sm dark:text-gray-300 text-gray-700 whitespace-nowrap">
+            <span className="font-medium text-sm dark:text-gray-300 text-gray-800 whitespace-nowrap">
               {item.name}
             </span>
           </div>

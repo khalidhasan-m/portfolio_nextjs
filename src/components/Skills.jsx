@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import {
   SiJavascript,
   SiReact,
@@ -23,58 +24,74 @@ import { FaAws, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
 import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap } from "react-icons/fi";
 
+function useIconColor(darkColor, lightColor) {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+  return isDark ? darkColor : lightColor;
+}
+
+function SkillIcon({ Icon, darkColor, lightColor }) {
+  const color = useIconColor(darkColor, lightColor);
+  return (
+    <div className="skill-icon text-xl flex-shrink-0 transition-all duration-200 drop-shadow-sm" style={{ color }}>
+      <Icon />
+    </div>
+  );
+}
+
 const skillCategories = [
   {
     category: "Frontend",
     emoji: "🎨",
     skills: [
-      { name: "HTML5", icon: <SiHtml5 />, color: "#e34f26" },
-      { name: "CSS3", icon: <FaCss3Alt />, color: "#1572b6" },
-      { name: "JavaScript (ES6+)", icon: <SiJavascript />, color: "#f7df1e" },
-      { name: "React", icon: <SiReact />, color: "#61dafb" },
-      { name: "Next.js", icon: <SiNextdotjs />, color: "#e5e5e5" },
-      { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38bdf8" },
-      { name: "DaisyUI", icon: <FiLayout />, color: "#5a0ef8" },
-      { name: "HeroUI", icon: <FiLayout />, color: "#f59e0b" },
-      { name: "Framer Motion", icon: <FiZap />, color: "#ec4899" },
+      { name: "HTML5", Icon: SiHtml5, dark: "#e34f26", light: "#c2410c" },
+      { name: "CSS3", Icon: FaCss3Alt, dark: "#1572b6", light: "#1d4ed8" },
+      { name: "JavaScript (ES6+)", Icon: SiJavascript, dark: "#f7df1e", light: "#ca8a04" },
+      { name: "React", Icon: SiReact, dark: "#61dafb", light: "#0284c7" },
+      { name: "Next.js", Icon: SiNextdotjs, dark: "#f5f5f5", light: "#111111" },
+      { name: "Tailwind CSS", Icon: SiTailwindcss, dark: "#38bdf8", light: "#0891b2" },
+      { name: "DaisyUI", Icon: FiLayout, dark: "#a78bfa", light: "#7c3aed" },
+      { name: "HeroUI", Icon: FiLayout, dark: "#fbbf24", light: "#d97706" },
+      { name: "Framer Motion", Icon: FiZap, dark: "#f472b6", light: "#db2777" },
     ],
   },
   {
     category: "Backend",
     emoji: "⚙️",
     skills: [
-      { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
-      { name: "Express.js", icon: <SiExpress />, color: "#e5e5e5" },
-      { name: "MongoDB", icon: <SiMongodb />, color: "#47a248" },
-      { name: "REST API", icon: <FiGlobe />, color: "#22c55e" },
-      { name: "Better Auth", icon: <FiShield />, color: "#f59e0b" },
-      { name: "JWT", icon: <FiKey />, color: "#eab308" },
+      { name: "Node.js", Icon: SiNodedotjs, dark: "#4ade80", light: "#15803d" },
+      { name: "Express.js", Icon: SiExpress, dark: "#f5f5f5", light: "#171717" },
+      { name: "MongoDB", Icon: SiMongodb, dark: "#4ade80", light: "#166534" },
+      { name: "REST API", Icon: FiGlobe, dark: "#4ade80", light: "#16a34a" },
+      { name: "Better Auth", Icon: FiShield, dark: "#fbbf24", light: "#d97706" },
+      { name: "JWT", Icon: FiKey, dark: "#facc15", light: "#a16207" },
     ],
   },
   {
     category: "Tools",
     emoji: "🧰",
     skills: [
-      { name: "Git", icon: <SiGit />, color: "#f05032" },
-      { name: "GitHub", icon: <SiGithub />, color: "#e5e5e5" },
-      { name: "VS Code", icon: <VscCode />, color: "#007acc" },
-      { name: "Postman", icon: <SiPostman />, color: "#ff6c37" },
-      { name: "Vercel", icon: <SiVercel />, color: "#e5e5e5" },
-      { name: "Vite", icon: <SiVite />, color: "#646cff" },
-      { name: "Figma", icon: <SiFigma />, color: "#f24e1e" },
+      { name: "Git", Icon: SiGit, dark: "#f97066", light: "#c2410c" },
+      { name: "GitHub", Icon: SiGithub, dark: "#f5f5f5", light: "#111111" },
+      { name: "VS Code", Icon: VscCode, dark: "#60a5fa", light: "#1d4ed8" },
+      { name: "Postman", Icon: SiPostman, dark: "#fb923c", light: "#c2410c" },
+      { name: "Vercel", Icon: SiVercel, dark: "#f5f5f5", light: "#111111" },
+      { name: "Vite", Icon: SiVite, dark: "#a78bfa", light: "#6d28d9" },
+      { name: "Figma", Icon: SiFigma, dark: "#f472b6", light: "#db2777" },
     ],
   },
 ];
 
 const learning = [
-  { name: "TypeScript", icon: <SiTypescript />, color: "#3178c6" },
-  { name: "SQL", icon: <FiDatabase />, color: "#336791" },
-  { name: "Docker", icon: <SiDocker />, color: "#2496ed" },
-  { name: "AWS", icon: <FaAws />, color: "#ff9900" },
+  { name: "TypeScript", Icon: SiTypescript, dark: "#60a5fa", light: "#1d4ed8" },
+  { name: "SQL", Icon: FiDatabase, dark: "#7dd3fc", light: "#0369a1" },
+  { name: "Docker", Icon: SiDocker, dark: "#38bdf8", light: "#0284c7" },
+  { name: "AWS", Icon: FaAws, dark: "#fbbf24", light: "#b45309" },
 ];
 
 export default function Skills() {
   const ref = useRef(null);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -92,7 +109,7 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
-          <span className="section-label text-amber-500 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
+          <span className="section-label text-amber-600 dark:text-amber-400 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
             02. Skills
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
@@ -103,7 +120,7 @@ export default function Skills() {
             <h2 className="cq-heading font-bold dark:text-white text-gray-900 font-mono mb-3">
               My <span className="gradient-text">Tech Stack</span>
             </h2>
-            <p className="dark:text-gray-400 text-gray-500 text-sm max-w-lg mx-auto px-2">
+            <p className="dark:text-gray-400 text-gray-600 text-sm max-w-lg mx-auto px-2">
               Technologies I use to build modern, responsive web applications.
             </p>
           </div>
@@ -117,7 +134,7 @@ export default function Skills() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.4, delay: ci * 0.08 }}
-                  className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/20 hover:border-amber-500/20 transition-all duration-300"
+                  className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 shadow-sm"
                 >
                   <div className="flex items-center gap-3 mb-4 sm:mb-5">
                     <span className="text-2xl">{cat.emoji}</span>
@@ -127,18 +144,13 @@ export default function Skills() {
                   </div>
 
                   <div className="space-y-2 sm:space-y-3">
-                    {cat.skills.map((skill, si) => (
+                    {cat.skills.map((skill) => (
                       <div
-                        key={si}
+                        key={skill.name}
                         className="skill-card flex items-center gap-3 p-2.5 rounded-xl dark:hover:bg-white/5 hover:bg-black/5 transition-all duration-200 group cursor-default"
                       >
-                        <div
-                          className="skill-icon text-xl flex-shrink-0 transition-all duration-200 drop-shadow-sm"
-                          style={{ color: skill.color }}
-                        >
-                          {skill.icon}
-                        </div>
-                        <span className="text-sm dark:text-gray-200 text-gray-700 font-medium group-hover:text-amber-500 transition-colors duration-200">
+                        <SkillIcon Icon={skill.Icon} darkColor={skill.dark} lightColor={skill.light} />
+                        <span className="text-sm dark:text-gray-200 text-gray-800 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">
                           {skill.name}
                         </span>
                       </div>
@@ -149,27 +161,30 @@ export default function Skills() {
             </div>
           </div>
 
-          <div className="mt-4 sm:mt-6 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+          <div className="mt-4 sm:mt-6 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 shadow-sm">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>📚</span> Currently Learning
             </h3>
             <div className="flex flex-wrap gap-2">
-              {learning.map((item) => (
-                <span
-                  key={item.name}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full border dark:bg-amber-500/10 bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20"
-                >
-                  <span style={{ color: item.color }} className="text-sm">
-                    {item.icon}
+              {learning.map((item) => {
+                const color = resolvedTheme === "dark" ? item.dark : item.light;
+                return (
+                  <span
+                    key={item.name}
+                    className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full border dark:bg-amber-500/10 bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/25"
+                  >
+                    <span style={{ color }} className="text-sm">
+                      <item.Icon />
+                    </span>
+                    {item.name}
+                    <span className="opacity-70">🟡</span>
                   </span>
-                  {item.name}
-                  <span className="opacity-70">🟡</span>
-                </span>
-              ))}
+                );
+              })}
             </div>
           </div>
 
-          <div className="mt-4 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+          <div className="mt-4 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 shadow-sm">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
               <span>💡</span> Soft Skills
             </h3>
@@ -184,7 +199,7 @@ export default function Skills() {
               ].map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1.5 text-xs font-medium rounded-full dark:bg-amber-500/10 bg-amber-500/10 text-amber-600 dark:text-amber-400 border dark:border-amber-500/20 border-amber-500/20"
+                  className="px-3 py-1.5 text-xs font-medium rounded-full dark:bg-amber-500/10 bg-amber-500/10 text-amber-700 dark:text-amber-400 border dark:border-amber-500/20 border-amber-500/25"
                 >
                   {skill}
                 </span>
