@@ -1,9 +1,66 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 import { PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
+
+const STATS = [
+  { end: 5, suffix: "+", label: "Shipped apps" },
+  { end: 3, suffix: "", label: "Live demos" },
+  { end: 12, suffix: "+", label: "Technologies" },
+];
+
+function GlitchStat({ end, suffix, label, delay = 0 }) {
+  const [display, setDisplay] = useState("—");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduce) {
+      setDisplay(`${end}${suffix}`);
+      setDone(true);
+      return;
+    }
+
+    let frame = 0;
+    const totalFrames = 18;
+    const start = window.setTimeout(() => {
+      const id = window.setInterval(() => {
+        frame += 1;
+        if (frame >= totalFrames) {
+          window.clearInterval(id);
+          setDisplay(`${end}${suffix}`);
+          setDone(true);
+          return;
+        }
+        // Random glitch digits then settle
+        const noise = Math.floor(Math.random() * (end * 3 + 9)) + 1;
+        setDisplay(`${noise}${suffix}`);
+      }, 45);
+      return () => window.clearInterval(id);
+    }, delay);
+
+    return () => window.clearTimeout(start);
+  }, [end, suffix, delay]);
+
+  return (
+    <div className="text-center" role="listitem">
+      <p
+        className={`text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-400 font-mono tabular-nums min-h-[1.75rem] transition-opacity ${
+          done ? "opacity-100" : "opacity-90"
+        }`}
+        aria-label={`${end}${suffix} ${label}`}
+      >
+        <span aria-hidden="true">{display}</span>
+      </p>
+      <p className="text-[10px] sm:text-xs dark:text-gray-400 text-gray-600">{label}</p>
+    </div>
+  );
+}
 
 export default function Hero() {
   const [useFallback, setUseFallback] = useState(false);
@@ -127,15 +184,14 @@ export default function Hero() {
             </div>
 
             <div className="flex items-center gap-4 sm:gap-6" role="list" aria-label="Highlights">
-              {[
-                { value: "5+", label: "Shipped apps" },
-                { value: "3", label: "Live demos" },
-                { value: "Open", label: "Source" },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center" role="listitem">
-                  <p className="text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-400 font-mono">{stat.value}</p>
-                  <p className="text-[10px] sm:text-xs dark:text-gray-400 text-gray-600">{stat.label}</p>
-                </div>
+              {STATS.map((stat, i) => (
+                <GlitchStat
+                  key={stat.label}
+                  end={stat.end}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  delay={200 + i * 120}
+                />
               ))}
             </div>
           </motion.div>
