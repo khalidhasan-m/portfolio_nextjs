@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useRef, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowRight, FiGithub, FiExternalLink, FiImage } from "react-icons/fi";
 import { projects } from "@/data/projects";
+import { useInView } from "@/hooks/useInView";
 
 function ProjectImage({ src, alt }) {
   const [error, setError] = useState(false);
@@ -18,7 +19,6 @@ function ProjectImage({ src, alt }) {
     );
   }
 
-  // Local public assets work with next/image without remote config
   const isLocal = typeof src === "string" && src.startsWith("/");
 
   if (isLocal) {
@@ -48,7 +48,7 @@ function ProjectImage({ src, alt }) {
 }
 
 export default function Projects() {
-  const ref = useRef(null);
+  const ref = useInView({ threshold: 0.05 });
   const [filter, setFilter] = useState("All");
 
   const categories = useMemo(() => {
@@ -57,17 +57,6 @@ export default function Projects() {
   }, []);
 
   const filtered = filter === "All" ? projects : projects.filter((p) => p.category === filter);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      },
-      { threshold: 0.05 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="projects" aria-label="Projects" className="py-16 sm:py-20 lg:py-24 dark:bg-white/[0.01] bg-black/[0.01] cq-section">

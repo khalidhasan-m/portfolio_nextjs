@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import {
@@ -35,6 +35,7 @@ import {
   FiBookOpen,
   FiUsers,
 } from "react-icons/fi";
+import { useInView } from "@/hooks/useInView";
 
 function SkillIcon({ Icon, darkColor, lightColor }) {
   const { resolvedTheme } = useTheme();
@@ -109,23 +110,12 @@ const learning = [
 ];
 
 export default function Skills() {
-  const ref = useRef(null);
+  const ref = useInView();
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const isDark = !mounted || resolvedTheme !== "light";
 
   useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="skills" className="py-16 sm:py-20 lg:py-24 dark:bg-white/[0.01] bg-black/[0.01] relative cq-section">

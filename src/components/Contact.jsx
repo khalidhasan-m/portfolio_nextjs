@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { FiMail, FiPhone, FiGithub, FiLinkedin, FiMapPin, FiSend, FiCopy, FiCheck } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
+import { useInView } from "@/hooks/useInView";
 
 const EMAIL = "khalidhasanmeskat@gmail.com";
 
@@ -55,19 +56,8 @@ const socials = [
 ];
 
 export default function Contact() {
-  const ref = useRef(null);
+  const ref = useInView();
   const [copied, setCopied] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   const copyEmail = async (e) => {
     e.preventDefault();
@@ -137,9 +127,9 @@ export default function Contact() {
                           aria-label={copied ? "Email copied" : "Copy email"}
                         >
                           {copied ? (
-                            <FiCheck size={16} className="text-green-600 dark:text-green-400" />
+                            <FiCheck size={16} className="text-green-600 dark:text-green-400" aria-hidden="true" />
                           ) : (
-                            <FiCopy size={16} />
+                            <FiCopy size={16} aria-hidden="true" />
                           )}
                         </button>
                       )}
@@ -184,7 +174,7 @@ export default function Contact() {
 
               <div className="relative space-y-5 sm:space-y-6">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl dark:bg-amber-500/10 bg-amber-500/15 flex items-center justify-center text-amber-700 dark:text-amber-400">
-                  <FiSend size={24} />
+                  <FiSend size={24} aria-hidden="true" />
                 </div>
 
                 <div>
@@ -205,7 +195,7 @@ export default function Contact() {
                     "Clean, well-documented code",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" aria-hidden="true" />
                       <span className="text-sm dark:text-gray-400 text-gray-600">{item}</span>
                     </div>
                   ))}
@@ -216,7 +206,7 @@ export default function Contact() {
                     type="button"
                     className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 mt-2 min-h-[48px]"
                   >
-                    <FiMail size={16} />
+                    <FiMail size={16} aria-hidden="true" />
                     Send me an email
                   </button>
                 </a>

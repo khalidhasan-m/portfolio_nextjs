@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiCode, FiHeart, FiBook, FiCoffee, FiChevronDown } from "react-icons/fi";
 import { GiSoccerBall } from "react-icons/gi";
+import { useInView } from "@/hooks/useInView";
 
 const highlights = [
   {
@@ -35,19 +36,8 @@ const facts = [
 ];
 
 export default function About() {
-  const ref = useRef(null);
+  const ref = useInView();
   const [openCard, setOpenCard] = useState(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="about" className="py-16 sm:py-20 lg:py-24 cq-section">
@@ -109,7 +99,7 @@ export default function About() {
             </div>
 
             <div className="flex items-center gap-3 pt-1">
-              <FiCoffee size={18} className="text-amber-600 dark:text-amber-400 flex-shrink-0" />
+              <FiCoffee size={18} className="text-amber-600 dark:text-amber-400 flex-shrink-0" aria-hidden="true" />
               <span className="text-sm dark:text-gray-400 text-gray-600 font-mono">
                 Fueled by coffee &amp; curiosity
               </span>
@@ -125,6 +115,7 @@ export default function About() {
                     type="button"
                     key={item.title}
                     onClick={() => setOpenCard(isOpen ? null : i)}
+                    aria-expanded={isOpen}
                     className={`text-left rounded-2xl dark:bg-white/5 bg-white border transition-all duration-300 group p-3 sm:p-4 shadow-sm ${
                       isOpen
                         ? "border-amber-500/50 dark:border-amber-500/40 ring-1 ring-amber-500/20"
@@ -137,6 +128,7 @@ export default function About() {
                       </div>
                       <FiChevronDown
                         size={16}
+                        aria-hidden="true"
                         className={`dark:text-gray-500 text-gray-400 mt-1 transition-transform duration-200 ${
                           isOpen ? "rotate-180" : ""
                         }`}
