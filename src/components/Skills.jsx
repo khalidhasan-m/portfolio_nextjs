@@ -22,7 +22,7 @@ import {
 } from "react-icons/si";
 import { FaAws, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
-import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap } from "react-icons/fi";
+import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap, FiMonitor, FiServer, FiTool } from "react-icons/fi";
 
 function SkillIcon({ Icon, darkColor, lightColor }) {
   const { resolvedTheme } = useTheme();
@@ -50,7 +50,7 @@ function SkillIcon({ Icon, darkColor, lightColor }) {
 const skillCategories = [
   {
     category: "Frontend",
-    emoji: "🎨",
+    icon: <FiMonitor />,
     skills: [
       { name: "HTML5", Icon: SiHtml5, dark: "#e34f26", light: "#c2410c" },
       { name: "CSS3", Icon: FaCss3Alt, dark: "#1572b6", light: "#1d4ed8" },
@@ -65,7 +65,7 @@ const skillCategories = [
   },
   {
     category: "Backend",
-    emoji: "⚙️",
+    icon: <FiServer />,
     skills: [
       { name: "Node.js", Icon: SiNodedotjs, dark: "#4ade80", light: "#15803d" },
       { name: "Express.js", Icon: SiExpress, dark: "#f5f5f5", light: "#0a0a0a" },
@@ -77,7 +77,7 @@ const skillCategories = [
   },
   {
     category: "Tools",
-    emoji: "🧰",
+    icon: <FiTool />,
     skills: [
       { name: "Git", Icon: SiGit, dark: "#f97066", light: "#b91c1c" },
       { name: "GitHub", Icon: SiGithub, dark: "#f5f5f5", light: "#0a0a0a" },
@@ -148,9 +148,9 @@ export default function Skills() {
                   transition={{ duration: 0.4, delay: ci * 0.08 }}
                   className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 shadow-sm"
                 >
-                  <div className="flex items-center gap-3 mb-4 sm:mb-5">
-                    <span className="text-2xl">{cat.emoji}</span>
-                    <h3 className="font-semibold dark:text-white text-gray-900 text-sm">
+                  <div className="flex flex-col items-center gap-2 text-center mb-4 sm:mb-5">
+                    <span className="text-2xl text-amber-500">{cat.icon}</span>
+                    <h3 className="font-semibold dark:text-white text-gray-900 text-base">
                       {cat.category}
                     </h3>
                   </div>
