@@ -9,14 +9,34 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { id } = await params;
   const project = projects.find((p) => p.id === id);
-  if (!project) return {};
+  if (!project) return { title: "Project not found" };
+
+  const title = project.name;
+  const description = `${project.tagline}. Built with ${project.tech.slice(0, 4).join(", ")}.`;
+
   return {
-    title: `${project.name} | Khalid Hasan Meskat`,
-    description: project.tagline,
+    title,
+    description,
+    alternates: {
+      canonical: `/projects/${project.id}`,
+    },
     openGraph: {
       title: `${project.name} | Khalid Hasan Meskat`,
-      description: project.tagline,
-      images: [{ url: project.image }],
+      description,
+      url: `/projects/${project.id}`,
+      type: "article",
+      images: [
+        {
+          url: project.image,
+          alt: `${project.name} preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.name} | Khalid Hasan Meskat`,
+      description,
+      images: [project.image],
     },
   };
 }

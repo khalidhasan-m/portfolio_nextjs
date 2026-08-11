@@ -4,6 +4,7 @@ import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
 const quickLinks = [
   { label: "Home", href: "#home" },
   { label: "Projects", href: "#projects" },
+  { label: "Services", href: "#services" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -16,10 +17,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t dark:border-white/10 border-black/10 py-10">
+    <footer className="border-t dark:border-white/10 border-black/10 py-10" role="contentinfo">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-6">
-          {/* Quick nav */}
           <nav aria-label="Footer" className="flex flex-wrap items-center justify-center gap-1 sm:gap-2">
             {quickLinks.map((link, i) => (
               <span key={link.href} className="flex items-center">
@@ -56,7 +56,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 dark:text-gray-400 text-gray-600 hover:text-amber-500 transition-all duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="GitHub"
+                aria-label="GitHub profile"
               >
                 <FiGithub size={18} aria-hidden="true" />
               </a>
@@ -65,14 +65,14 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 dark:text-gray-400 text-gray-600 hover:text-amber-500 transition-all duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="LinkedIn"
+                aria-label="LinkedIn profile"
               >
                 <FiLinkedin size={18} aria-hidden="true" />
               </a>
               <a
                 href="mailto:khalidhasanmeskat@gmail.com"
                 className="p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:hover:bg-white/10 hover:bg-black/10 dark:text-gray-400 text-gray-600 hover:text-amber-500 transition-all duration-200 min-w-[44px] min-h-[44px] flex items-center justify-center"
-                aria-label="Email"
+                aria-label="Send email"
               >
                 <FiMail size={18} aria-hidden="true" />
               </a>

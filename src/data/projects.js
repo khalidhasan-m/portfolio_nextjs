@@ -4,7 +4,7 @@ export const projects = [
     name: "PawfectMatch",
     tagline: "Pet adoption platform with owner dashboard",
     description:
-      "A MERN stack pet adoption platform where users can explore available pets and submit adoption requests. Includes an automated approval workflow and an owner dashboard with search and filtering for managing listings.",
+      "A MERN stack pet adoption platform where users browse adoptable pets, submit requests, and owners manage listings from a dashboard. I designed a shared approval status model (pending, approved, rejected) so public listings and the owner view stay in sync through Express and MongoDB.",
     image: "/projects/pawfectmatch.jpg",
     tech: ["React", "Express.js", "MongoDB", "Node.js"],
     liveLink: "https://pet-adoption-client-gamma.vercel.app/",
@@ -16,17 +16,17 @@ export const projects = [
       "Automated approval workflow for adoption requests",
     ],
     challenges:
-      "Building the automated approval workflow required designing a clear status model (pending, approved, rejected) shared between the owner dashboard and the public-facing pet listings, and keeping both in sync via the Express/MongoDB backend.",
+      "Building the automated approval workflow required a clear status model shared between the owner dashboard and public listings, and keeping both views consistent via the Express/MongoDB API.",
     improvements:
-      "Next steps include real-time notifications for adoption status updates, messaging between adopters and owners, and image uploads for pet profiles.",
+      "Next steps: real-time status notifications, adopter–owner messaging, and image uploads for pet profiles.",
     category: "Full Stack",
   },
   {
     id: "wanderlust",
     name: "Wanderlust",
-    tagline: "Full-stack travel booking platform",
+    tagline: "Full-stack travel platform with auth and CRUD listings",
     description:
-      "A full-stack travel platform built with Next.js where users can explore destinations, create and manage listings, and book trips. Authenticated users can add, update, and delete destinations through a clean, responsive interface backed by MongoDB.",
+      "A Next.js travel platform where anyone can explore destinations while authenticated users create, update, and delete their own listings. Route protection and ownership checks keep open browsing separate from private write actions, with sessions handled by Better Auth and data in MongoDB.",
     image: "/projects/wanderlust.jpg",
     tech: ["Next.js", "React", "Tailwind CSS", "Better Auth", "MongoDB"],
     liveLink: "https://wanderlust-seven-gules.vercel.app/",
@@ -35,34 +35,34 @@ export const projects = [
       "Browse and search travel destinations with responsive card layouts",
       "Authenticated users can create, update, and delete their own listings",
       "Secure session-based authentication with Better Auth",
-      "MongoDB-backed data persistence for destinations and bookings",
+      "MongoDB-backed persistence for destinations and user data",
     ],
     challenges:
-      "Designing a data model that let authenticated users manage only their own listings, while keeping the browsing experience open to everyone, required careful route protection and authorization checks across both server and client components.",
+      "Letting owners manage only their listings while keeping browse public required careful authorization across server and client routes in the App Router.",
     improvements:
-      "Planned improvements include a booking/payment flow, destination reviews and ratings, image uploads for listings, and map-based destination search.",
+      "Planned: booking/payment flow, reviews and ratings, listing image uploads, and map-based search.",
     category: "Full Stack",
   },
   {
     id: "suncart",
     name: "SunCart",
-    tagline: "Summer essentials eCommerce store",
+    tagline: "eCommerce store with OAuth and protected orders",
     description:
-      "A modern eCommerce store for seasonal summer essentials, built with Next.js and HeroUI. Features Google OAuth authentication, protected order pages, product search, and an auto-scrolling hero slider for a polished shopping experience.",
+      "A Next.js eCommerce store for summer essentials with Google OAuth, email/password auth, product search, and protected order pages. HeroUI and Embla power a polished catalog and hero slider; Better Auth gates post-login flows so only signed-in users reach orders.",
     image: "/projects/suncart.jpg",
     tech: ["Next.js", "HeroUI", "Tailwind CSS", "Better Auth", "React Hook Form", "Embla Carousel"],
     liveLink: "https://assignment8-kappa.vercel.app/",
     githubLink: "https://github.com/khalidhasan-m/assignment8",
     features: [
       "Google OAuth and email/password authentication with Better Auth",
-      "Protected order pages accessible only to logged-in users",
+      "Protected order pages for logged-in users only",
       "Product search and filtering across the catalog",
-      "Auto-scrolling hero slider built with Embla Carousel",
+      "Auto-scrolling hero slider with Embla Carousel",
     ],
     challenges:
-      "Wiring up Google OAuth alongside email/password auth in the same flow, then gating order pages behind that session, took careful handling of protected routing in the Next.js App Router.",
+      "Combining Google OAuth with email/password in one session model, then protecting order routes, required careful App Router auth boundaries.",
     improvements:
-      "Future plans include a shopping cart with persistent state, checkout with a payment gateway, order history for users, and an admin dashboard for managing products.",
+      "Future: persistent cart, payment checkout, order history, and an admin product dashboard.",
     category: "Full Stack",
   },
 ];

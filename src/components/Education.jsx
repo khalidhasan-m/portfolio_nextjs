@@ -107,8 +107,8 @@ export default function Education() {
                     </h3>
                   </div>
                   <p className="text-sm dark:text-gray-300 text-gray-600 leading-relaxed">
-                    Currently seeking a full-time frontend developer role. Eager to contribute to a
-                    team, work on real-world products, and continue growing as a developer.
+                    Seeking a full-time or remote frontend role. Ready to ship UI, own features end to end,
+                    and grow with a product team.
                   </p>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function Education() {
                 <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
                   <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                     <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
-                      Frontend Developer
+                      Frontend Developer (Independent)
                     </h3>
                     <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
                       2025 — Present
@@ -128,22 +128,22 @@ export default function Education() {
                     <li className="flex gap-2">
                       <span className="text-amber-500 mt-1 flex-shrink-0" aria-hidden="true">•</span>
                       <span>
-                        Built and deployed 5+ full-stack web apps with React, Next.js, Tailwind CSS,
-                        and Better Auth; all code is public on GitHub.
+                        Shipped 5+ full-stack apps (React, Next.js, Tailwind, Better Auth) with public repos
+                        and live Vercel deploys recruiters can try.
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-amber-500 mt-1 flex-shrink-0" aria-hidden="true">•</span>
                       <span>
-                        Implemented email/password and Google OAuth authentication, session
-                        management, and protected routes.
+                        Implemented email/password + Google OAuth, session handling, and protected routes
+                        across multiple products.
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="text-amber-500 mt-1 flex-shrink-0" aria-hidden="true">•</span>
                       <span>
-                        Integrated RESTful APIs with Axios; built responsive, animated UIs with
-                        HeroUI, shadcn/ui, and Framer Motion.
+                        Integrated REST APIs with Axios; built responsive UIs with HeroUI, shadcn/ui, and
+                        Framer Motion.
                       </span>
                     </li>
                   </ul>

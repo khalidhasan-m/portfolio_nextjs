@@ -16,15 +16,47 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const siteUrl = "https://portfolio-nextjs-plum-nine.vercel.app";
+
+const description =
+  "Frontend developer from Bangladesh building responsive, accessible web apps with React, Next.js, Tailwind CSS, and Better Auth. Open to remote and full-time roles.";
+
 export const metadata = {
-  metadataBase: new URL("https://portfolio-nextjs-plum-nine.vercel.app"),
-  title: "Khalid Hasan Meskat | Frontend Developer",
-  description:
-    "Portfolio of Khalid Hasan Meskat — Frontend Developer specializing in React and Next.js",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Khalid Hasan Meskat | Frontend Developer",
+    template: "%s | Khalid Hasan Meskat",
+  },
+  description,
+  keywords: [
+    "Frontend Developer",
+    "React",
+    "Next.js",
+    "Tailwind CSS",
+    "JavaScript",
+    "Bangladesh",
+    "Portfolio",
+    "Web Developer",
+    "Better Auth",
+  ],
+  authors: [{ name: "Khalid Hasan Meskat", url: siteUrl }],
+  creator: "Khalid Hasan Meskat",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Khalid Hasan Meskat | Frontend Developer",
-    description:
-      "Portfolio of Khalid Hasan Meskat — Frontend Developer specializing in React and Next.js",
+    description,
     url: "/",
     siteName: "Khalid Hasan Meskat",
     images: [
@@ -32,17 +64,16 @@ export const metadata = {
         url: "/profile.jpg",
         width: 800,
         height: 800,
-        alt: "Khalid Hasan Meskat",
+        alt: "Khalid Hasan Meskat — Frontend Developer",
       },
     ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Khalid Hasan Meskat | Frontend Developer",
-    description:
-      "Portfolio of Khalid Hasan Meskat — Frontend Developer specializing in React and Next.js",
+    description,
     images: ["/profile.jpg"],
   },
 };
@@ -58,6 +89,44 @@ export const viewport = {
   ],
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: "Khalid Hasan Meskat",
+      url: siteUrl,
+      jobTitle: "Frontend Developer",
+      description,
+      email: "mailto:khalidhasanmeskat@gmail.com",
+      sameAs: [
+        "https://github.com/khalidhasan-m",
+        "https://linkedin.com/in/khalidhasanmeskat",
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "BD",
+        addressRegion: "Barishal",
+      },
+      knowsAbout: [
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "JavaScript",
+        "Frontend Development",
+        "Web Accessibility",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      name: "Khalid Hasan Meskat Portfolio",
+      url: siteUrl,
+      description,
+      author: { "@type": "Person", name: "Khalid Hasan Meskat" },
+    },
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -66,6 +135,10 @@ export default function RootLayout({ children }) {
       className={`scroll-smooth ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <body className="overflow-x-hidden">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

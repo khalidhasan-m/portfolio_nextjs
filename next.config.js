@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
+  compress: true,
   images: {
-    // Local /public images need no remote config.
-    // remotePatterns reserved if you later load external screenshots.
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [],
   },
 };

@@ -6,7 +6,7 @@ import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 import { PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
 
 export default function Hero() {
-  const [imgSrc, setImgSrc] = useState("/profile.jpg");
+  const [imgSrc] = useState("/profile.jpg");
   const [useFallback, setUseFallback] = useState(false);
 
   return (
@@ -46,9 +46,10 @@ export default function Hero() {
             </div>
 
             <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed mx-auto lg:mx-0 text-center lg:text-left">
-              Crafting responsive, user-friendly web experiences with{" "}
+              I build responsive, accessible interfaces with{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> &{" "}
-              <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>. Passionate about clean code and polished UI.
+              <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>
+              — from auth and APIs to polished UI. Shipping public projects on GitHub and Vercel.
             </p>
 
             <div className="flex flex-col xs:flex-row flex-wrap gap-3 justify-center lg:justify-start">
@@ -113,7 +114,7 @@ export default function Hero() {
                 ) : (
                   <Image
                     src={imgSrc}
-                    alt="Khalid Hasan Meskat"
+                    alt="Khalid Hasan Meskat, Frontend Developer"
                     fill
                     sizes="(max-width: 640px) 176px, (max-width: 1024px) 240px, 288px"
                     className="object-cover"
@@ -127,13 +128,13 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-4 sm:gap-6" role="list" aria-label="Highlights">
               {[
-                { value: "20+", label: "Repos" },
-                { value: "1+", label: "Year Exp." },
-                { value: "10+", label: "Skills" },
+                { value: "5+", label: "Shipped apps" },
+                { value: "3", label: "Live demos" },
+                { value: "Open", label: "Source" },
               ].map((stat) => (
-                <div key={stat.label} className="text-center">
+                <div key={stat.label} className="text-center" role="listitem">
                   <p className="text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-400 font-mono">{stat.value}</p>
                   <p className="text-[10px] sm:text-xs dark:text-gray-400 text-gray-600">{stat.label}</p>
                 </div>
