@@ -4,7 +4,7 @@ import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   variable: "--font-space-grotesk",
   display: "swap",
 });
@@ -61,11 +61,20 @@ export const metadata = {
     siteName: "Khalid Hasan Meskat",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Khalid Hasan Meskat — Frontend Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Khalid Hasan Meskat | Frontend Developer",
     description,
+    images: ["/twitter-image"],
   },
 };
 

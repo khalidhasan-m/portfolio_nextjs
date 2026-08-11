@@ -7,7 +7,7 @@ const DEFAULT_OPTIONS = { threshold: 0.1 };
 /**
  * Adds className "visible" when the element enters the viewport.
  * Used with .section-fade in globals.css.
- * Pass a stable options object (module constant) or rely on the default.
+ * Content stays visible if JS never runs (no permanent opacity:0).
  */
 export function useInView(options = DEFAULT_OPTIONS) {
   const ref = useRef(null);
@@ -16,6 +16,8 @@ export function useInView(options = DEFAULT_OPTIONS) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    el.classList.add("section-fade-ready");
 
     const observer = new IntersectionObserver(
       ([entry]) => {
