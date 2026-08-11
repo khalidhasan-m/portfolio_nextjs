@@ -6,6 +6,7 @@ import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
@@ -32,7 +33,7 @@ export default function Navbar() {
         }
       }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -76,14 +77,14 @@ export default function Navbar() {
             </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <button
                 type="button"
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
                 aria-current={active === link.href.replace("#", "") ? "page" : undefined}
-                className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-2.5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   active === link.href.replace("#", "")
                     ? "text-amber-700 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
                     : "dark:text-gray-300 text-gray-800 dark:hover:text-white hover:text-gray-900 dark:hover:bg-white/5 hover:bg-black/5"
@@ -114,7 +115,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="md:hidden p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-800 min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="lg:hidden p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-800 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
@@ -129,11 +130,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Only mount menu panel when open — avoids aria-hidden + focusable children */}
       {mobileOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden dark:bg-[#0a0a0f]/95 bg-[#f8f7f4]/95 backdrop-blur-xl border-b dark:border-white/5 border-black/5"
+          className="lg:hidden dark:bg-[#0a0a0f]/95 bg-[#f8f7f4]/95 backdrop-blur-xl border-b dark:border-white/5 border-black/5"
         >
           <div className="px-4 py-3 flex flex-col gap-1" role="menu">
             {navLinks.map((link) => (
