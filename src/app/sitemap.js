@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const base = "https://js-plum-nine.vercel.app";
+  const base = "https://portfolio-nextjs-plum-nine.vercel.app";
 
   return [
     {

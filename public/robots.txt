@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://js-plum-nine.vercel.app/sitemap.xml
+Sitemap: https://portfolio-nextjs-plum-nine.vercel.app/sitemap.xml

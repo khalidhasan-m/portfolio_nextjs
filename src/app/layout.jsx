@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://js-plum-nine.vercel.app"),
+  metadataBase: new URL("https://portfolio-nextjs-plum-nine.vercel.app"),
   title: "Khalid Hasan Meskat | Frontend Developer",
   description:
     "Portfolio of Khalid Hasan Meskat — Frontend Developer specializing in React and Next.js",
