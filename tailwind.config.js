@@ -22,6 +22,10 @@ module.exports = {
           600: "#d97706",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-space-grotesk)", "Space Grotesk", "sans-serif"],
+        mono: ["var(--font-jetbrains-mono)", "JetBrains Mono", "monospace"],
+      },
     },
   },
   darkMode: "class",

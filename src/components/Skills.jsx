@@ -22,7 +22,19 @@ import {
 } from "react-icons/si";
 import { FaAws, FaCss3Alt } from "react-icons/fa";
 import { VscCode } from "react-icons/vsc";
-import { FiShield, FiGlobe, FiLayout, FiKey, FiDatabase, FiZap, FiMonitor, FiServer, FiTool } from "react-icons/fi";
+import {
+  FiShield,
+  FiGlobe,
+  FiLayout,
+  FiKey,
+  FiDatabase,
+  FiZap,
+  FiMonitor,
+  FiServer,
+  FiTool,
+  FiBookOpen,
+  FiUsers,
+} from "react-icons/fi";
 
 function SkillIcon({ Icon, darkColor, lightColor }) {
   const { resolvedTheme } = useTheme();
@@ -30,7 +42,6 @@ function SkillIcon({ Icon, darkColor, lightColor }) {
 
   useEffect(() => setMounted(true), []);
 
-  // Before mount use a neutral amber so light-mode never flashes white icons
   const color = !mounted
     ? "#d97706"
     : resolvedTheme === "light"
@@ -175,7 +186,8 @@ export default function Skills() {
 
           <div className="mt-4 sm:mt-6 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 shadow-sm">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
-              <span>📚</span> Currently Learning
+              <FiBookOpen className="text-amber-500 text-base" aria-hidden="true" />
+              Currently Learning
             </h3>
             <div className="flex flex-wrap gap-2">
               {learning.map((item) => {
@@ -189,7 +201,7 @@ export default function Skills() {
                       <item.Icon />
                     </span>
                     {item.name}
-                    <span className="opacity-70">🟡</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500" aria-hidden="true" />
                   </span>
                 );
               })}
@@ -198,7 +210,8 @@ export default function Skills() {
 
           <div className="mt-4 rounded-2xl p-4 sm:p-6 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 shadow-sm">
             <h3 className="font-semibold dark:text-white text-gray-900 text-sm mb-4 flex items-center gap-2">
-              <span>💡</span> Soft Skills
+              <FiUsers className="text-amber-500 text-base" aria-hidden="true" />
+              Soft Skills
             </h3>
             <div className="flex flex-wrap gap-2">
               {[

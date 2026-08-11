@@ -20,20 +20,22 @@ html {
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-space-grotesk), "Space Grotesk", sans-serif;
   overflow-x: hidden;
   min-width: 0;
   width: 100%;
+  background-color: #f8f7f4;
+  color: #1a1a2e;
 }
 
-.dark body {
+.dark body,
+html.dark body {
   background-color: #0a0a0f;
   color: #e8e8f0;
 }
 
-body {
-  background-color: #f8f7f4;
-  color: #1a1a2e;
+.font-mono {
+  font-family: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
 }
 
 img, video, svg {
