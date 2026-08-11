@@ -84,9 +84,8 @@ export default function Navbar() {
     };
   }, [mobileOpen, closeMenu]);
 
-  const scrollTo = (href) => {
-    const id = href.replace("#", "");
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const onNavClick = (e) => {
+    // allow default hash navigation; still close mobile menu
     closeMenu();
   };
 
@@ -101,11 +100,11 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <button
-            type="button"
-            onClick={() => scrollTo("#home")}
+          <a
+            href="#home"
             className="font-mono text-lg font-bold tracking-tight"
             aria-label="Go to home — Khalid Hasan Meskat"
+            onClick={onNavClick}
           >
             <span className="text-amber-600 dark:text-amber-400" aria-hidden="true">
               &lt;
@@ -114,15 +113,15 @@ export default function Navbar() {
             <span className="text-amber-600 dark:text-amber-400" aria-hidden="true">
               {" "}/&gt;
             </span>
-          </button>
+          </a>
 
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <button
-                type="button"
+              <a
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                href={link.href}
                 aria-current={active === link.href.replace("#", "") ? "page" : undefined}
+                onClick={onNavClick}
                 className={`px-2.5 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                   active === link.href.replace("#", "")
                     ? "text-amber-700 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
@@ -130,7 +129,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </div>
 
@@ -178,20 +177,20 @@ export default function Navbar() {
         >
           <div className="px-4 py-3 flex flex-col gap-1" role="menu">
             {navLinks.map((link) => (
-              <button
-                type="button"
+              <a
                 key={link.href}
+                href={link.href}
                 role="menuitem"
-                onClick={() => scrollTo(link.href)}
+                onClick={onNavClick}
                 aria-current={active === link.href.replace("#", "") ? "page" : undefined}
-                className={`px-4 py-2.5 rounded-lg text-sm font-medium text-left transition-all duration-200 min-h-[44px] ${
+                className={`px-4 py-2.5 rounded-lg text-sm font-medium text-left transition-all duration-200 min-h-[44px] flex items-center ${
                   active === link.href.replace("#", "")
                     ? "text-amber-700 dark:text-amber-400 dark:bg-amber-500/10 bg-amber-500/15"
                     : "dark:text-gray-300 text-gray-800 dark:hover:text-white hover:text-gray-900"
                 }`}
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </div>
         </div>

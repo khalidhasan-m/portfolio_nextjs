@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   FiLayout,
   FiSmartphone,
@@ -92,6 +91,8 @@ export default function Services() {
                   type="button"
                   role="tab"
                   aria-selected={isActive}
+                  id={`service-tab-${s.id}`}
+                  aria-controls={`service-panel-${s.id}`}
                   onClick={() => setActive(s.id)}
                   className={`flex items-center gap-3 text-left px-4 py-3.5 rounded-xl border transition-all duration-200 min-h-[52px] ${
                     isActive
@@ -121,45 +122,40 @@ export default function Services() {
             })}
           </div>
 
-          <div className="lg:col-span-3" role="tabpanel">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={current.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25 }}
-                className="h-full rounded-2xl p-5 sm:p-8 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 shadow-sm"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="p-3 rounded-xl bg-amber-500 text-black">
-                    <current.icon size={22} aria-hidden="true" />
-                  </span>
-                  <div>
-                    <h3 className="font-semibold dark:text-white text-gray-900 text-lg">
-                      {current.title}
-                    </h3>
-                    <p className="text-sm dark:text-gray-400 text-gray-600">{current.short}</p>
-                  </div>
+          <div
+            className="lg:col-span-3"
+            role="tabpanel"
+            id={`service-panel-${current.id}`}
+            aria-labelledby={`service-tab-${current.id}`}
+          >
+            <div className="h-full rounded-2xl p-5 sm:p-8 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 shadow-sm transition-opacity duration-200">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="p-3 rounded-xl bg-amber-500 text-black">
+                  <current.icon size={22} aria-hidden="true" />
+                </span>
+                <div>
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-lg">
+                    {current.title}
+                  </h3>
+                  <p className="text-sm dark:text-gray-400 text-gray-600">{current.short}</p>
                 </div>
-                <ul className="space-y-3 mt-6">
-                  {current.points.map((point) => (
-                    <li key={point} className="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700">
-                      <FiCheck className="text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" size={16} aria-hidden="true" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black text-sm font-semibold transition-colors min-h-[44px]"
-                >
-                  <FiShield size={16} aria-hidden="true" />
-                  Let&apos;s work together
-                </button>
-              </motion.div>
-            </AnimatePresence>
+              </div>
+              <ul className="space-y-3 mt-6">
+                {current.points.map((point) => (
+                  <li key={point} className="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700">
+                    <FiCheck className="text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" size={16} aria-hidden="true" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#contact"
+                className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black text-sm font-semibold transition-colors min-h-[44px]"
+              >
+                <FiShield size={16} aria-hidden="true" />
+                Let&apos;s work together
+              </a>
+            </div>
           </div>
         </div>
       </div>
