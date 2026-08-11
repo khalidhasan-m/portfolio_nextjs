@@ -5,6 +5,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { useInView } from "@/hooks/useInView";
 
 const EMAIL = "khalidhasanmeskat@gmail.com";
+const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
 const contactItems = [
   {
@@ -78,14 +79,41 @@ export default function Contact() {
 
   const onChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    if (status === "error") setStatus("idle");
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setStatus("error");
       return;
     }
+
+    if (FORMSPREE_ID) {
+      setStatus("sending");
+      try {
+        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: form.name.trim(),
+            email: form.email.trim(),
+            message: form.message.trim(),
+            _subject: `Portfolio contact from ${form.name.trim()}`,
+          }),
+        });
+        if (!res.ok) throw new Error("submit failed");
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+      } catch {
+        setStatus("fail");
+      }
+      return;
+    }
+
     const subject = encodeURIComponent(`Portfolio contact from ${form.name.trim()}`);
     const body = encodeURIComponent(
       `Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\n\n${form.message.trim()}`
@@ -201,7 +229,9 @@ export default function Contact() {
                     Send a message
                   </h3>
                   <p className="dark:text-gray-400 text-gray-600 text-sm leading-relaxed">
-                    Fill this out and your email client will open with the message ready to send.
+                    {FORMSPREE_ID
+                      ? "Your message is sent to my inbox — no email app required."
+                      : "Fill this out and your email client will open with the message ready to send."}
                   </p>
                 </div>
 
@@ -259,18 +289,24 @@ export default function Contact() {
                       Please fill in all fields.
                     </p>
                   )}
+                  {status === "fail" && (
+                    <p className="text-xs text-red-600 dark:text-red-400" role="alert">
+                      Something went wrong. Email me at {EMAIL} instead.
+                    </p>
+                  )}
                   {status === "sent" && (
                     <p className="text-xs text-green-700 dark:text-green-400" role="status">
-                      Opening your email client…
+                      {FORMSPREE_ID ? "Message sent — thanks!" : "Opening your email client…"}
                     </p>
                   )}
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 min-h-[48px]"
+                    disabled={status === "sending"}
+                    className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 disabled:opacity-60 text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 min-h-[48px]"
                   >
                     <FiSend size={16} aria-hidden="true" />
-                    Send message
+                    {status === "sending" ? "Sending…" : "Send message"}
                   </button>
                 </form>
               </div>

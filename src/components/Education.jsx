@@ -1,10 +1,7 @@
-"use client";
 import { FiBook, FiBriefcase, FiMapPin, FiAward, FiCheckCircle } from "react-icons/fi";
-import { useInView } from "@/hooks/useInView";
 
+/** Server component — static education / experience content (no client JS). */
 export default function Education() {
-  const ref = useInView();
-
   return (
     <section id="education" className="py-16 sm:py-20 lg:py-24 cq-section">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 min-w-0">
@@ -16,7 +13,7 @@ export default function Education() {
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
 
-        <div ref={ref} className="section-fade cq-split">
+        <div className="cq-split">
           <div className="min-w-0">
             <div className="flex items-center gap-3 mb-6 sm:mb-8">
               <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
@@ -32,7 +29,7 @@ export default function Education() {
 
               <div className="relative mb-6 sm:mb-8">
                 <div className="absolute left-[-27px] sm:left-[-31px] top-1 w-4 h-4 rounded-full bg-amber-500 border-4 dark:border-[#0a0a0f] border-[#f8f7f4] z-10" />
-                <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+                <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
                   <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                     <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
                       Master&apos;s — English
@@ -58,7 +55,7 @@ export default function Education() {
 
               <div className="relative">
                 <div className="absolute left-[-27px] sm:left-[-31px] top-1 w-4 h-4 rounded-full bg-amber-500 border-4 dark:border-[#0a0a0f] border-[#f8f7f4] z-10" />
-                <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+                <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
                   <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                     <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
                       Bachelor of Arts (Honours) — English
@@ -101,7 +98,7 @@ export default function Education() {
                 <div className="absolute left-[-27px] sm:left-[-31px] top-1 w-4 h-4 rounded-full bg-green-500 border-4 dark:border-[#0a0a0f] border-[#f8f7f4] z-10" />
                 <div className="p-4 sm:p-5 rounded-2xl dark:bg-green-500/10 bg-green-500/5 border dark:border-green-500/25 border-green-500/20">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" aria-hidden="true" />
+                    <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" aria-hidden="true" />
                     <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
                       Open to Opportunities
                     </h3>
@@ -115,7 +112,7 @@ export default function Education() {
 
               <div className="relative mb-6 sm:mb-8">
                 <div className="absolute left-[-27px] sm:left-[-31px] top-1 w-4 h-4 rounded-full bg-amber-500 border-4 dark:border-[#0a0a0f] border-[#f8f7f4] z-10" />
-                <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+                <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
                   <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                     <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
                       Frontend Developer (Independent)
@@ -165,7 +162,7 @@ export default function Education() {
 
           <div className="cq-grid">
             <div className="cq-cols">
-              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
                 <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                   <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
                     Web Development (6-month course)
@@ -178,7 +175,7 @@ export default function Education() {
                 <p className="text-sm dark:text-gray-300 text-gray-600">Programming Hero</p>
               </div>
 
-              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8 dark:hover:border-amber-500/30 hover:border-amber-500/20 transition-all duration-300">
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
                 <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
                   <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
                     Computer Office Application

@@ -59,14 +59,6 @@ export const metadata = {
     description,
     url: "/",
     siteName: "Khalid Hasan Meskat",
-    images: [
-      {
-        url: "/profile.jpg",
-        width: 800,
-        height: 800,
-        alt: "Khalid Hasan Meskat — Frontend Developer",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
@@ -74,7 +66,6 @@ export const metadata = {
     card: "summary_large_image",
     title: "Khalid Hasan Meskat | Frontend Developer",
     description,
-    images: ["/profile.jpg"],
   },
 };
 
