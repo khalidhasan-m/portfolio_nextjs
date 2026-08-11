@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useTheme } from "next-themes";
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
 
@@ -19,6 +19,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const menuRef = useRef(null);
+  const menuButtonRef = useRef(null);
 
   useEffect(() => {
     setMounted(true);
@@ -37,18 +39,55 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const onKey = (e) => {
-      if (e.key === "Escape") setMobileOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+  const closeMenu = useCallback(() => {
+    setMobileOpen(false);
+    menuButtonRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const panel = menuRef.current;
+    const focusable = panel?.querySelectorAll(
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable?.[0];
+    const last = focusable?.[focusable.length - 1];
+    first?.focus();
+
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closeMenu();
+        return;
+      }
+      if (e.key !== "Tab" || !focusable?.length) return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [mobileOpen, closeMenu]);
 
   const scrollTo = (href) => {
     const id = href.replace("#", "");
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    setMobileOpen(false);
+    closeMenu();
   };
 
   return (
@@ -113,8 +152,9 @@ export default function Navbar() {
               <span className="w-11 h-11" aria-hidden="true" />
             )}
             <button
+              ref={menuButtonRef}
               type="button"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => setMobileOpen((o) => !o)}
               className="lg:hidden p-2 rounded-lg dark:bg-white/5 bg-black/5 dark:text-gray-300 text-gray-800 min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={mobileOpen}
@@ -133,6 +173,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div
           id="mobile-menu"
+          ref={menuRef}
           className="lg:hidden dark:bg-[#0a0a0f]/95 bg-[#f8f7f4]/95 backdrop-blur-xl border-b dark:border-white/5 border-black/5"
         >
           <div className="px-4 py-3 flex flex-col gap-1" role="menu">

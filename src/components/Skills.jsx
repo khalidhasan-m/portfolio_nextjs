@@ -2,40 +2,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import {
-  SiJavascript,
-  SiReact,
-  SiNextdotjs,
-  SiHtml5,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiGit,
-  SiGithub,
-  SiPostman,
-  SiVercel,
-  SiVite,
-  SiFigma,
-  SiTypescript,
-  SiDocker,
-} from "react-icons/si";
-import { FaAws, FaCss3Alt } from "react-icons/fa";
-import { VscCode } from "react-icons/vsc";
-import {
-  FiShield,
-  FiGlobe,
-  FiLayout,
-  FiKey,
-  FiDatabase,
-  FiZap,
-  FiMonitor,
-  FiServer,
-  FiTool,
-  FiBookOpen,
-  FiUsers,
-} from "react-icons/fi";
+import { FiBookOpen, FiUsers } from "react-icons/fi";
 import { useInView } from "@/hooks/useInView";
+import { skillCategories, learning, softSkills } from "@/data/skills";
 
 function SkillIcon({ Icon, darkColor, lightColor }) {
   const { resolvedTheme } = useTheme();
@@ -58,56 +27,6 @@ function SkillIcon({ Icon, darkColor, lightColor }) {
     </div>
   );
 }
-
-const skillCategories = [
-  {
-    category: "Frontend",
-    icon: <FiMonitor />,
-    skills: [
-      { name: "HTML5", Icon: SiHtml5, dark: "#e34f26", light: "#c2410c" },
-      { name: "CSS3", Icon: FaCss3Alt, dark: "#1572b6", light: "#1d4ed8" },
-      { name: "JavaScript (ES6+)", Icon: SiJavascript, dark: "#f7df1e", light: "#a16207" },
-      { name: "React", Icon: SiReact, dark: "#61dafb", light: "#0369a1" },
-      { name: "Next.js", Icon: SiNextdotjs, dark: "#f5f5f5", light: "#0a0a0a" },
-      { name: "Tailwind CSS", Icon: SiTailwindcss, dark: "#38bdf8", light: "#0e7490" },
-      { name: "DaisyUI", Icon: FiLayout, dark: "#a78bfa", light: "#6d28d9" },
-      { name: "HeroUI", Icon: FiLayout, dark: "#fbbf24", light: "#b45309" },
-      { name: "Framer Motion", Icon: FiZap, dark: "#f472b6", light: "#be185d" },
-    ],
-  },
-  {
-    category: "Backend",
-    icon: <FiServer />,
-    skills: [
-      { name: "Node.js", Icon: SiNodedotjs, dark: "#4ade80", light: "#15803d" },
-      { name: "Express.js", Icon: SiExpress, dark: "#f5f5f5", light: "#0a0a0a" },
-      { name: "MongoDB", Icon: SiMongodb, dark: "#4ade80", light: "#166534" },
-      { name: "REST API", Icon: FiGlobe, dark: "#4ade80", light: "#15803d" },
-      { name: "Better Auth", Icon: FiShield, dark: "#fbbf24", light: "#b45309" },
-      { name: "JWT", Icon: FiKey, dark: "#facc15", light: "#a16207" },
-    ],
-  },
-  {
-    category: "Tools",
-    icon: <FiTool />,
-    skills: [
-      { name: "Git", Icon: SiGit, dark: "#f97066", light: "#b91c1c" },
-      { name: "GitHub", Icon: SiGithub, dark: "#f5f5f5", light: "#0a0a0a" },
-      { name: "VS Code", Icon: VscCode, dark: "#60a5fa", light: "#1d4ed8" },
-      { name: "Postman", Icon: SiPostman, dark: "#fb923c", light: "#c2410c" },
-      { name: "Vercel", Icon: SiVercel, dark: "#f5f5f5", light: "#0a0a0a" },
-      { name: "Vite", Icon: SiVite, dark: "#a78bfa", light: "#6d28d9" },
-      { name: "Figma", Icon: SiFigma, dark: "#f472b6", light: "#be185d" },
-    ],
-  },
-];
-
-const learning = [
-  { name: "TypeScript", Icon: SiTypescript, dark: "#60a5fa", light: "#1d4ed8" },
-  { name: "SQL", Icon: FiDatabase, dark: "#7dd3fc", light: "#0369a1" },
-  { name: "Docker", Icon: SiDocker, dark: "#38bdf8", light: "#0284c7" },
-  { name: "AWS", Icon: FaAws, dark: "#fbbf24", light: "#b45309" },
-];
 
 export default function Skills() {
   const ref = useInView();
@@ -140,37 +59,42 @@ export default function Skills() {
 
           <div className="cq-grid">
             <div className="cq-cols">
-              {skillCategories.map((cat, ci) => (
-                <motion.div
-                  key={ci}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.4, delay: ci * 0.08 }}
-                  className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 shadow-sm"
-                >
-                  <div className="flex flex-col items-center gap-2 text-center mb-4 sm:mb-5">
-                    <span className="text-2xl text-amber-500">{cat.icon}</span>
-                    <h3 className="font-semibold dark:text-white text-gray-900 text-base">
-                      {cat.category}
-                    </h3>
-                  </div>
+              {skillCategories.map((cat, ci) => {
+                const CatIcon = cat.Icon;
+                return (
+                  <motion.div
+                    key={cat.category}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.4, delay: ci * 0.08 }}
+                    className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 shadow-sm"
+                  >
+                    <div className="flex flex-col items-center gap-2 text-center mb-4 sm:mb-5">
+                      <span className="text-2xl text-amber-500" aria-hidden="true">
+                        <CatIcon />
+                      </span>
+                      <h3 className="font-semibold dark:text-white text-gray-900 text-base">
+                        {cat.category}
+                      </h3>
+                    </div>
 
-                  <div className="space-y-2 sm:space-y-3">
-                    {cat.skills.map((skill) => (
-                      <div
-                        key={skill.name}
-                        className="skill-card flex items-center gap-3 p-2.5 rounded-xl dark:hover:bg-white/5 hover:bg-black/5 transition-all duration-200 group cursor-default"
-                      >
-                        <SkillIcon Icon={skill.Icon} darkColor={skill.dark} lightColor={skill.light} />
-                        <span className="text-sm dark:text-gray-200 text-gray-800 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">
-                          {skill.name}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
+                    <div className="space-y-2 sm:space-y-3">
+                      {cat.skills.map((skill) => (
+                        <div
+                          key={skill.name}
+                          className="skill-card flex items-center gap-3 p-2.5 rounded-xl dark:hover:bg-white/5 hover:bg-black/5 transition-all duration-200 group cursor-default"
+                        >
+                          <SkillIcon Icon={skill.Icon} darkColor={skill.dark} lightColor={skill.light} />
+                          <span className="text-sm dark:text-gray-200 text-gray-800 font-medium group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors duration-200">
+                            {skill.name}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
@@ -187,7 +111,7 @@ export default function Skills() {
                     key={item.name}
                     className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-full border dark:bg-amber-500/10 bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/25"
                   >
-                    <span style={{ color }} className="text-sm">
+                    <span style={{ color }} className="text-sm" aria-hidden="true">
                       <item.Icon />
                     </span>
                     {item.name}
@@ -204,14 +128,7 @@ export default function Skills() {
               Soft Skills
             </h3>
             <div className="flex flex-wrap gap-2">
-              {[
-                "Problem Solving",
-                "Analytical Thinking",
-                "Communication",
-                "Team Collaboration",
-                "Self-directed Learning",
-                "Attention to Detail",
-              ].map((skill) => (
+              {softSkills.map((skill) => (
                 <span
                   key={skill}
                   className="px-3 py-1.5 text-xs font-medium rounded-full dark:bg-amber-500/10 bg-amber-500/10 text-amber-700 dark:text-amber-400 border dark:border-amber-500/20 border-amber-500/25"
