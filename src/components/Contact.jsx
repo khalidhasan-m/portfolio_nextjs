@@ -55,9 +55,14 @@ const socials = [
   },
 ];
 
+const inputClass =
+  "w-full px-3.5 py-2.5 rounded-xl text-sm dark:bg-white/5 bg-black/[0.03] border dark:border-white/10 border-black/10 dark:text-gray-100 text-gray-900 placeholder:dark:text-gray-500 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-amber-500/40 focus:border-amber-500/40 transition-colors min-h-[44px]";
+
 export default function Contact() {
   const ref = useInView();
   const [copied, setCopied] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState("idle");
 
   const copyEmail = async (e) => {
     e.preventDefault();
@@ -71,6 +76,24 @@ export default function Contact() {
     }
   };
 
+  const onChange = (e) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus("error");
+      return;
+    }
+    const subject = encodeURIComponent(`Portfolio contact from ${form.name.trim()}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name.trim()}\nEmail: ${form.email.trim()}\n\n${form.message.trim()}`
+    );
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
+    setStatus("sent");
+  };
+
   return (
     <section id="contact" className="py-16 sm:py-20 lg:py-24 relative overflow-hidden cq-section">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[280px] sm:w-[400px] lg:w-[500px] h-[200px] sm:h-[300px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -79,7 +102,7 @@ export default function Contact() {
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
           <span className="section-label text-amber-600 dark:text-amber-400 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
-            05. Contact
+            06. Contact
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
@@ -170,46 +193,86 @@ export default function Contact() {
             </div>
 
             <div className="rounded-2xl p-5 sm:p-8 dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 relative overflow-hidden shadow-sm">
-              <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-amber-500/5 rounded-bl-full" />
+              <div className="absolute top-0 right-0 w-24 sm:w-32 h-24 sm:h-32 bg-amber-500/5 rounded-bl-full" aria-hidden="true" />
 
-              <div className="relative space-y-5 sm:space-y-6">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl dark:bg-amber-500/10 bg-amber-500/15 flex items-center justify-center text-amber-700 dark:text-amber-400">
-                  <FiSend size={24} aria-hidden="true" />
-                </div>
-
+              <div className="relative space-y-5">
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold dark:text-white text-gray-900 font-mono mb-2">
-                    Available for hire
+                  <h3 className="text-xl sm:text-2xl font-bold dark:text-white text-gray-900 font-mono mb-1">
+                    Send a message
                   </h3>
                   <p className="dark:text-gray-400 text-gray-600 text-sm leading-relaxed">
-                    Frontend developer looking for roles where I can ship clean UI, learn fast, and
-                    contribute to a strong team.
+                    Fill this out and your email client will open with the message ready to send.
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  {[
-                    "React & Next.js specialist",
-                    "Responsive, accessible UI",
-                    "Fast learner & team player",
-                    "Clean, well-documented code",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500 flex-shrink-0" aria-hidden="true" />
-                      <span className="text-sm dark:text-gray-400 text-gray-600">{item}</span>
-                    </div>
-                  ))}
-                </div>
+                <form onSubmit={onSubmit} className="space-y-3.5" noValidate>
+                  <div>
+                    <label htmlFor="contact-name" className="block text-xs font-medium dark:text-gray-400 text-gray-600 mb-1.5">
+                      Name
+                    </label>
+                    <input
+                      id="contact-name"
+                      name="name"
+                      type="text"
+                      autoComplete="name"
+                      required
+                      value={form.name}
+                      onChange={onChange}
+                      className={inputClass}
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block text-xs font-medium dark:text-gray-400 text-gray-600 mb-1.5">
+                      Email
+                    </label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      value={form.email}
+                      onChange={onChange}
+                      className={inputClass}
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-message" className="block text-xs font-medium dark:text-gray-400 text-gray-600 mb-1.5">
+                      Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      required
+                      rows={4}
+                      value={form.message}
+                      onChange={onChange}
+                      className={`${inputClass} min-h-[100px] resize-y`}
+                      placeholder="Tell me about the role or project…"
+                    />
+                  </div>
 
-                <a href={`mailto:${EMAIL}`} className="block">
+                  {status === "error" && (
+                    <p className="text-xs text-red-600 dark:text-red-400" role="alert">
+                      Please fill in all fields.
+                    </p>
+                  )}
+                  {status === "sent" && (
+                    <p className="text-xs text-green-700 dark:text-green-400" role="status">
+                      Opening your email client…
+                    </p>
+                  )}
+
                   <button
-                    type="button"
-                    className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 mt-2 min-h-[48px]"
+                    type="submit"
+                    className="w-full py-3.5 px-6 rounded-xl bg-amber-500 hover:bg-amber-600 text-black font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 min-h-[48px]"
                   >
-                    <FiMail size={16} aria-hidden="true" />
-                    Send me an email
+                    <FiSend size={16} aria-hidden="true" />
+                    Send message
                   </button>
-                </a>
+                </form>
               </div>
             </div>
           </div>

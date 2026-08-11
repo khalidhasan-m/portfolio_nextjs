@@ -64,7 +64,7 @@ export default function Projects() {
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" aria-hidden="true" />
           <span className="section-label text-amber-700 dark:text-amber-400 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
-            04. Projects
+            05. Projects
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" aria-hidden="true" />
         </div>

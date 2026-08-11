@@ -67,7 +67,7 @@ export default function Services() {
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
           <span className="section-label text-amber-600 dark:text-amber-400 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
-            What I Do
+            02. Services
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
@@ -82,7 +82,7 @@ export default function Services() {
         </div>
 
         <div className="grid lg:grid-cols-5 gap-4 sm:gap-6">
-          <div className="lg:col-span-2 flex flex-col gap-2">
+          <div className="lg:col-span-2 flex flex-col gap-2" role="tablist" aria-label="Services">
             {services.map((s) => {
               const Icon = s.icon;
               const isActive = active === s.id;
@@ -90,6 +90,8 @@ export default function Services() {
                 <button
                   key={s.id}
                   type="button"
+                  role="tab"
+                  aria-selected={isActive}
                   onClick={() => setActive(s.id)}
                   className={`flex items-center gap-3 text-left px-4 py-3.5 rounded-xl border transition-all duration-200 min-h-[52px] ${
                     isActive
@@ -104,7 +106,7 @@ export default function Services() {
                         : "dark:bg-white/10 bg-black/5 text-amber-600 dark:text-amber-400"
                     }`}
                   >
-                    <Icon size={18} />
+                    <Icon size={18} aria-hidden="true" />
                   </span>
                   <span className="min-w-0">
                     <span className="block text-sm font-semibold dark:text-white text-gray-900">
@@ -119,7 +121,7 @@ export default function Services() {
             })}
           </div>
 
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3" role="tabpanel">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id}
@@ -131,7 +133,7 @@ export default function Services() {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <span className="p-3 rounded-xl bg-amber-500 text-black">
-                    <current.icon size={22} />
+                    <current.icon size={22} aria-hidden="true" />
                   </span>
                   <div>
                     <h3 className="font-semibold dark:text-white text-gray-900 text-lg">
@@ -143,7 +145,7 @@ export default function Services() {
                 <ul className="space-y-3 mt-6">
                   {current.points.map((point) => (
                     <li key={point} className="flex items-start gap-3 text-sm dark:text-gray-300 text-gray-700">
-                      <FiCheck className="text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" size={16} />
+                      <FiCheck className="text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" size={16} aria-hidden="true" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -153,7 +155,7 @@ export default function Services() {
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                   className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black text-sm font-semibold transition-colors min-h-[44px]"
                 >
-                  <FiShield size={16} />
+                  <FiShield size={16} aria-hidden="true" />
                   Let&apos;s work together
                 </button>
               </motion.div>

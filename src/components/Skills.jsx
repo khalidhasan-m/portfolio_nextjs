@@ -123,7 +123,7 @@ export default function Skills() {
         <div className="flex items-center gap-3 sm:gap-4 mb-10 sm:mb-16">
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10 max-w-[40px] sm:max-w-[60px]" />
           <span className="section-label text-amber-600 dark:text-amber-400 font-mono text-xs sm:text-sm tracking-wider sm:tracking-widest uppercase shrink-0">
-            02. Skills
+            03. Skills
           </span>
           <div className="h-px flex-1 dark:bg-white/10 bg-black/10" />
         </div>
