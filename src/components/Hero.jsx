@@ -12,7 +12,8 @@ const STATS = [
 ];
 
 function GlitchStat({ end, suffix, label, delay = 0 }) {
-  const [display, setDisplay] = useState("—");
+  const finalText = `${end}${suffix}`;
+  const [display, setDisplay] = useState("··");
   const [done, setDone] = useState(false);
 
   useEffect(() => {
@@ -21,37 +22,43 @@ function GlitchStat({ end, suffix, label, delay = 0 }) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduce) {
-      setDisplay(`${end}${suffix}`);
+      setDisplay(finalText);
       setDone(true);
       return;
     }
 
+    let intervalId = null;
     let frame = 0;
-    const totalFrames = 18;
-    const start = window.setTimeout(() => {
-      const id = window.setInterval(() => {
+    const totalFrames = 22;
+
+    const timeoutId = window.setTimeout(() => {
+      intervalId = window.setInterval(() => {
         frame += 1;
         if (frame >= totalFrames) {
-          window.clearInterval(id);
-          setDisplay(`${end}${suffix}`);
+          window.clearInterval(intervalId);
+          intervalId = null;
+          setDisplay(finalText);
           setDone(true);
           return;
         }
-        // Random glitch digits then settle
-        const noise = Math.floor(Math.random() * (end * 3 + 9)) + 1;
+        // Scramble: random digits that feel like a glitch before settling
+        const max = Math.max(end * 4, 9);
+        const noise = Math.floor(Math.random() * max) + 1;
         setDisplay(`${noise}${suffix}`);
-      }, 45);
-      return () => window.clearInterval(id);
+      }, 40);
     }, delay);
 
-    return () => window.clearTimeout(start);
-  }, [end, suffix, delay]);
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, [end, suffix, delay, finalText]);
 
   return (
     <div className="text-center" role="listitem">
       <p
-        className={`text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-400 font-mono tabular-nums min-h-[1.75rem] transition-opacity ${
-          done ? "opacity-100" : "opacity-90"
+        className={`text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-400 font-mono tabular-nums min-h-[1.75rem] tracking-tight ${
+          done ? "opacity-100" : "opacity-80"
         }`}
         aria-label={`${end}${suffix} ${label}`}
       >
@@ -71,8 +78,14 @@ export default function Hero() {
       aria-label="Introduction"
       className="relative min-h-0 lg:min-h-[100svh] flex items-start lg:items-center justify-center dot-grid overflow-hidden cq-section"
     >
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
-      <div className="absolute top-1/4 right-1/4 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-amber-500/5 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute top-1/4 right-1/4 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[300px] lg:h-[300px] bg-orange-500/5 rounded-full blur-3xl pointer-events-none"
+        aria-hidden="true"
+      />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         <div className="cq-hero pt-20 sm:pt-22 lg:pt-24 pb-10 sm:pb-12 lg:pb-16 gap-6 sm:gap-8 lg:gap-12">
@@ -83,12 +96,19 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <div className="inline-flex mx-auto lg:mx-0 items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
-              <span className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400 pulse-ring inline-block flex-shrink-0" aria-hidden="true" />
-              <span className="text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-400 font-mono">Available for work</span>
+              <span
+                className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400 pulse-ring inline-block flex-shrink-0"
+                aria-hidden="true"
+              />
+              <span className="text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-400 font-mono">
+                Available for work
+              </span>
             </div>
 
             <div className="space-y-1">
-              <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 font-mono tracking-widest uppercase">Hi, I&apos;m</p>
+              <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 font-mono tracking-widest uppercase">
+                Hi, I&apos;m
+              </p>
               <h1 className="text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight font-mono leading-[1.1]">
                 <span className="text-amber-600 dark:text-amber-400">Khalid</span>
                 <br />
@@ -97,8 +117,13 @@ export default function Hero() {
             </div>
 
             <div className="flex items-center gap-3 justify-center lg:justify-start">
-              <div className="h-px w-6 sm:w-8 bg-amber-600 dark:bg-amber-400 flex-shrink-0" aria-hidden="true" />
-              <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">Frontend Developer</p>
+              <div
+                className="h-px w-6 sm:w-8 bg-amber-600 dark:bg-amber-400 flex-shrink-0"
+                aria-hidden="true"
+              />
+              <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">
+                Frontend Developer
+              </p>
             </div>
 
             <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed mx-auto lg:mx-0 text-center lg:text-left">
@@ -126,7 +151,9 @@ export default function Hero() {
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start">
-              <span className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 font-mono">Find me on</span>
+              <span className="text-xs sm:text-sm dark:text-gray-400 text-gray-600 font-mono">
+                Find me on
+              </span>
               <div className="flex items-center gap-2 sm:gap-3">
                 <a
                   href="https://github.com/khalidhasan-m"
@@ -157,8 +184,15 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
           >
             <div className="relative float-animation">
-              <div className="absolute inset-0 rounded-full border-2 border-amber-500/30 scale-110 animate-ping hidden sm:block" style={{ animationDuration: "3s" }} aria-hidden="true" />
-              <div className="absolute inset-0 rounded-full border border-amber-500/20 scale-125 hidden sm:block" aria-hidden="true" />
+              <div
+                className="absolute inset-0 rounded-full border-2 border-amber-500/30 scale-110 animate-ping hidden sm:block"
+                style={{ animationDuration: "3s" }}
+                aria-hidden="true"
+              />
+              <div
+                className="absolute inset-0 rounded-full border border-amber-500/20 scale-125 hidden sm:block"
+                aria-hidden="true"
+              />
               <div className="relative w-36 h-36 xs:w-44 xs:h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-amber-500/40 amber-glow">
                 {useFallback ? (
                   <img
@@ -178,6 +212,7 @@ export default function Hero() {
                   />
                 )}
               </div>
+              {/* Photo badge — stack, not Open Source */}
               <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-amber-500 text-black text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
                 React · Next.js
               </div>
@@ -190,7 +225,7 @@ export default function Hero() {
                   end={stat.end}
                   suffix={stat.suffix}
                   label={stat.label}
-                  delay={200 + i * 120}
+                  delay={250 + i * 140}
                 />
               ))}
             </div>
