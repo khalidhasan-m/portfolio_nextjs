@@ -21,12 +21,12 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full min-w-0">
         <div className="cq-hero pt-20 sm:pt-22 lg:pt-24 pb-10 sm:pb-12 lg:pb-16 gap-6 sm:gap-8 lg:gap-12">
           <motion.div
-            className="cq-hero-text space-y-3 sm:space-y-4 lg:space-y-6 min-w-0 text-left lg:text-left text-center"
+            className="cq-hero-text space-y-3 sm:space-y-4 lg:space-y-6 min-w-0 text-center lg:text-left"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <div className="inline-flex mx-auto lg:mx-0 items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
+            <div className="inline-flex mx-auto lg:mx-auto items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 border dark:border-amber-500/20 border-amber-500/30">
               <span className="w-2 h-2 rounded-full bg-amber-600 dark:bg-amber-400 pulse-ring inline-block flex-shrink-0" aria-hidden="true" />
               <span className="text-xs sm:text-sm font-medium text-amber-800 dark:text-amber-400 font-mono">Available for work</span>
             </div>
@@ -45,7 +45,7 @@ export default function Hero() {
               <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">Frontend Developer</p>
             </div>
 
-            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed lg:mx-0 mx-auto">
+            <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed mx-auto lg:mx-0 text-center lg:text-left">
               Crafting responsive, user-friendly web experiences with{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> &{" "}
               <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>. Passionate about clean code and polished UI.

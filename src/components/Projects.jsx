@@ -153,7 +153,7 @@ export default function Projects() {
                         {project.category}
                       </span>
                     </div>
-                    <p className="text-sm dark:text-gray-300 text-gray-700 leading-relaxed line-clamp-2">
+                    <p className="text-sm dark:text-gray-300 text-gray-700 leading-relaxed line-clamp-2 min-h-[44px]">
                       {project.tagline}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
