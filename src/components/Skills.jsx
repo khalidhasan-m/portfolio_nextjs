@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { FiBookOpen, FiUsers } from "react-icons/fi";
 import { useInView } from "@/hooks/useInView";
@@ -59,15 +58,11 @@ export default function Skills() {
 
           <div className="cq-grid">
             <div className="cq-cols">
-              {skillCategories.map((cat, ci) => {
+              {skillCategories.map((cat) => {
                 const CatIcon = cat.Icon;
                 return (
-                  <motion.div
+                  <div
                     key={cat.category}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{ duration: 0.4, delay: ci * 0.08 }}
                     className="cq-card cq-skill-pad rounded-2xl dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/20 hover:border-amber-500/40 transition-all duration-300 shadow-sm"
                   >
                     <div className="flex flex-col items-center gap-2 text-center mb-4 sm:mb-5">
@@ -92,7 +87,7 @@ export default function Skills() {
                         </div>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>

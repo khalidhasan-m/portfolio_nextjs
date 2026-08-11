@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { FiArrowRight, FiGithub, FiExternalLink, FiImage } from "react-icons/fi";
 import { projects } from "@/data/projects";
 import { useInView, IN_VIEW_EARLY } from "@/hooks/useInView";
@@ -72,24 +71,20 @@ export default function Projects() {
 
         <div ref={ref} className="section-fade cq-grid">
           <div className="cq-cols">
-            {projects.map((project, i) => (
-              <motion.div
+            {projects.map((project) => (
+              <article
                 key={project.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.35, delay: i * 0.06 }}
                 className="project-card cq-card group rounded-2xl overflow-hidden dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 shadow-sm"
               >
                 <div className="relative cq-card-media overflow-hidden">
                   <ProjectImage src={project.image} alt={`${project.name} preview`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" aria-hidden="true" />
-                  <div className="absolute bottom-3 left-3 right-3 flex gap-2">
+                  <div className="absolute bottom-3 left-3 right-3 flex gap-2 z-10">
                     <a
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-black/50 backdrop-blur text-white hover:bg-amber-500 hover:text-black transition-all duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center"
+                      className="p-2.5 rounded-lg bg-black/50 backdrop-blur text-white hover:bg-amber-500 hover:text-black transition-all duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                       aria-label={`Live demo of ${project.name}`}
                     >
                       <FiExternalLink size={14} aria-hidden="true" />
@@ -98,7 +93,7 @@ export default function Projects() {
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2.5 rounded-lg bg-black/50 backdrop-blur text-white hover:bg-amber-500 hover:text-black transition-all duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center"
+                      className="p-2.5 rounded-lg bg-black/50 backdrop-blur text-white hover:bg-amber-500 hover:text-black transition-all duration-200 min-w-[40px] min-h-[40px] flex items-center justify-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400"
                       aria-label={`GitHub repository for ${project.name}`}
                     >
                       <FiGithub size={14} aria-hidden="true" />
@@ -140,7 +135,7 @@ export default function Projects() {
                     View More <FiArrowRight size={14} aria-hidden="true" />
                   </Link>
                 </div>
-              </motion.div>
+              </article>
             ))}
           </div>
         </div>
