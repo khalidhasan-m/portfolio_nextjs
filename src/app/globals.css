@@ -322,9 +322,15 @@ h1, h2, h3, h4, p, span, a, li {
 }
 
 .section-fade {
+  /* Visible by default so content is readable if JS fails */
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section-fade.section-fade-ready:not(.visible) {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 .section-fade.visible {
@@ -449,7 +455,8 @@ h1, h2, h3, h4, p, span, a, li {
     scroll-behavior: auto !important;
   }
 
-  .section-fade {
+  .section-fade,
+  .section-fade.section-fade-ready:not(.visible) {
     opacity: 1;
     transform: none;
   }
