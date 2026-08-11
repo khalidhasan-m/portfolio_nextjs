@@ -44,11 +44,8 @@ export default function Education() {
                       <span>Govt. B.M. College, Barishal</span>
                     </span>
                   </div>
-                  <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed mb-1">
+                  <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed">
                     National University, Bangladesh
-                  </p>
-                  <p className="text-sm dark:text-gray-400 text-gray-600">
-                    Result: <span className="text-amber-500 font-medium">2.58 / 4.00</span>
                   </p>
                 </div>
               </div>
@@ -70,11 +67,8 @@ export default function Education() {
                       <span>Govt. B.M. College, Barishal</span>
                     </span>
                   </div>
-                  <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed mb-1">
-                    National University
-                  </p>
-                  <p className="text-sm dark:text-gray-400 text-gray-600">
-                    Result: <span className="text-amber-500 font-medium">2.53 / 4.00</span>
+                  <p className="text-sm dark:text-gray-400 text-gray-600 leading-relaxed">
+                    National University, Bangladesh
                   </p>
                 </div>
               </div>
@@ -184,11 +178,8 @@ export default function Education() {
                     2020
                   </span>
                 </div>
-                <p className="text-sm dark:text-gray-300 text-gray-600 mb-1">
+                <p className="text-sm dark:text-gray-300 text-gray-600">
                   Bangladesh Technical Education Board
-                </p>
-                <p className="text-sm dark:text-gray-400 text-gray-600">
-                  Grade: <span className="text-amber-500 font-medium">4.00 / 5.00</span>
                 </p>
               </div>
             </div>

@@ -6,7 +6,6 @@ import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 import { PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
 
 export default function Hero() {
-  const [imgSrc] = useState("/profile.jpg");
   const [useFallback, setUseFallback] = useState(false);
 
   return (
@@ -61,13 +60,12 @@ export default function Hero() {
                 <FiDownload size={16} aria-hidden="true" />
                 Download CV
               </a>
-              <button
-                type="button"
-                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+              <a
+                href="#projects"
                 className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl border dark:border-white/20 border-black/20 dark:text-white text-gray-900 dark:hover:bg-white/5 hover:bg-black/5 font-semibold text-sm transition-all duration-200 min-h-[44px]"
               >
                 View Projects
-              </button>
+              </a>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -113,7 +111,7 @@ export default function Hero() {
                   />
                 ) : (
                   <Image
-                    src={imgSrc}
+                    src="/profile.jpg"
                     alt="Khalid Hasan Meskat, Frontend Developer"
                     fill
                     sizes="(max-width: 640px) 176px, (max-width: 1024px) 240px, 288px"
@@ -124,7 +122,7 @@ export default function Hero() {
                 )}
               </div>
               <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-amber-500 text-black text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
-                Open Source
+                React · Next.js
               </div>
             </div>
 
