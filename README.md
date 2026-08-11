@@ -9,7 +9,7 @@ Personal portfolio of **Khalid Hasan Meskat**, a Frontend Developer from Banglad
 ## Features
 
 - Dark / light theme toggle
-- Amber accent theme with Framer Motion animations
+- Amber accent theme with selective Framer Motion on the hero
 - Responsive layout (mobile → desktop) + CSS container queries
 - Skip navigation link and accessible controls
 - Hero with profile photo, stats, and CV download
@@ -17,8 +17,9 @@ Personal portfolio of **Khalid Hasan Meskat**, a Frontend Developer from Banglad
 - Skills aligned with GitHub profile (Frontend · Backend · Tools · Learning)
 - Education, experience, and certifications
 - Project cards with static detail pages + per-project metadata
-- Contact section with copy-to-clipboard, socials, and message form
+- Contact section with copy-to-clipboard, socials, and **mailto** CTA (no form backend)
 - Custom loading and 404 pages
+- Dynamic OG / Twitter images via Next.js `opengraph-image`
 
 ---
 
@@ -28,7 +29,7 @@ Personal portfolio of **Khalid Hasan Meskat**, a Frontend Developer from Banglad
 |--------|--------|
 | Framework | **Next.js 15** (App Router) |
 | UI | React 18, Tailwind CSS 3.4 |
-| Motion | Framer Motion, react-fast-marquee |
+| Motion | Framer Motion (hero), react-fast-marquee |
 | Theme | next-themes |
 | Icons | react-icons |
 | Deploy | Vercel |
@@ -41,16 +42,18 @@ Personal portfolio of **Khalid Hasan Meskat**, a Frontend Developer from Banglad
 src/
 ├── app/
 │   ├── layout.jsx           # Server layout, fonts, metadata
-│   ├── page.jsx             # Home (all sections)
+│   ├── page.jsx             # Home (dynamic section imports)
 │   ├── loading.jsx
 │   ├── not-found.jsx
-│   ├── icon.jsx             # Favicon
+│   ├── icon.jsx
+│   ├── opengraph-image.jsx
+│   ├── twitter-image.jsx
 │   ├── sitemap.js
-│   ├── globals.css          # Theme, container queries, a11y
+│   ├── globals.css
 │   └── projects/[id]/
-│       └── page.jsx         # SSG project detail + generateMetadata
+│       └── page.jsx
 ├── components/
-│   ├── Providers.jsx        # next-themes client wrapper
+│   ├── Providers.jsx
 │   ├── Navbar.jsx
 │   ├── Hero.jsx
 │   ├── TechMarquee.jsx
@@ -66,12 +69,13 @@ src/
 │   └── useInView.js
 └── data/
     ├── projects.js
+    ├── skills.js
     └── assets.js
 public/
 ├── profile.jpg
 ├── resume.pdf
 ├── robots.txt
-└── projects/                # Project images
+└── projects/
 ```
 
 ---
@@ -94,9 +98,11 @@ npm start
 
 ## Deploy (Vercel)
 
-1. Push this repo to GitHub  
-2. Import the project on [vercel.com](https://vercel.com)  
-3. Deploy with default settings  
+1. Push this repo to GitHub
+2. Import the project on [vercel.com](https://vercel.com)
+3. Deploy with default settings
+
+Optional: compress images in `public/projects/` (aim ~50–70 KB each) for faster loads on slow networks.
 
 ---
 
@@ -105,22 +111,13 @@ npm start
 | What | Where |
 |------|--------|
 | Projects | `src/data/projects.js` |
-| Skills | `src/components/Skills.jsx` |
+| Skills | `src/data/skills.js` |
 | Services | `src/components/Services.jsx` |
 | Hero / About / Contact | Matching files under `src/components/` |
 | Profile photo | `public/profile.jpg` |
 | Resume PDF | `public/resume.pdf` |
 | Accent color | `tailwind.config.js` + `globals.css` |
-| Site URL | `layout.jsx` metadataBase, `sitemap.js`, `robots.txt` |
-
----
-
-## Skills (from profile)
-
-**Frontend:** HTML5, CSS3, JavaScript, React, Next.js, Tailwind CSS, DaisyUI, HeroUI, Framer Motion  
-**Backend:** Node.js, Express.js, MongoDB, REST API, Better Auth, JWT  
-**Tools:** Git, GitHub, VS Code, Postman, Vercel, Vite, Figma  
-**Learning:** TypeScript · SQL · Docker · AWS
+| Site URL | `layout.jsx` `metadataBase`, `sitemap.js`, `robots.txt` |
 
 ---
 

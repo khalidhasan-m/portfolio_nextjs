@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FiCode, FiHeart, FiBook, FiCoffee, FiChevronDown } from "react-icons/fi";
 import { GiSoccerBall } from "react-icons/gi";
 import { useInView } from "@/hooks/useInView";
@@ -83,10 +82,9 @@ export default function About() {
 
             <div className="grid grid-cols-2 gap-2 sm:gap-3 pt-1">
               {facts.map((f) => (
-                <motion.div
+                <div
                   key={f.label}
-                  whileHover={{ scale: 1.02 }}
-                  className="rounded-xl px-3 py-2.5 dark:bg-white/5 bg-black/[0.03] border dark:border-white/10 border-black/8 cursor-default"
+                  className="rounded-xl px-3 py-2.5 dark:bg-white/5 bg-black/[0.03] border dark:border-white/10 border-black/8"
                 >
                   <p className="text-[10px] sm:text-xs font-mono uppercase tracking-wider dark:text-gray-500 text-gray-500">
                     {f.label}
@@ -94,7 +92,7 @@ export default function About() {
                   <p className="text-xs sm:text-sm font-medium dark:text-gray-200 text-gray-800 mt-0.5">
                     {f.value}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -137,24 +135,13 @@ export default function About() {
                     <h3 className="font-semibold dark:text-white text-gray-900 text-sm mt-2 sm:mt-3">
                       {item.title}
                     </h3>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.p
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="text-xs dark:text-gray-400 text-gray-600 leading-relaxed mt-1.5 overflow-hidden"
-                        >
-                          {item.desc}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
-                    {!isOpen && (
-                      <p className="text-xs dark:text-gray-500 text-gray-500 mt-1 line-clamp-2">
-                        {item.desc}
-                      </p>
-                    )}
+                    <p
+                      className={`text-xs dark:text-gray-400 text-gray-600 leading-relaxed mt-1.5 overflow-hidden transition-all duration-200 ${
+                        isOpen ? "max-h-40 opacity-100" : "max-h-10 opacity-90 line-clamp-2"
+                      }`}
+                    >
+                      {item.desc}
+                    </p>
                   </button>
                 );
               })}
