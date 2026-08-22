@@ -88,3 +88,11 @@
 - [x] Merge GitHub main using the approved safe path and resolve all conflicts deliberately.
 - [x] Validate the merged codebase before committing and pushing GitHub main.
 - [x] Isolate the legacy CommonJS PostCSS configuration so it does not interfere with the active ES module Vite build.
+- [x] Inspect the reported deployment evidence and determine the active hosting target.
+- [x] Resolve any project-side deployment blocker introduced by the merged repository history.
+- [x] Revalidate the deployment-ready build and provide the required publish path.
+- [x] Remove or archive legacy Next.js detection files that cause the host to misidentify the active Vite portfolio.
+- [x] Add explicit deployment metadata for the active Vite + Express build where supported.
+- [x] Add regression coverage for the Vercel Vite build contract and API adapter.
+- [x] Add the minimal pnpm workspace approvals required for esbuild and Tailwind’s native build dependency on Vercel.
+- [ ] Push the deployment-detection fix to GitHub main and provide redeployment instructions.
