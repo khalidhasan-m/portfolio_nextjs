@@ -48,8 +48,9 @@
 - [x] Renumber the displayed project cards into a clear sequential case-study order.
 - [x] Verify the corrected numbering and preserved featured-project treatment before saving the update.
 - [x] Confirm project-specific featured and evidence selectors remain correct after the display-number change.
-- [ ] Configure ScopeSprint for GitHub Pages publishing from a dedicated gh-pages branch.
-- [ ] Verify ScopeSprint Pages uses the gh-pages branch and responds at its public URL.
+- [x] Retain ScopeSprint’s existing working GitHub Pages source after the user declined the optional gh-pages source migration.
+- [x] Confirm the retained ScopeSprint deployment responds at its public URL and is linked from the portfolio.
+- [x] Close the optional authenticated-browser settings step after the user declined further repository configuration.
 - [x] Replace the pending ScopeSprint state with the verified live URL in the portfolio.
 - [x] Add a unit test that protects ScopeSprint’s public deployment URL in the case-study data.
 - [x] Verify and save the ScopeSprint live-link update.
@@ -57,3 +58,16 @@
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
 - [x] Recheck both GitHub Pages URLs after user activation and replace the pending portfolio states with verified links.
+- [x] Assess the portfolio’s highest-impact client-conversion and credibility improvements.
+- [x] Audit project repositories and the portfolio bundle to ground the improvement work in authentic evidence.
+- [x] Add richer case-study views for the strongest projects with verified project context and implementation evidence.
+- [x] Add a concise insights section based only on real portfolio project practices.
+- [x] Improve the work index into a curated evidence-led project hierarchy.
+- [x] Restructure the work section into featured documented case studies and supporting project entries.
+- [x] Verify the featured and supporting project hierarchy on desktop and mobile.
+- [x] Refine the contact conversion flow with response expectations, message guidance, and a character counter.
+- [x] Strengthen the mobile editorial spine, folded-prism identity moments, and contact closing layout.
+- [x] Reduce non-critical initial loading work and verify the production bundle improvement.
+- [x] Add search and social-sharing metadata plus crawl guidance without inventing a custom domain.
+- [x] Add regression tests and validate desktop, mobile, accessibility-sensitive, and production-build behavior.
+- [x] Prepare custom-domain and verified-results follow-ups that require user-provided facts or account access.
