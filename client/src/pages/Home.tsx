@@ -44,12 +44,12 @@ const projects = [
   {
     index: "06", name: "RouteForm", category: "Interactive", type: "Progressive project estimator",
     detail: "A step-by-step browser tool that helps a client frame the format, priorities, and pace of a project before scope begins to drift.",
-    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/route-form-evidence_8c9ee2c8.png", evidenceLabel: "ESTIMATOR · PROJECT SHAPE", proof: "Every choice updates a shareable delivery route in real time.", live: null, code: "https://github.com/khalidhasan-m/route-form",
+    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/route-form-evidence_8c9ee2c8.png", evidenceLabel: "ESTIMATOR · PROJECT SHAPE", proof: "Every choice updates a shareable delivery route in real time.", live: "https://khalidhasan-m.github.io/route-form/", code: "https://github.com/khalidhasan-m/route-form",
   },
   {
     index: "05", name: "SignalDesk", category: "Interactive", type: "Interactive project health dashboard",
     detail: "A compact product dashboard that turns workstream status, team updates, and the next best decision into a clear delivery signal.",
-    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/signal-desk-evidence_a5a55295.png", evidenceLabel: "DASHBOARD · DELIVERY SIGNAL", proof: "Health modes, workstreams, and activity filters update without losing context.", live: null, code: "https://github.com/khalidhasan-m/signal-desk",
+    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/signal-desk-evidence_a5a55295.png", evidenceLabel: "DASHBOARD · DELIVERY SIGNAL", proof: "Health modes, workstreams, and activity filters update without losing context.", live: "https://khalidhasan-m.github.io/signal-desk/", code: "https://github.com/khalidhasan-m/signal-desk",
   },
   {
     index: "04", name: "ScopeSprint", category: "Interactive", type: "Interactive project brief builder",

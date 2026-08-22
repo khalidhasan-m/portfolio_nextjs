@@ -18,3 +18,10 @@
 - [x] Generate and apply a distinctive premium folded K/M prism logo across the portfolio.
 - [x] Capture project evidence and feature both new repositories as portfolio case studies.
 - [x] Verify the expanded portfolio and save the new showcase checkpoint.
+- [x] Enable GitHub Pages for SignalDesk and RouteForm from their main branches.
+- [x] Confirm both project deployments respond at their GitHub Pages URLs.
+- [x] Replace pending live-link states for SignalDesk and RouteForm in the portfolio.
+- [x] Verify and save the portfolio’s live-link update.
+- [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
+- [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
+- [x] Recheck both GitHub Pages URLs after user activation and replace the pending portfolio states with verified links.
