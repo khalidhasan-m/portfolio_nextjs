@@ -42,6 +42,9 @@
 - [x] Add a concise privacy reassurance directly below the contact-form submit action.
 - [x] Add real-time inline validation for required and email-format fields with accessible error messaging.
 - [x] Verify validation, loading, privacy, desktop, and mobile behavior before saving the refinement.
+- [x] Add subtle pointer-hover feedback to interactive contact fields.
+- [x] Add a strong, keyboard-visible focus treatment that works alongside inline validation states.
+- [x] Verify hover, focus, and reduced-motion behavior before saving the update.
 - [x] Verify reduced-motion behavior disables the interactive project-card tilt before saving the contact-form upgrade.
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
