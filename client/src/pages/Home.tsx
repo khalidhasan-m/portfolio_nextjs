@@ -60,7 +60,7 @@ const projects = [
   {
     index: "03", name: "ScopeSprint", category: "Interactive", type: "Interactive project brief builder",
     detail: "A compact browser experience that turns a loose project idea into a focused direction through live configuration, priority signals, and a shareable summary.",
-    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/scopesprint-evidence_0bce8fb4.png", evidenceLabel: "INTERACTIVE BRIEF · LIVE SIGNAL", proof: "Live inputs refresh the client brief in real time.", live: null, code: "https://github.com/khalidhasan-m/scope-sprint",
+    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/scopesprint-evidence_0bce8fb4.png", evidenceLabel: "INTERACTIVE BRIEF · LIVE SIGNAL", proof: "Live inputs refresh the client brief in real time.", live: "https://khalidhasan-m.github.io/scope-sprint/", code: "https://github.com/khalidhasan-m/scope-sprint",
   },
   {
     index: "04", name: "PawfectMatch", category: "Full stack", type: "Full-stack adoption platform",

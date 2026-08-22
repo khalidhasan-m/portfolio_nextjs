@@ -48,6 +48,11 @@
 - [x] Renumber the displayed project cards into a clear sequential case-study order.
 - [x] Verify the corrected numbering and preserved featured-project treatment before saving the update.
 - [x] Confirm project-specific featured and evidence selectors remain correct after the display-number change.
+- [ ] Configure ScopeSprint for GitHub Pages publishing from a dedicated gh-pages branch.
+- [ ] Verify ScopeSprint Pages uses the gh-pages branch and responds at its public URL.
+- [x] Replace the pending ScopeSprint state with the verified live URL in the portfolio.
+- [x] Add a unit test that protects ScopeSprint’s public deployment URL in the case-study data.
+- [x] Verify and save the ScopeSprint live-link update.
 - [x] Verify reduced-motion behavior disables the interactive project-card tilt before saving the contact-form upgrade.
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
