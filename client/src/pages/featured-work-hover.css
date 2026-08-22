@@ -1,0 +1,36 @@
+@media (min-width: 821px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-list-featured .project-card {
+    transition: transform 240ms var(--ease-out), box-shadow 240ms var(--ease-out);
+  }
+
+  .project-list-featured .project-art,
+  .project-list-featured .project-main,
+  .project-list-featured .project-card::before {
+    transition: transform 240ms var(--ease-out), opacity 240ms var(--ease-out);
+  }
+
+  .project-list-featured .project-card:hover {
+    transform: translate3d(0, -7px, 0) rotateX(var(--card-tilt-x)) rotateY(var(--card-tilt-y));
+    box-shadow: calc(-11px + var(--card-shadow-x)) calc(11px + var(--card-shadow-y)) 0 var(--vermilion), 0 30px 52px rgba(21, 21, 21, .18);
+  }
+
+  .project-list-featured .project-card:hover .project-art {
+    transform: translateZ(24px) scale(1.012);
+  }
+
+  .project-list-featured .project-card:hover .project-main {
+    transform: translateZ(32px) translateX(4px);
+  }
+
+  .project-list-featured .project-card:hover .project-card-depth {
+    transform: translateZ(-46px) translateY(8px);
+  }
+
+  .project-list-featured .project-card:hover .project-evidence {
+    transform: translateZ(46px) translateY(-7px) scale(1.018) !important;
+  }
+
+  .is-dark .project-list-featured .project-card:hover {
+    box-shadow: calc(-11px + var(--card-shadow-x)) calc(11px + var(--card-shadow-y)) 0 var(--vermilion), 0 30px 54px rgba(0, 0, 0, .52) !important;
+  }
+}

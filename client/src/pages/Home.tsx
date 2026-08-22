@@ -11,6 +11,7 @@ import "./premium-logo.css";
 import "./dark-mode.css";
 import "./evidence-polish.css";
 import "./portfolio-improvements.css";
+import "./featured-work-hover.css";
 import {
   ArrowDownRight,
   ArrowUpRight,

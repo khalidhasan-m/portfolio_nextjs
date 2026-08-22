@@ -71,3 +71,5 @@
 - [x] Add search and social-sharing metadata plus crawl guidance without inventing a custom domain.
 - [x] Add regression tests and validate desktop, mobile, accessibility-sensitive, and production-build behavior.
 - [x] Prepare custom-domain and verified-results follow-ups that require user-provided facts or account access.
+- [x] Add a subtle desktop-only hover animation to featured work cards.
+- [x] Verify the featured-card hover remains inactive for mobile and reduced-motion visitors.
