@@ -95,4 +95,5 @@
 - [x] Add explicit deployment metadata for the active Vite + Express build where supported.
 - [x] Add regression coverage for the Vercel Vite build contract and API adapter.
 - [x] Add the minimal pnpm workspace approvals required for esbuild and Tailwind’s native build dependency on Vercel.
-- [ ] Push the deployment-detection fix to GitHub main and provide redeployment instructions.
+- [x] Push the deployment-detection fix to GitHub main and provide redeployment instructions.
+- [x] Provide Vercel redeployment instructions and list the production environment variables required by the contact API.
