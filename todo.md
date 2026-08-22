@@ -13,3 +13,8 @@
 - [x] Create a new public ScopeSprint repository, validate it, and push the mini project.
 - [x] Capture ScopeSprint’s project screenshot and add it as visual evidence in the portfolio.
 - [x] Add ScopeSprint as a portfolio case study with a direct repository link and a pending live-link state.
+- [x] Create and publish SignalDesk, an interactive project health dashboard, in its own public GitHub repository.
+- [x] Create and publish RouteForm, a progressive project estimator, in its own public GitHub repository.
+- [x] Generate and apply a distinctive premium folded K/M prism logo across the portfolio.
+- [x] Capture project evidence and feature both new repositories as portfolio case studies.
+- [x] Verify the expanded portfolio and save the new showcase checkpoint.

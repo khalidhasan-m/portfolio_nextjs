@@ -75,3 +75,5 @@ Use a bold, abstract **K/M folded prism**: three offset planes that suggest an i
 - Italics are reserved for the final contact invitation; the primary hierarchy comes from Space Grotesk scale, line breaks, and mono annotations.
 - Signal Vermilion remains restricted to action, coordinates, section signals, and key proof accents rather than general decoration.
 - Project visuals pair a product-specific screen crop with a concise proof annotation so each project reads as evidence, not a generic card.
+- The folded K/M prism appears as a major hero signature, a stronger header identifier, and an explicit work-section maker’s mark.
+- The final long-form FAQ plate uses graphite rather than cream to add monograph-like tonal contrast before the vermilion contact close.
