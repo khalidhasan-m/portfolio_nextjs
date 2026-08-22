@@ -21,6 +21,7 @@ const HERO_IMAGE = "/manus-storage/masterwork-hero-prism_8be4df2b.png";
 const ORBIT_IMAGE = "/manus-storage/masterwork-expertise-orbit_2f4cf6e6.png";
 const CASE_STUDY_IMAGE = "/manus-storage/masterwork-case-study-plane_b0d573e2.png";
 const LOGO_IMAGE = "/manus-storage/km-folded-prism-mark_4ff0c913.png";
+const PROFILE_IMAGE = "/manus-storage/khalid-profile_3634e3c4.jpg";
 
 const projects = [
   {
@@ -149,6 +150,10 @@ export default function Home() {
                   <div className="prism-plane prism-plane-one" />
                   <div className="prism-plane prism-plane-two" />
                   <div className="prism-scanline" />
+                </div>
+                <div className="portrait-specimen">
+                  <div className="portrait-photo"><img src={PROFILE_IMAGE} alt="Khalid Hasan Meskat" /></div>
+                  <div className="portrait-caption"><span>YOUR PARTNER</span><strong>KHALID H.<br />MESKAT</strong></div>
                 </div>
                 <div className="stage-caption stage-caption-top">CRAFT<br />IN MOTION</div>
                 <div className="stage-caption stage-caption-bottom"><span>ROTATE</span><span>WITH CURSOR</span></div>

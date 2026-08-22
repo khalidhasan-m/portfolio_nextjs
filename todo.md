@@ -1,0 +1,3 @@
+- [x] Prepare the existing profile photo as a stable web asset.
+- [x] Add the portrait as a layered, editorial hero detail beside the 3D craft prism.
+- [x] Verify the updated hero on desktop and mobile, then save a new checkpoint.
