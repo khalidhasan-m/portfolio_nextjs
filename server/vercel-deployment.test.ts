@@ -27,6 +27,7 @@ describe("Vercel deployment contract", () => {
     expect(vercelConfig.outputDirectory).toBe("dist/public");
     expect(vercelConfig.installCommand).toContain("--frozen-lockfile");
     expect(vercelConfig.rewrites[0].source).toContain("api");
+    expect(vercelConfig.rewrites[0].source).toContain("manus-storage");
     expect(workspaceSource).toContain("onlyBuiltDependencies");
     expect(workspaceSource).toContain("@tailwindcss/oxide");
     expect(workspaceSource).toContain("esbuild");

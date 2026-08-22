@@ -97,3 +97,7 @@
 - [x] Add the minimal pnpm workspace approvals required for esbuild and Tailwind’s native build dependency on Vercel.
 - [x] Push the deployment-detection fix to GitHub main and provide redeployment instructions.
 - [x] Provide Vercel redeployment instructions and list the production environment variables required by the contact API.
+- [x] Trace every broken portfolio image reference after the deployment cleanup.
+- [x] Restore or rehost missing active image assets without reintroducing legacy Next.js detection.
+- [x] Verify image loading in production build and responsive browser views.
+- [x] Save the image restoration fix and synchronize the deployment-ready state.

@@ -6,7 +6,7 @@
   "outputDirectory": "dist/public",
   "rewrites": [
     {
-      "source": "/:path((?!api(?:/|$)).*)",
+      "source": "/:path((?!(?:api|manus-storage)(?:/|$)).*)",
       "destination": "/index.html"
     }
   ]
