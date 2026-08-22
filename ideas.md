@@ -73,3 +73,5 @@ Use a bold, abstract **K/M folded prism**: three offset planes that suggest an i
 - Project visual framing must function as evidence: each case study includes a distinct product-screen crop sourced from the live project, paired with its own workflow annotation.
 - The folded K/M prism is constructed from offset planes around the generated symbol so it reads as an engineered mark rather than a generic play icon.
 - Italics are reserved for the final contact invitation; the primary hierarchy comes from Space Grotesk scale, line breaks, and mono annotations.
+- Signal Vermilion remains restricted to action, coordinates, section signals, and key proof accents rather than general decoration.
+- Project visuals pair a product-specific screen crop with a concise proof annotation so each project reads as evidence, not a generic card.

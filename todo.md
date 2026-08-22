@@ -1,3 +1,15 @@
 - [x] Prepare the existing profile photo as a stable web asset.
 - [x] Add the portrait as a layered, editorial hero detail beside the 3D craft prism.
 - [x] Verify the updated hero on desktop and mobile, then save a new checkpoint.
+- [x] Add pointer-responsive 3D tilt, depth, and light response to project cards.
+- [x] Raise and reinforce the portrait name label so it remains readable above the image.
+- [ ] Verify desktop, mobile, and reduced-motion behavior before saving the update.
+- [x] Recover factual about, service, experience, education, and certification content from the existing portfolio.
+- [x] Add the complete content sequence: about, services, process, experience, education, credentials, FAQ, and direct contact paths.
+- [x] Extend navigation and section wayfinding so the full portfolio remains easy to explore.
+- [x] Add polished interactive elements: service explorer, process steps, filters, spotlight project cards, command-style quick navigation, and dynamic availability cues.
+- [x] Verify desktop, mobile, keyboard, and reduced-motion behavior before saving the complete upgrade.
+- [x] Move ScopeSprint out of the portfolio repository and prepare it as an independent project.
+- [x] Create a new public ScopeSprint repository, validate it, and push the mini project.
+- [x] Capture ScopeSprint’s project screenshot and add it as visual evidence in the portfolio.
+- [x] Add ScopeSprint as a portfolio case study with a direct repository link and a pending live-link state.
