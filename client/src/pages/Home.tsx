@@ -3,7 +3,7 @@
  * Graphite + mineral palette, signal vermilion, asymmetric editorial spine,
  * and restrained 3D depth used as evidence of craft rather than ornament.
  */
-import { lazy, Suspense, useEffect, useState, type CSSProperties, type MouseEvent, type PointerEvent } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type CSSProperties, type MouseEvent, type PointerEvent } from "react";
 import { insights } from "@/content/insights";
 import "./premium-expansion.css";
 import "./portfolio-polish.css";
@@ -12,6 +12,7 @@ import "./dark-mode.css";
 import "./evidence-polish.css";
 import "./portfolio-improvements.css";
 import "./featured-work-hover.css";
+import "./featured-work-interactions.css";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -42,6 +43,7 @@ const LOGO_IMAGE = "/manus-storage/khalid-masterwork-prism-logo_f05fd20b.png";
 const PROFILE_IMAGE = "/manus-storage/khalid-profile_3634e3c4.jpg";
 const RESUME_URL = "/manus-storage/khalid-hasan-meskat-resume_e12a210c.pdf";
 const EMAIL = "khalidhasanmeskat@gmail.com";
+const TECH_MOTION_VIDEO = "/manus-storage/masterwork-tech-motion_d89f3d24.mp4";
 const ContactForm = lazy(() => import("./ContactForm"));
 
 const projects = [
@@ -120,6 +122,7 @@ const faqs = [
 
 type TiltStyle = CSSProperties & { "--tilt-x"?: string; "--tilt-y"?: string; "--glow-x"?: string; "--glow-y"?: string };
 type ProjectTiltStyle = CSSProperties & { "--card-tilt-x"?: string; "--card-tilt-y"?: string; "--card-light-x"?: string; "--card-light-y"?: string; "--card-shadow-x"?: string; "--card-shadow-y"?: string };
+type CursorStyle = CSSProperties & { "--cursor-x"?: string; "--cursor-y"?: string };
 type Project = (typeof projects)[number];
 function BrandMark({ className = "" }: { className?: string }) {
   return <span className={`brand-prism ${className}`} aria-hidden="true"><img src={LOGO_IMAGE} alt="" /><i /><b /></span>;
@@ -128,19 +131,39 @@ function BrandMark({ className = "" }: { className?: string }) {
 function ProjectCard({ project }: { project: Project }) {
   const resetStyle: ProjectTiltStyle = { "--card-tilt-x": "0deg", "--card-tilt-y": "0deg", "--card-light-x": "50%", "--card-light-y": "50%", "--card-shadow-x": "0px", "--card-shadow-y": "0px" };
   const [tilt, setTilt] = useState<ProjectTiltStyle>(resetStyle);
+  const [cursor, setCursor] = useState({ visible: false, x: 0, y: 0 });
+  const shouldShowCursor = (event: PointerEvent<HTMLElement>) => project.caseStudy && event.pointerType === "mouse" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const moveCard = (event: PointerEvent<HTMLElement>) => {
     if (event.pointerType !== "mouse" || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     setTilt({ "--card-tilt-x": `${-y * 5.5}deg`, "--card-tilt-y": `${x * 5.5}deg`, "--card-light-x": `${(x + 0.5) * 100}%`, "--card-light-y": `${(y + 0.5) * 100}%`, "--card-shadow-x": `${x * -9}px`, "--card-shadow-y": `${y * 9}px` });
+    if (shouldShowCursor(event)) setCursor({ visible: true, x: event.clientX - rect.left, y: event.clientY - rect.top });
   };
   const projectSlug = project.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-  return <article className={`project-card project-${project.index} project-${projectSlug} ${project.caseStudy ? "project-featured" : ""}`} style={tilt} onPointerMove={moveCard} onPointerLeave={() => setTilt(resetStyle)}>
+  return <article className={`project-card project-${project.index} project-${projectSlug} ${project.caseStudy ? "project-featured" : ""}`} style={tilt} onPointerEnter={(event) => { if (shouldShowCursor(event)) { const rect = event.currentTarget.getBoundingClientRect(); setCursor({ visible: true, x: event.clientX - rect.left, y: event.clientY - rect.top }); } }} onPointerMove={moveCard} onPointerLeave={() => { setTilt(resetStyle); setCursor((current) => ({ ...current, visible: false })); }}>
+    {project.caseStudy && <span aria-hidden="true" data-testid="featured-cursor-label" className={`project-cursor-label ${cursor.visible ? "is-visible" : ""}`} style={{ "--cursor-x": `${cursor.x}px`, "--cursor-y": `${cursor.y}px` } as CursorStyle}>VIEW<br />CASE STUDY</span>}
     <div className="project-card-depth" aria-hidden="true" />
     <div className="project-art"><img className="project-material" src={CASE_STUDY_IMAGE} alt="" loading="lazy" decoding="async" /><img className="project-evidence" src={project.evidence} alt={`${project.name} project screen`} loading="lazy" decoding="async" /><span>{project.index}</span><div className="evidence-tag">{project.evidenceLabel}</div><div className="project-art-square" /></div>
     <div className="project-main"><div className="project-coordinate"><span>CASE / {project.index}</span><span>{project.category.toUpperCase()}</span></div><p className="project-type">{project.type}</p><h3>{project.name}</h3><p className="project-detail">{project.detail}</p><p className="project-proof"><span>PROOF</span>{project.proof}</p>{project.live && <a className="project-live-url" href={project.live} target="_blank" rel="noreferrer"><span>LIVE DEPLOYMENT</span><strong>{project.live.replace("https://", "").replace(/\/$/, "")}</strong><ArrowUpRight size={15} /></a>}<div className="project-footer"><div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links">{project.caseStudy && <a className="project-case-link" href={project.caseStudy}>Case study <ArrowUpRight size={14} /></a>}{project.live ? <a href={project.live} target="_blank" rel="noreferrer">Open live <ArrowUpRight size={14} /></a> : <span className="project-pending">Live link soon</span>}<a href={project.code} target="_blank" rel="noreferrer">Code <Github size={14} /></a></div></div></div>
   </article>;
+}
+
+function MotionSignal() {
+  const signalRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReducedMotion(preference.matches);
+    updatePreference();
+    preference.addEventListener("change", updatePreference);
+    const observer = new IntersectionObserver(([entry]) => { if (entry?.isIntersecting) { setIsVisible(true); observer.disconnect(); } }, { rootMargin: "160px" });
+    if (signalRef.current) observer.observe(signalRef.current);
+    return () => { preference.removeEventListener("change", updatePreference); observer.disconnect(); };
+  }, []);
+  return <aside ref={signalRef} className="motion-signal" aria-label="Technology motion signal"><div className="motion-signal-fallback" aria-hidden="true" />{isVisible && !reducedMotion && <video className="motion-signal-video" autoPlay muted loop playsInline preload="metadata" aria-hidden="true"><source src={TECH_MOTION_VIDEO} type="video/mp4" /></video>}<div className="motion-signal-copy"><span>MOTION / 01</span><h3>A quiet technology layer.</h3><p>Atmosphere for the work index, built to stay out of the way of the evidence.</p></div><div className="motion-signal-index" aria-hidden="true"><i /><span>01 / SIGNAL</span><span>{reducedMotion ? "STATIC MODE" : "LOOP READY"}</span></div></aside>;
 }
 
 export default function Home() {
@@ -202,7 +225,7 @@ export default function Home() {
 
       <section className="services-section section-spine" id="services"><div className="spine-label"><span>02</span><span>SERVICES</span></div><div className="services-content"><div className="services-heading"><div><p className="eyebrow">A practical range</p><h2>What I can take from brief to browser.</h2></div><p>Choose an area to see the work I focus on and the kind of outcomes it is built to create.</p></div><div className="service-explorer"><div className="service-tabs" role="tablist" aria-label="Services">{services.map((service) => { const Icon = service.icon; return <button key={service.key} role="tab" aria-selected={activeService === service.key} className={activeService === service.key ? "is-active" : ""} onClick={() => setActiveService(service.key)}><span>{service.number}</span><Icon size={18} /><strong>{service.title}</strong><ArrowUpRight size={15} /></button>; })}</div><div className="service-preview" role="tabpanel"><div className="service-preview-top"><span>SELECTED AREA / {currentService.number}</span><currentService.icon size={24} /></div><h3>{currentService.title}</h3><p>{currentService.copy}</p><div className="service-output-list">{currentService.outputs.map((output) => <span key={output}><Check size={13} /> {output}</span>)}</div><a href="#contact" className="service-preview-cta">Discuss this kind of work <ArrowUpRight size={16} /></a></div></div></div></section>
 
-      <section className="work-section section-spine" id="work"><div className="spine-label"><span>03</span><span>SELECTED WORK</span></div><div className="work-content"><div className="work-heading"><div><BrandMark className="work-signature" /><p className="eyebrow">A few focused builds</p><h2>Work that knows<br />where it’s going.</h2></div><p>Explore the detailed case studies for the three strongest builds, then use the wider index to see the range of product and interface work.</p></div><div className="work-proof-bar"><span>INDEX / 06 PROJECTS</span><span>DEEP DIVES / 03 DOCUMENTED BUILDS</span><span>LIVE LINKS / WHERE AVAILABLE</span></div><div className="work-tools"><span>VIEW BY TYPE</span><div>{["All", "Interactive", "Full stack", "Commerce"].map((filter) => <button key={filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? "is-active" : ""}>{filter}</button>)}</div></div>{featuredProjects.length > 0 && <div className="work-group work-group-featured"><div className="work-group-heading"><span>FEATURED EVIDENCE</span><p>Documented builds with implementation context, key decisions, and direct project access.</p></div><div className="project-list project-list-featured">{featuredProjects.map((project) => <ProjectCard key={project.name} project={project} />)}</div></div>}{supportingProjects.length > 0 && <div className="work-group work-group-supporting"><div className="work-group-heading"><span>{featuredProjects.length ? "SUPPORTING INDEX" : "PROJECT INDEX"}</span><p>Additional live work that shows the range of product, interface, and commerce experience.</p></div><div className="project-list project-list-supporting">{supportingProjects.map((project) => <ProjectCard key={project.name} project={project} />)}</div></div>}</div></section>
+      <section className="work-section section-spine" id="work"><div className="spine-label"><span>03</span><span>SELECTED WORK</span></div><div className="work-content"><div className="work-heading"><div><BrandMark className="work-signature" /><p className="eyebrow">A few focused builds</p><h2>Work that knows<br />where it’s going.</h2></div><p>Explore the detailed case studies for the three strongest builds, then use the wider index to see the range of product and interface work.</p></div><MotionSignal /><div className="work-proof-bar"><span>INDEX / 06 PROJECTS</span><span>DEEP DIVES / 03 DOCUMENTED BUILDS</span><span>LIVE LINKS / WHERE AVAILABLE</span></div><div className="work-tools"><span>VIEW BY TYPE</span><div>{["All", "Interactive", "Full stack", "Commerce"].map((filter) => <button key={filter} onClick={() => setActiveFilter(filter)} className={activeFilter === filter ? "is-active" : ""}>{filter}</button>)}</div></div>{featuredProjects.length > 0 && <div className="work-group work-group-featured"><div className="work-group-heading"><span>FEATURED EVIDENCE</span><p>Documented builds with implementation context, key decisions, and direct project access.</p></div><div className="project-list project-list-featured">{featuredProjects.map((project) => <ProjectCard key={project.name} project={project} />)}</div></div>}{supportingProjects.length > 0 && <div className="work-group work-group-supporting"><div className="work-group-heading"><span>{featuredProjects.length ? "SUPPORTING INDEX" : "PROJECT INDEX"}</span><p>Additional live work that shows the range of product, interface, and commerce experience.</p></div><div className="project-list project-list-supporting">{supportingProjects.map((project) => <ProjectCard key={project.name} project={project} />)}</div></div>}</div></section>
 
       <section className="process-section section-spine" id="process"><div className="spine-label"><span>04</span><span>METHOD</span></div><div className="process-content"><div className="process-heading"><p className="eyebrow">A clear working rhythm</p><h2>Good work comes from a visible path.</h2><p>Interaction is not an excuse for uncertainty. This is the simple, flexible structure I use to keep a project moving toward the right outcome.</p></div><div className="process-layout"><div className="process-rail" role="tablist" aria-label="Project process">{processSteps.map((step, index) => <button key={step.number} role="tab" aria-selected={activeProcess === index} className={activeProcess === index ? "is-active" : ""} onClick={() => setActiveProcess(index)}><span>{step.number}</span><strong>{step.label}</strong><i /></button>)}</div><article className="process-feature"><span>{processSteps[activeProcess].number} / {processSteps[activeProcess].label}</span><h3>{processSteps[activeProcess].title}</h3><p>{processSteps[activeProcess].text}</p><div className="process-orbit" aria-hidden="true"><i /><b /><em /></div></article></div></div></section>
 

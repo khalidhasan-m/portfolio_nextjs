@@ -73,3 +73,11 @@
 - [x] Prepare custom-domain and verified-results follow-ups that require user-provided facts or account access.
 - [x] Add a subtle desktop-only hover animation to featured work cards.
 - [x] Verify the featured-card hover remains inactive for mobile and reduced-motion visitors.
+- [x] Review the supplied reference site and translate its relevant interaction principles into the Masterwork Index system.
+- [x] Add a desktop-only featured-card cursor label with an accessible fallback.
+- [x] Add keyboard-visible focus depth styling to featured case-study cards.
+- [x] Add verified case-study outcome facts only where source evidence is available, and prepare placeholders for facts still needed.
+- [x] Add an explicit in-case-study disclosure that real client outcome metrics are pending verified source data.
+- [x] Revalidate the case-study disclosure alongside the interaction and motion upgrade.
+- [x] Create and integrate a restrained technology-themed motion layer that honors reduced-motion preferences.
+- [x] Verify the reference-led interaction upgrade across desktop, keyboard, mobile, reduced-motion, tests, and production build.

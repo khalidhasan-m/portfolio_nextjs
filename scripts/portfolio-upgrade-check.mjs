@@ -23,6 +23,21 @@ const desktopAfter = await featuredCard.boundingBox();
 if (!desktopBefore || !desktopAfter || desktopAfter.y >= desktopBefore.y - 5) {
   throw new Error(`Featured desktop hover did not lift the card: before=${desktopBefore?.y}, after=${desktopAfter?.y}`);
 }
+const cursorVisible = await page.locator('[data-testid="featured-cursor-label"]').first().evaluate((element) => element.classList.contains("is-visible"));
+if (!cursorVisible) throw new Error("Featured desktop cursor label did not appear.");
+await page.locator("body").hover({ position: { x: 8, y: 8 } });
+const focusBefore = await featuredCard.boundingBox();
+await featuredCard.locator(".project-case-link").focus();
+await page.waitForTimeout(280);
+const focusAfter = await featuredCard.boundingBox();
+if (!focusBefore || !focusAfter || focusAfter.y >= focusBefore.y - 5) {
+  throw new Error(`Featured keyboard focus did not add depth: before=${focusBefore?.y}, after=${focusAfter?.y}`);
+}
+
+const motionSignal = page.locator(".motion-signal");
+await motionSignal.scrollIntoViewIfNeeded();
+await page.waitForTimeout(320);
+if (await motionSignal.locator("video").count() !== 1) throw new Error("Technology motion video did not activate near the work index.");
 
 const message = "I need a clearer project path and would like to discuss the current state.";
 await page.locator('textarea[name="message"]').fill(message);
@@ -35,6 +50,8 @@ await page.goto(`${baseUrl}/work/route-form`, { waitUntil: "networkidle" });
 const caseStudyHeading = await page.locator("h1").textContent();
 if (!caseStudyHeading?.includes("RouteForm")) throw new Error("RouteForm case study did not render.");
 if (await page.locator(".case-study-evidence li").count() < 4) throw new Error("Case-study evidence plate is incomplete.");
+const outcomeNote = await page.locator(".case-study-outcome-note").textContent();
+if (!outcomeNote?.includes("Pending verified project or client data")) throw new Error("Case-study outcome metric disclosure is missing.");
 
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(baseUrl, { waitUntil: "networkidle" });
@@ -49,6 +66,8 @@ const mobileAfter = await mobileCard.boundingBox();
 if (!mobileBefore || !mobileAfter || Math.abs(mobileAfter.y - mobileBefore.y) > 1) {
   throw new Error(`Featured mobile card should not lift: before=${mobileBefore?.y}, after=${mobileAfter?.y}`);
 }
+const mobileCursorDisplay = await page.locator('[data-testid="featured-cursor-label"]').first().evaluate((element) => getComputedStyle(element).display);
+if (mobileCursorDisplay !== "none") throw new Error(`Featured mobile card should not show the custom cursor label: ${mobileCursorDisplay}`);
 
 const reducedContext = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1280, height: 720 } });
 const reducedPage = await reducedContext.newPage();
@@ -62,6 +81,10 @@ const reducedAfter = await reducedCard.boundingBox();
 if (!reducedBefore || !reducedAfter || Math.abs(reducedAfter.y - reducedBefore.y) > 1) {
   throw new Error(`Featured reduced-motion card should not lift: before=${reducedBefore?.y}, after=${reducedAfter?.y}`);
 }
+const reducedSignal = reducedPage.locator(".motion-signal");
+await reducedSignal.scrollIntoViewIfNeeded();
+await reducedPage.waitForTimeout(320);
+if (await reducedSignal.locator("video").count() !== 0) throw new Error("Reduced-motion context should retain the static technology signal.");
 await reducedContext.close();
 
 await browser.close();

@@ -6,6 +6,7 @@ import { caseStudies } from "@/content/caseStudies";
 const homeSource = readFileSync(fileURLToPath(new URL("./Home.tsx", import.meta.url)), "utf8");
 const contactSource = readFileSync(fileURLToPath(new URL("./ContactForm.tsx", import.meta.url)), "utf8");
 const documentHead = readFileSync(fileURLToPath(new URL("../../index.html", import.meta.url)), "utf8");
+const caseStudySource = readFileSync(fileURLToPath(new URL("./CaseStudy.tsx", import.meta.url)), "utf8");
 
 describe("portfolio project links", () => {
   it("shows ScopeSprint’s verified GitHub Pages deployment", () => {
@@ -31,5 +32,20 @@ describe("portfolio project links", () => {
     expect(documentHead).toContain('property="og:title"');
     expect(documentHead).toContain('name="twitter:card" content="summary_large_image"');
     expect(documentHead).not.toContain('rel="canonical"');
+  });
+
+  it("keeps the featured interaction and technology motion layer present", () => {
+    expect(homeSource).toContain('data-testid="featured-cursor-label"');
+    expect(homeSource).toContain("masterwork-tech-motion_d89f3d24.mp4");
+    expect(homeSource).toContain("prefers-reduced-motion: reduce");
+  });
+
+  it("labels implementation counts as verified build signals rather than client outcomes", () => {
+    expect(caseStudies.every((caseStudy) => caseStudy.buildSignals.length === 3)).toBe(true);
+    expect(caseStudies.find((caseStudy) => caseStudy.slug === "route-form")?.buildSignals.map((signal) => signal.value)).toEqual(["3", "1", "LIVE"]);
+    expect(caseStudies.find((caseStudy) => caseStudy.slug === "signal-desk")?.buildSignals.map((signal) => signal.value)).toEqual(["3", "4", "1"]);
+    expect(caseStudies.find((caseStudy) => caseStudy.slug === "pawfect-match")?.buildSignals.map((signal) => signal.value)).toEqual(["2", "3", "1"]);
+    expect(caseStudySource).toContain("OUTCOME METRICS");
+    expect(caseStudySource).toContain("Pending verified project or client data");
   });
 });

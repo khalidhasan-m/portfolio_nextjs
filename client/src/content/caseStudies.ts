@@ -14,6 +14,7 @@ export type CaseStudy = {
   challenge: string;
   decisions: Array<{ label: string; detail: string }>;
   evidencePoints: string[];
+  buildSignals: Array<{ value: string; label: string; detail: string }>;
 };
 
 export const caseStudies: CaseStudy[] = [
@@ -37,6 +38,11 @@ export const caseStudies: CaseStudy[] = [
       { label: "Useful handoff", detail: "The finished summary can be copied, giving the visitor a compact starting point for a follow-up conversation." },
     ],
     evidencePoints: ["Multi-step interaction", "Real-time configuration", "Accessible selectable controls", "Responsive editorial UI", "Copy-to-clipboard feedback"],
+    buildSignals: [
+      { value: "3", label: "brief-shaping decisions", detail: "Format, priority, and pace are the three decision axes in the progressive flow." },
+      { value: "1", label: "copyable delivery route", detail: "The completed configuration produces one compact summary for follow-up." },
+      { value: "LIVE", label: "public deployment", detail: "The static build is available as a public GitHub Pages deployment." },
+    ],
   },
   {
     slug: "signal-desk",
@@ -58,6 +64,11 @@ export const caseStudies: CaseStudy[] = [
       { label: "Readable variation", detail: "A contrast toggle and responsive dashboard behavior keep the surface usable across viewing conditions and screen sizes." },
     ],
     evidencePoints: ["Live health states", "Dynamic workstreams", "Filtered activity signals", "Snapshot feedback loop", "Contrast toggle"],
+    buildSignals: [
+      { value: "3", label: "health states", detail: "Moving, Watch, and Risk make the current delivery condition explicit." },
+      { value: "4", label: "activity filters", detail: "All, Product, Design, and Engineering retain context while narrowing the signal stream." },
+      { value: "1", label: "contrast control", detail: "A dedicated contrast toggle supports different viewing conditions." },
+    ],
   },
   {
     slug: "pawfect-match",
@@ -79,5 +90,10 @@ export const caseStudies: CaseStudy[] = [
       { label: "Controlled adoption state", detail: "The workflow prevents owners from self-adopting and, after approval, marks a pet adopted while rejecting competing requests." },
     ],
     evidencePoints: ["Search and multi-select filtering", "Email and Google authentication", "Protected owner dashboard", "Ownership-aware adoption logic", "Dark and light theme support"],
+    buildSignals: [
+      { value: "2", label: "sign-in methods", detail: "The documented client supports email/password and Google OAuth authentication." },
+      { value: "3", label: "listing status views", detail: "The owner dashboard surfaces total, available, and adopted listing states." },
+      { value: "1", label: "conflict-safe approval path", detail: "Approving one request marks the pet adopted and rejects competing requests." },
+    ],
   },
 ];
