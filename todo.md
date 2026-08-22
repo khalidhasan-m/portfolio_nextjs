@@ -38,6 +38,10 @@
 - [x] Verify the refined success state and repeat-inquiry behavior before saving the update.
 - [x] Verify the success checkmark renders complete without animation under reduced-motion preferences.
 - [x] Verify the Send another inquiry control restores an empty, usable form.
+- [x] Add a premium submit-button processing state with an accessible animated loading indicator.
+- [x] Add a concise privacy reassurance directly below the contact-form submit action.
+- [x] Add real-time inline validation for required and email-format fields with accessible error messaging.
+- [x] Verify validation, loading, privacy, desktop, and mobile behavior before saving the refinement.
 - [x] Verify reduced-motion behavior disables the interactive project-card tilt before saving the contact-form upgrade.
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
