@@ -81,3 +81,9 @@
 - [x] Revalidate the case-study disclosure alongside the interaction and motion upgrade.
 - [x] Create and integrate a restrained technology-themed motion layer that honors reduced-motion preferences.
 - [x] Verify the reference-led interaction upgrade across desktop, keyboard, mobile, reduced-motion, tests, and production build.
+- [ ] Commit the completed reference-led portfolio upgrade on the main branch.
+- [ ] Push the verified portfolio upgrade to the configured GitHub remote main branch and confirm its commit.
+- [ ] Resolve the divergent GitHub main history without overwriting existing repository work.
+- [ ] Create a local safety branch for the verified portfolio state before merging GitHub main.
+- [ ] Merge GitHub main using the approved safe path and resolve all conflicts deliberately.
+- [ ] Validate the merged codebase before committing and pushing GitHub main.
