@@ -3,7 +3,7 @@
 - [x] Verify the updated hero on desktop and mobile, then save a new checkpoint.
 - [x] Add pointer-responsive 3D tilt, depth, and light response to project cards.
 - [x] Raise and reinforce the portrait name label so it remains readable above the image.
-- [ ] Verify desktop, mobile, and reduced-motion behavior before saving the update.
+- [x] Verify desktop, mobile, and reduced-motion behavior before saving the update.
 - [x] Recover factual about, service, experience, education, and certification content from the existing portfolio.
 - [x] Add the complete content sequence: about, services, process, experience, education, credentials, FAQ, and direct contact paths.
 - [x] Extend navigation and section wayfinding so the full portfolio remains easy to explore.
@@ -28,6 +28,12 @@
 - [x] Verify the new theme and live-link treatments on desktop and mobile before saving the update.
 - [x] Remove the education-and-credentials section so live work and client value have more emphasis.
 - [x] Refine the project catalogue into clearer evidence plates with stronger hierarchy and workflow annotations.
+- [x] Upgrade the portfolio to support secure inquiry storage and define the contact-inquiry data model.
+- [x] Replace the mail-only contact action with a validated production form and clear submission feedback.
+- [x] Verify a real form submission path and responsive presentation before saving the upgrade.
+- [x] Submit one controlled valid inquiry through the production endpoint and confirm it persists successfully.
+- [x] Confirm the owner-notification call does not block a successful contact submission.
+- [x] Verify reduced-motion behavior disables the interactive project-card tilt before saving the contact-form upgrade.
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
 - [x] Recheck both GitHub Pages URLs after user activation and replace the pending portfolio states with verified links.

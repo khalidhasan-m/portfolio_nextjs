@@ -3,12 +3,14 @@
  * Graphite + mineral palette, signal vermilion, asymmetric editorial spine,
  * and restrained 3D depth used as evidence of craft rather than ornament.
  */
-import { useEffect, useState, type CSSProperties, type MouseEvent, type PointerEvent } from "react";
+import { useEffect, useState, type ChangeEvent, type CSSProperties, type FormEvent, type MouseEvent, type PointerEvent } from "react";
+import { trpc } from "@/lib/trpc";
 import "./premium-expansion.css";
 import "./portfolio-polish.css";
 import "./premium-logo.css";
 import "./dark-mode.css";
 import "./evidence-polish.css";
+import "./contact-form.css";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -118,6 +120,8 @@ const faqs = [
 type TiltStyle = CSSProperties & { "--tilt-x"?: string; "--tilt-y"?: string; "--glow-x"?: string; "--glow-y"?: string };
 type ProjectTiltStyle = CSSProperties & { "--card-tilt-x"?: string; "--card-tilt-y"?: string; "--card-light-x"?: string; "--card-light-y"?: string; "--card-shadow-x"?: string; "--card-shadow-y"?: string };
 type Project = (typeof projects)[number];
+type ContactValues = { name: string; email: string; company: string; projectType: string; budget: string; message: string; website: string };
+const emptyContactValues: ContactValues = { name: "", email: "", company: "", projectType: "", budget: "", message: "", website: "" };
 
 function BrandMark({ className = "" }: { className?: string }) {
   return <span className={`brand-prism ${className}`} aria-hidden="true"><img src={LOGO_IMAGE} alt="" /><i /><b /></span>;
@@ -154,9 +158,18 @@ export default function Home() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [contactValues, setContactValues] = useState<ContactValues>(emptyContactValues);
+  const [contactFeedback, setContactFeedback] = useState<{ tone: "idle" | "success" | "error"; message: string }>({ tone: "idle", message: "" });
   const [tilt, setTilt] = useState<TiltStyle>({ "--tilt-x": "0deg", "--tilt-y": "0deg", "--glow-x": "50%", "--glow-y": "46%" });
   const currentService = services.find((service) => service.key === activeService) ?? services[0];
   const filteredProjects = activeFilter === "All" ? projects : projects.filter((project) => project.category === activeFilter);
+  const submitInquiry = trpc.contact.submit.useMutation({
+    onSuccess: () => {
+      setContactFeedback({ tone: "success", message: "Message received. Khalid will respond as soon as possible." });
+      setContactValues(emptyContactValues);
+    },
+    onError: (error) => setContactFeedback({ tone: "error", message: error.message || "Unable to send your message right now. Please use the email link instead." }),
+  });
 
   useEffect(() => {
     const updateProgress = () => setScrollProgress(Math.round((window.scrollY / Math.max(document.documentElement.scrollHeight - window.innerHeight, 1)) * 100));
@@ -180,6 +193,15 @@ export default function Home() {
   const resetPrism = () => setTilt({ "--tilt-x": "0deg", "--tilt-y": "0deg", "--glow-x": "50%", "--glow-y": "46%" });
   const goTo = (id: string) => { document.querySelector(id)?.scrollIntoView({ behavior: "smooth" }); setCommandOpen(false); setMenuOpen(false); };
   const copyEmail = async () => { try { await navigator.clipboard.writeText(EMAIL); setEmailCopied(true); window.setTimeout(() => setEmailCopied(false), 2400); } catch { setEmailCopied(false); } };
+  const updateContact = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    setContactValues((current) => ({ ...current, [name]: value }));
+  };
+  const submitContact = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setContactFeedback({ tone: "idle", message: "" });
+    submitInquiry.mutate(contactValues);
+  };
 
   return <div className={`site-shell ${isDark ? "is-dark" : ""}`}>
     <div className="scroll-indicator" aria-hidden="true"><i style={{ width: `${scrollProgress}%` }} /></div>
@@ -207,7 +229,7 @@ export default function Home() {
 
       <section className="faq-section section-spine" id="faq"><div className="spine-label"><span>06</span><span>FAQ</span></div><div className="faq-content"><div className="faq-heading"><p className="eyebrow">A few useful answers</p><h2>Before we start the conversation.</h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <article className={openFaq === index ? "is-open" : ""} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>0{index + 1}</span><strong>{question}</strong><ChevronDown size={20} /></button><div className="faq-answer"><p>{answer}</p></div></article>)}</div></div></section>
 
-      <section className="contact-section" id="contact"><div className="contact-grid" aria-hidden="true" /><div className="contact-content"><div><p className="eyebrow inverse"><span className="signal-dot" /> Direct channel</p><h2>Bring the difficult<br /><em>brief.</em></h2></div><div className="contact-aside"><p>If the project needs a thoughtful partner who can make strong decisions and then build them, I’d like to hear what you’re working on.</p><a className="button button-light" href={`mailto:${EMAIL}`}>{EMAIL} <ArrowUpRight size={18} /></a><button className="email-copy" onClick={copyEmail} type="button">{emailCopied ? <><Check size={14} /> Email copied</> : <><Copy size={14} /> Copy email address</>}</button></div></div></section>
+      <section className="contact-section" id="contact"><div className="contact-grid" aria-hidden="true" /><div className="contact-content"><div><p className="eyebrow inverse"><span className="signal-dot" /> Direct channel</p><h2>Bring the difficult<br /><em>brief.</em></h2></div><div className="contact-aside"><p>If the project needs a thoughtful partner who can make strong decisions and then build them, I’d like to hear what you’re working on.</p><form className="contact-form" onSubmit={submitContact}><div className="contact-form-grid"><label>YOUR NAME<input name="name" value={contactValues.name} onChange={updateContact} autoComplete="name" minLength={2} maxLength={120} required /></label><label>EMAIL ADDRESS<input name="email" type="email" value={contactValues.email} onChange={updateContact} autoComplete="email" maxLength={320} required /></label><label>COMPANY <span>OPTIONAL</span><input name="company" value={contactValues.company} onChange={updateContact} autoComplete="organization" maxLength={160} /></label><label>PROJECT TYPE<select name="projectType" value={contactValues.projectType} onChange={updateContact}><option value="">Choose one</option><option>Portfolio or marketing site</option><option>Product interface</option><option>Full-stack web build</option><option>Refinement of an existing build</option><option>Other</option></select></label><label>WORKING BUDGET <span>OPTIONAL</span><select name="budget" value={contactValues.budget} onChange={updateContact}><option value="">Choose a range</option><option>Under $1k</option><option>$1k–$3k</option><option>$3k–$7k</option><option>$7k+</option><option>Let’s discuss</option></select></label><label className="contact-message">WHAT NEEDS TO HAPPEN?<textarea name="message" value={contactValues.message} onChange={updateContact} minLength={20} maxLength={5000} required placeholder="A short note about the goal, the current state, and any deadline or constraints." /></label><input className="contact-trap" name="website" value={contactValues.website} onChange={updateContact} tabIndex={-1} autoComplete="off" aria-hidden="true" /></div><button className="contact-submit" type="submit" disabled={submitInquiry.isPending}>{submitInquiry.isPending ? "Sending message…" : "Send the brief"} <ArrowUpRight size={17} /></button>{contactFeedback.tone !== "idle" && <p className={`contact-feedback is-${contactFeedback.tone}`} role="status">{contactFeedback.tone === "success" ? <Check size={15} /> : <Mail size={15} />}{contactFeedback.message}</p>}</form><div className="contact-alternate"><a href={`mailto:${EMAIL}`}>Prefer email? {EMAIL} <ArrowUpRight size={15} /></a><button className="email-copy" onClick={copyEmail} type="button">{emailCopied ? <><Check size={14} /> Email copied</> : <><Copy size={14} /> Copy email address</>}</button></div></div></div></section>
     </main>
     <footer className="site-footer"><div className="footer-identity"><BrandMark /><span>Khalid Hasan Meskat</span></div><p>Independent web specialist<br />Available worldwide.</p><div className="footer-links"><a href="https://github.com/khalidhasan-m" target="_blank" rel="noreferrer"><Github size={16} /> GitHub</a><a href="https://linkedin.com/in/khalidhasanmeskat" target="_blank" rel="noreferrer"><Linkedin size={16} /> LinkedIn</a><a href={`mailto:${EMAIL}`}><Mail size={16} /> Email</a><a href={RESUME_URL} target="_blank" rel="noreferrer"><Download size={16} /> Résumé</a></div><div className="footer-rule"><span>© 2026</span><span>DESIGNED TO MAKE THE WORK MATTER</span><Code2 size={16} /></div></footer>
   </div>;
