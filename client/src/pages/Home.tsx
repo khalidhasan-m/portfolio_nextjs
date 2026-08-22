@@ -7,12 +7,11 @@ import { useEffect, useState, type CSSProperties, type MouseEvent, type PointerE
 import "./premium-expansion.css";
 import "./portfolio-polish.css";
 import "./premium-logo.css";
+import "./dark-mode.css";
+import "./evidence-polish.css";
 import {
   ArrowDownRight,
   ArrowUpRight,
-  BadgeCheck,
-  BookOpen,
-  BriefcaseBusiness,
   Check,
   ChevronDown,
   Code2,
@@ -26,9 +25,11 @@ import {
   Menu,
   MonitorUp,
   MoveUpRight,
+  Moon,
   PanelTop,
   Rocket,
   Sparkles,
+  Sun,
   X,
 } from "lucide-react";
 
@@ -107,17 +108,6 @@ const facts = [
   ["Based in", "Bangladesh · worldwide"], ["Focus", "Frontend · React · Next.js"], ["Open to", "Remote · freelance · full-time"], ["Working style", "Clear, practical, collaborative"],
 ];
 
-const credentials = [
-  { year: "2025 — present", title: "Frontend Developer · Independent", body: "Building and shipping public full-stack products with React, Next.js, Tailwind CSS, Better Auth, APIs, and responsive user interfaces." },
-  { year: "2024", title: "Master’s · English", body: "Govt. B.M. College, Barishal · National University, Bangladesh." },
-  { year: "2022", title: "Bachelor of Arts (Honours) · English", body: "Govt. B.M. College, Barishal · National University, Bangladesh." },
-];
-
-const certifications = [
-  ["Web Development", "Programming Hero · 6-month course · Passed"],
-  ["Computer Office Application", "Bangladesh Technical Education Board · 2020"],
-];
-
 const faqs = [
   ["What kind of projects do you take on?", "I’m most useful when a project needs a polished frontend, a clearer product flow, or an end-to-end web build with authentication, APIs, and thoughtful responsive behavior."],
   ["Can you work with an existing design or codebase?", "Yes. I can implement an existing visual direction, refine an interface that has already shipped, or work inside an existing React or Next.js project with care for its current structure."],
@@ -143,16 +133,21 @@ function ProjectCard({ project }: { project: Project }) {
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     setTilt({ "--card-tilt-x": `${-y * 5.5}deg`, "--card-tilt-y": `${x * 5.5}deg`, "--card-light-x": `${(x + 0.5) * 100}%`, "--card-light-y": `${(y + 0.5) * 100}%`, "--card-shadow-x": `${x * -9}px`, "--card-shadow-y": `${y * 9}px` });
   };
-  return <article className={`project-card project-${project.index}`} style={tilt} onPointerMove={moveCard} onPointerLeave={() => setTilt(resetStyle)}>
+  return <article className={`project-card project-${project.index} ${project.index === "06" || project.index === "05" ? "project-featured" : ""}`} style={tilt} onPointerMove={moveCard} onPointerLeave={() => setTilt(resetStyle)}>
     <div className="project-card-depth" aria-hidden="true" />
     <div className="project-art"><img className="project-material" src={CASE_STUDY_IMAGE} alt="" /><img className="project-evidence" src={project.evidence} alt={`${project.name} project screen`} /><span>{project.index}</span><div className="evidence-tag">{project.evidenceLabel}</div><div className="project-art-square" /></div>
-    <div className="project-main"><p className="project-type">{project.type}</p><h3>{project.name}</h3><p className="project-detail">{project.detail}</p><p className="project-proof"><span>PROOF</span>{project.proof}</p><div className="project-footer"><div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links">{project.live ? <a href={project.live} target="_blank" rel="noreferrer">Live <ArrowUpRight size={14} /></a> : <span className="project-pending">Live link soon</span>}<a href={project.code} target="_blank" rel="noreferrer">Code <Github size={14} /></a></div></div></div>
+    <div className="project-main"><div className="project-coordinate"><span>CASE / {project.index}</span><span>{project.category.toUpperCase()}</span></div><p className="project-type">{project.type}</p><h3>{project.name}</h3><p className="project-detail">{project.detail}</p><p className="project-proof"><span>PROOF</span>{project.proof}</p>{project.live && <a className="project-live-url" href={project.live} target="_blank" rel="noreferrer"><span>LIVE DEPLOYMENT</span><strong>{project.live.replace("https://", "").replace(/\/$/, "")}</strong><ArrowUpRight size={15} /></a>}<div className="project-footer"><div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links">{project.live ? <a href={project.live} target="_blank" rel="noreferrer">Open live <ArrowUpRight size={14} /></a> : <span className="project-pending">Live link soon</span>}<a href={project.code} target="_blank" rel="noreferrer">Code <Github size={14} /></a></div></div></div>
   </article>;
 }
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const storedTheme = window.localStorage.getItem("khalid-portfolio-theme");
+    return storedTheme ? storedTheme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeService, setActiveService] = useState("interface");
   const [activeProcess, setActiveProcess] = useState(0);
@@ -173,6 +168,10 @@ export default function Home() {
     return () => { window.removeEventListener("scroll", updateProgress); window.removeEventListener("keydown", shortcuts); };
   }, []);
 
+  useEffect(() => {
+    window.localStorage.setItem("khalid-portfolio-theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
   const movePrism = (event: MouseEvent<HTMLDivElement>) => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = event.currentTarget.getBoundingClientRect(); const x = (event.clientX - rect.left) / rect.width - 0.5; const y = (event.clientY - rect.top) / rect.height - 0.5;
@@ -182,16 +181,16 @@ export default function Home() {
   const goTo = (id: string) => { document.querySelector(id)?.scrollIntoView({ behavior: "smooth" }); setCommandOpen(false); setMenuOpen(false); };
   const copyEmail = async () => { try { await navigator.clipboard.writeText(EMAIL); setEmailCopied(true); window.setTimeout(() => setEmailCopied(false), 2400); } catch { setEmailCopied(false); } };
 
-  return <div className="site-shell">
+  return <div className={`site-shell ${isDark ? "is-dark" : ""}`}>
     <div className="scroll-indicator" aria-hidden="true"><i style={{ width: `${scrollProgress}%` }} /></div>
     <a className="skip-link" href="#main-content">Skip to content</a>
     <header className="site-header">
       <a href="#top" className="brand" aria-label="Khalid Hasan Meskat home"><BrandMark className="brand-mark" /><span className="brand-copy">Khalid<br />Hasan Meskat</span></a>
       <nav className="desktop-nav" aria-label="Primary navigation"><a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Method</a><a href="#contact">Contact</a></nav>
-      <div className="header-actions"><button className="nav-command" onClick={() => setCommandOpen(true)} type="button"><Command size={13} /> Explore <kbd>⌘K</kbd></button><a className="header-cta" href="#contact">Bring the difficult brief <ArrowUpRight size={15} /></a><button className="menu-button" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
+      <div className="header-actions"><button className="theme-toggle" type="button" aria-pressed={isDark} aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"} onClick={() => setIsDark((value) => !value)}>{isDark ? <Sun size={14} /> : <Moon size={14} />}<span>{isDark ? "Light" : "Dark"}</span></button><button className="nav-command" onClick={() => setCommandOpen(true)} type="button"><Command size={13} /> Explore <kbd>⌘K</kbd></button><a className="header-cta" href="#contact">Bring the difficult brief <ArrowUpRight size={15} /></a><button className="menu-button" type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X size={20} /> : <Menu size={20} />}</button></div>
     </header>
     <div className={`mobile-nav ${menuOpen ? "is-open" : ""}`}><button onClick={() => goTo("#about")}>About</button><button onClick={() => goTo("#services")}>Services</button><button onClick={() => goTo("#work")}>Selected work</button><button onClick={() => goTo("#process")}>Method</button><button onClick={() => goTo("#contact")}>Contact</button></div>
-    {commandOpen && <div className="command-overlay" role="dialog" aria-modal="true" aria-label="Quick portfolio navigation" onMouseDown={(event) => { if (event.target === event.currentTarget) setCommandOpen(false); }}><div className="command-panel"><div className="command-title"><span>QUICK NAVIGATION</span><button onClick={() => setCommandOpen(false)} aria-label="Close quick navigation"><X size={17} /></button></div><p>Choose a section or use <kbd>Esc</kbd> to close.</p><div className="command-list">{[["ABOUT", "#about"], ["SERVICES", "#services"], ["SELECTED WORK", "#work"], ["METHOD", "#process"], ["CREDENTIALS", "#credentials"], ["CONTACT", "#contact"]].map(([label, id], index) => <button key={id} onClick={() => goTo(id)}><span>0{index + 1}</span>{label}<ArrowUpRight size={15} /></button>)}</div></div></div>}
+    {commandOpen && <div className="command-overlay" role="dialog" aria-modal="true" aria-label="Quick portfolio navigation" onMouseDown={(event) => { if (event.target === event.currentTarget) setCommandOpen(false); }}><div className="command-panel"><div className="command-title"><span>QUICK NAVIGATION</span><button onClick={() => setCommandOpen(false)} aria-label="Close quick navigation"><X size={17} /></button></div><p>Choose a section or use <kbd>Esc</kbd> to close.</p><div className="command-list">{[["ABOUT", "#about"], ["SERVICES", "#services"], ["SELECTED WORK", "#work"], ["METHOD", "#process"], ["CONTACT", "#contact"]].map(([label, id], index) => <button key={id} onClick={() => goTo(id)}><span>0{index + 1}</span>{label}<ArrowUpRight size={15} /></button>)}</div></div></div>}
 
     <main id="main-content">
       <section className="hero" id="top"><div className="hero-grid" aria-hidden="true" /><div className="hero-content"><div className="hero-copy"><p className="eyebrow"><span className="signal-dot" /> Independent web specialist · Bangladesh ↗ Worldwide</p><h1>Digital work<br />with enough craft<br />to earn attention.</h1><p className="hero-summary">I design and build clear, expressive web experiences for clients who need more than a template—and less than a complicated process.</p><div className="hero-actions"><a className="button button-primary" href="#contact">Start a conversation <ArrowDownRight size={17} /></a><a className="text-link" href="#work">See selected work <MoveUpRight size={16} /></a></div><div className="hero-footnotes"><span>01 / CLIENT-READY SYSTEMS</span><span>02 / FROM IDEA TO DEPLOYMENT</span></div></div><div className="prism-column"><div className="prism-stage" style={tilt} onMouseMove={movePrism} onMouseLeave={resetPrism}><div className="stage-glow" /><div className="stage-corner stage-corner-a" /><div className="stage-corner stage-corner-b" /><div className="prism-frame"><img src={HERO_IMAGE} alt="Sculptural folded prism in graphite, stone, and vermilion." /><div className="prism-plane prism-plane-one" /><div className="prism-plane prism-plane-two" /><div className="prism-scanline" /></div><div className="portrait-specimen"><div className="portrait-photo"><img src={PROFILE_IMAGE} alt="Khalid Hasan Meskat" /></div><div className="portrait-caption"><span>YOUR PARTNER</span><strong>KHALID H.<br />MESKAT</strong></div></div><BrandMark className="hero-signature" /><div className="stage-caption stage-caption-top">CRAFT<br />IN MOTION</div><div className="stage-caption stage-caption-bottom"><span>ROTATE</span><span>WITH CURSOR</span></div></div><div className="availability-strip"><span className="availability-pulse" /> Select collaborations · Available for considered projects</div></div></div></section>
@@ -206,9 +205,7 @@ export default function Home() {
 
       <section className="skills-section section-spine"><div className="spine-label"><span>05</span><span>WORKING SET</span></div><div className="skills-content"><p className="eyebrow">The calibrated toolkit</p><div className="skills-headline"><h2>Built with a point<br />of view.</h2><p>Tools matter when they make the right thing possible. This is the practical set I use to keep both the experience and the implementation sharp.</p></div><div className="skill-groups"><div className="skill-group"><p>Interface</p><div>{["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"].map((skill) => <span key={skill}>{skill}</span>)}</div></div><div className="skill-group"><p>Systems</p><div>{["Node.js", "Express", "MongoDB", "REST APIs", "Authentication"].map((skill) => <span key={skill}>{skill}</span>)}</div></div><div className="skill-group"><p>Practice</p><div>{["Accessibility", "Responsive UX", "Performance", "Git", "Vercel"].map((skill) => <span key={skill}>{skill}</span>)}</div></div></div><div className="skills-annotation"><span>METHOD / 04</span><p>Discover → clarify → build → refine</p><span>DESIGNED FOR REAL HANDOFFS</span></div></div></section>
 
-      <section className="credentials-section section-spine" id="credentials"><div className="spine-label"><span>06</span><span>BACKGROUND</span></div><div className="credentials-content"><div className="credentials-heading"><div><p className="eyebrow">Experience & education</p><h2>Evidence of a working practice.</h2></div><p>A concise view of the background behind the work: independent product delivery, language-led problem solving, and focused technical training.</p></div><div className="credential-grid"><div className="timeline">{credentials.map((credential) => <article className="timeline-item" key={credential.title}><span className="timeline-pin" /><p>{credential.year}</p><h3>{credential.title}</h3><div>{credential.body}</div></article>)}</div><div className="certification-panel"><div><BadgeCheck size={24} /><p>ADDITIONAL TRAINING</p></div>{certifications.map(([title, source]) => <article key={title}><h3>{title}</h3><p>{source}</p></article>)}<a href={RESUME_URL} target="_blank" rel="noreferrer">Open full résumé <ArrowUpRight size={16} /></a></div></div></div></section>
-
-      <section className="faq-section section-spine" id="faq"><div className="spine-label"><span>07</span><span>FAQ</span></div><div className="faq-content"><div className="faq-heading"><p className="eyebrow">A few useful answers</p><h2>Before we start the conversation.</h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <article className={openFaq === index ? "is-open" : ""} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>0{index + 1}</span><strong>{question}</strong><ChevronDown size={20} /></button><div className="faq-answer"><p>{answer}</p></div></article>)}</div></div></section>
+      <section className="faq-section section-spine" id="faq"><div className="spine-label"><span>06</span><span>FAQ</span></div><div className="faq-content"><div className="faq-heading"><p className="eyebrow">A few useful answers</p><h2>Before we start the conversation.</h2></div><div className="faq-list">{faqs.map(([question, answer], index) => <article className={openFaq === index ? "is-open" : ""} key={question}><button onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>0{index + 1}</span><strong>{question}</strong><ChevronDown size={20} /></button><div className="faq-answer"><p>{answer}</p></div></article>)}</div></div></section>
 
       <section className="contact-section" id="contact"><div className="contact-grid" aria-hidden="true" /><div className="contact-content"><div><p className="eyebrow inverse"><span className="signal-dot" /> Direct channel</p><h2>Bring the difficult<br /><em>brief.</em></h2></div><div className="contact-aside"><p>If the project needs a thoughtful partner who can make strong decisions and then build them, I’d like to hear what you’re working on.</p><a className="button button-light" href={`mailto:${EMAIL}`}>{EMAIL} <ArrowUpRight size={18} /></a><button className="email-copy" onClick={copyEmail} type="button">{emailCopied ? <><Check size={14} /> Email copied</> : <><Copy size={14} /> Copy email address</>}</button></div></div></section>
     </main>

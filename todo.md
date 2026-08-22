@@ -22,6 +22,12 @@
 - [x] Confirm both project deployments respond at their GitHub Pages URLs.
 - [x] Replace pending live-link states for SignalDesk and RouteForm in the portfolio.
 - [x] Verify and save the portfolio’s live-link update.
+- [x] Add an accessible dark-mode toggle with stored preference and system-theme fallback.
+- [x] Apply a refined dark treatment to the portfolio’s light editorial sections without diluting the Masterwork Index system.
+- [x] Make SignalDesk and RouteForm live URLs explicit and prominent in their case-study cards.
+- [x] Verify the new theme and live-link treatments on desktop and mobile before saving the update.
+- [x] Remove the education-and-credentials section so live work and client value have more emphasis.
+- [x] Refine the project catalogue into clearer evidence plates with stronger hierarchy and workflow annotations.
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.
 - [x] Recheck both GitHub Pages URLs after user activation and replace the pending portfolio states with verified links.
