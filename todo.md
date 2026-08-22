@@ -45,6 +45,9 @@
 - [x] Add subtle pointer-hover feedback to interactive contact fields.
 - [x] Add a strong, keyboard-visible focus treatment that works alongside inline validation states.
 - [x] Verify hover, focus, and reduced-motion behavior before saving the update.
+- [x] Renumber the displayed project cards into a clear sequential case-study order.
+- [x] Verify the corrected numbering and preserved featured-project treatment before saving the update.
+- [x] Confirm project-specific featured and evidence selectors remain correct after the display-number change.
 - [x] Verify reduced-motion behavior disables the interactive project-card tilt before saving the contact-form upgrade.
 - [x] Replace the failed GitHub Pages artifact workflows with a compatible branch-based Pages deployment workflow.
 - [x] Confirm both corrected workflow runs succeed before adding any live URLs to the portfolio.

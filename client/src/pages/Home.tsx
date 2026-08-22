@@ -48,32 +48,32 @@ const EMAIL = "khalidhasanmeskat@gmail.com";
 
 const projects = [
   {
-    index: "06", name: "RouteForm", category: "Interactive", type: "Progressive project estimator",
+    index: "01", name: "RouteForm", category: "Interactive", type: "Progressive project estimator",
     detail: "A step-by-step browser tool that helps a client frame the format, priorities, and pace of a project before scope begins to drift.",
     stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/route-form-evidence_8c9ee2c8.png", evidenceLabel: "ESTIMATOR · PROJECT SHAPE", proof: "Every choice updates a shareable delivery route in real time.", live: "https://khalidhasan-m.github.io/route-form/", code: "https://github.com/khalidhasan-m/route-form",
   },
   {
-    index: "05", name: "SignalDesk", category: "Interactive", type: "Interactive project health dashboard",
+    index: "02", name: "SignalDesk", category: "Interactive", type: "Interactive project health dashboard",
     detail: "A compact product dashboard that turns workstream status, team updates, and the next best decision into a clear delivery signal.",
     stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/signal-desk-evidence_a5a55295.png", evidenceLabel: "DASHBOARD · DELIVERY SIGNAL", proof: "Health modes, workstreams, and activity filters update without losing context.", live: "https://khalidhasan-m.github.io/signal-desk/", code: "https://github.com/khalidhasan-m/signal-desk",
   },
   {
-    index: "04", name: "ScopeSprint", category: "Interactive", type: "Interactive project brief builder",
+    index: "03", name: "ScopeSprint", category: "Interactive", type: "Interactive project brief builder",
     detail: "A compact browser experience that turns a loose project idea into a focused direction through live configuration, priority signals, and a shareable summary.",
     stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/scopesprint-evidence_0bce8fb4.png", evidenceLabel: "INTERACTIVE BRIEF · LIVE SIGNAL", proof: "Live inputs refresh the client brief in real time.", live: null, code: "https://github.com/khalidhasan-m/scope-sprint",
   },
   {
-    index: "01", name: "PawfectMatch", category: "Full stack", type: "Full-stack adoption platform",
+    index: "04", name: "PawfectMatch", category: "Full stack", type: "Full-stack adoption platform",
     detail: "Search, adoption workflows, owner tools, and a shared status model that keeps public and dashboard views in step.",
     stack: ["React", "Express", "MongoDB"], evidence: "/manus-storage/pawfectmatch-evidence_276086d8.png", evidenceLabel: "ADOPTION FLOW · DASHBOARD", proof: "One shared adoption status keeps owner and public views in step.", live: "https://pet-adoption-client-gamma.vercel.app/", code: "https://github.com/khalidhasan-m/pet-adoption-client",
   },
   {
-    index: "02", name: "Wanderlust", category: "Full stack", type: "Authenticated travel platform",
+    index: "05", name: "Wanderlust", category: "Full stack", type: "Authenticated travel platform",
     detail: "A content-rich product with protected authoring flows, ownership-aware CRUD, and intentional App Router boundaries.",
     stack: ["Next.js", "Better Auth", "MongoDB"], evidence: "/manus-storage/wanderlust-evidence_2517ab74.png", evidenceLabel: "AUTH · OWNERSHIP CONTROLS", proof: "Ownership-aware routes keep private editing separate from browsing.", live: "https://wanderlust-seven-gules.vercel.app/", code: "https://github.com/khalidhasan-m/wanderlust",
   },
   {
-    index: "03", name: "SunCart", category: "Commerce", type: "Commerce experience",
+    index: "06", name: "SunCart", category: "Commerce", type: "Commerce experience",
     detail: "A polished shopping journey that combines OAuth, product discovery, and guarded post-login order flows.",
     stack: ["Next.js", "HeroUI", "Embla"], evidence: "/manus-storage/suncart-evidence_3265f133.png", evidenceLabel: "CATALOGUE · PROTECTED ORDERS", proof: "OAuth and protected routes keep the order journey secure.", live: "https://assignment8-kappa.vercel.app/", code: "https://github.com/khalidhasan-m/assignment8",
   },
@@ -148,7 +148,8 @@ function ProjectCard({ project }: { project: Project }) {
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     setTilt({ "--card-tilt-x": `${-y * 5.5}deg`, "--card-tilt-y": `${x * 5.5}deg`, "--card-light-x": `${(x + 0.5) * 100}%`, "--card-light-y": `${(y + 0.5) * 100}%`, "--card-shadow-x": `${x * -9}px`, "--card-shadow-y": `${y * 9}px` });
   };
-  return <article className={`project-card project-${project.index} ${project.index === "06" || project.index === "05" ? "project-featured" : ""}`} style={tilt} onPointerMove={moveCard} onPointerLeave={() => setTilt(resetStyle)}>
+  const projectSlug = project.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  return <article className={`project-card project-${project.index} project-${projectSlug} ${project.name === "RouteForm" || project.name === "SignalDesk" ? "project-featured" : ""}`} style={tilt} onPointerMove={moveCard} onPointerLeave={() => setTilt(resetStyle)}>
     <div className="project-card-depth" aria-hidden="true" />
     <div className="project-art"><img className="project-material" src={CASE_STUDY_IMAGE} alt="" /><img className="project-evidence" src={project.evidence} alt={`${project.name} project screen`} /><span>{project.index}</span><div className="evidence-tag">{project.evidenceLabel}</div><div className="project-art-square" /></div>
     <div className="project-main"><div className="project-coordinate"><span>CASE / {project.index}</span><span>{project.category.toUpperCase()}</span></div><p className="project-type">{project.type}</p><h3>{project.name}</h3><p className="project-detail">{project.detail}</p><p className="project-proof"><span>PROOF</span>{project.proof}</p>{project.live && <a className="project-live-url" href={project.live} target="_blank" rel="noreferrer"><span>LIVE DEPLOYMENT</span><strong>{project.live.replace("https://", "").replace(/\/$/, "")}</strong><ArrowUpRight size={15} /></a>}<div className="project-footer"><div className="stack-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div><div className="project-links">{project.live ? <a href={project.live} target="_blank" rel="noreferrer">Open live <ArrowUpRight size={14} /></a> : <span className="project-pending">Live link soon</span>}<a href={project.code} target="_blank" rel="noreferrer">Code <Github size={14} /></a></div></div></div>
