@@ -83,7 +83,8 @@
 - [x] Verify the reference-led interaction upgrade across desktop, keyboard, mobile, reduced-motion, tests, and production build.
 - [ ] Commit the completed reference-led portfolio upgrade on the main branch.
 - [ ] Push the verified portfolio upgrade to the configured GitHub remote main branch and confirm its commit.
-- [ ] Resolve the divergent GitHub main history without overwriting existing repository work.
-- [ ] Create a local safety branch for the verified portfolio state before merging GitHub main.
-- [ ] Merge GitHub main using the approved safe path and resolve all conflicts deliberately.
-- [ ] Validate the merged codebase before committing and pushing GitHub main.
+- [x] Resolve the divergent GitHub main history without overwriting existing repository work.
+- [x] Create a local safety branch for the verified portfolio state before merging GitHub main.
+- [x] Merge GitHub main using the approved safe path and resolve all conflicts deliberately.
+- [x] Validate the merged codebase before committing and pushing GitHub main.
+- [x] Isolate the legacy CommonJS PostCSS configuration so it does not interfere with the active ES module Vite build.
