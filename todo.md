@@ -107,7 +107,7 @@
 - [x] Validate built asset copies, HTTP responses, desktop/mobile rendering, and broken-image state.
 - [x] Save and push the direct-public-asset fix to GitHub main for Vercel redeployment.
 - [x] Audit inherited template copy, unused scaffold files, and unnecessary dependencies.
-- [ ] Remove only provably unused generated or scaffold material while preserving the running portfolio.
+- [x] Remove only provably unused generated or scaffold material while preserving the running portfolio.
 - [x] Rewrite README.md with accurate project architecture, asset, local development, testing, and Vercel deployment instructions.
 - [x] Validate the cleaned repository and save the update.
 - [x] Remove the stale tw-animate-css stylesheet import after dependency cleanup and restore a passing production build.

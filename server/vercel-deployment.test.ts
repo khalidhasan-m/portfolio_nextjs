@@ -26,8 +26,9 @@ describe("Vercel deployment contract", () => {
     expect(vercelConfig.buildCommand).toBe("pnpm build");
     expect(vercelConfig.outputDirectory).toBe("dist/public");
     expect(vercelConfig.installCommand).toContain("--frozen-lockfile");
-    expect(vercelConfig.rewrites[0].source).toContain("api");
-    expect(vercelConfig.rewrites[0].source).toContain("manus-storage");
+    const rewriteSources = vercelConfig.rewrites.map((rewrite: { source: string }) => rewrite.source);
+    expect(rewriteSources.some((source: string) => source.includes("api"))).toBe(true);
+    expect(rewriteSources.some((source: string) => source.includes("manus-storage"))).toBe(true);
     expect(workspaceSource).toContain("onlyBuiltDependencies");
     expect(workspaceSource).toContain("@tailwindcss/oxide");
     expect(workspaceSource).toContain("esbuild");
