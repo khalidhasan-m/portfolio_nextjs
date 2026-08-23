@@ -113,5 +113,5 @@
 - [x] Remove the stale tw-animate-css stylesheet import after dependency cleanup and restore a passing production build.
 - [x] Optimize portfolio public media and remove redundant oversized originals so checkpointing and Vercel deployment remain reliable.
 - [x] Run final typecheck, unit tests, production build, and portfolio browser regression checks.
-- [ ] Save the final checkpoint and push the cleaned state to GitHub main.
-- [ ] Provide Vercel redeployment handoff instructions.
+- [x] Save the final checkpoint and push the cleaned state to GitHub main.
+- [x] Provide Vercel redeployment handoff instructions.

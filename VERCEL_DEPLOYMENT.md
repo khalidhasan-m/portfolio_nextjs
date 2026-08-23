@@ -1,42 +1,32 @@
 # Vercel Deployment
 
-The repository is configured for the active **Vite + Express** portfolio, not the archived legacy Next.js source. The root `vercel.json` pins the framework to Vite, runs `pnpm build`, publishes `dist/public`, preserves `/api/*` for the serverless Express adapter, routes `/manus-storage/*` to `/api/manus-storage/*` (so portfolio images/video work), and routes all other non-API deep links to the single-page application.
+The repository is configured for the active **Vite + Express** portfolio. The legacy Next.js source has been removed from the active tree. The root `vercel.json` pins the framework to Vite, runs `pnpm build`, publishes `dist/public`, keeps `/api/*` on the serverless Express adapter, and sends other deep links to the single-page application.
 
-## Redeploy
+## Redeploy checklist
 
-In Vercel, open the project connected to `khalidhasan-m/portfolio_nextjs`. Confirm **Root Directory** is the repository root, then redeploy the latest commit from the **Deployments** tab (or push to `main` if auto-deploy is on). The committed `vercel.json` takes precedence over any prior Next.js framework detection.
+In Vercel, open the project connected to `khalidhasan-m/portfolio_nextjs`. Confirm that **Root Directory** is the repository root, the production branch is `main`, and the framework preset is allowed to use the committed Vite configuration. Redeploy the latest commit from the **Deployments** tab, or push a new commit when automatic deployments are enabled.
+
+After deployment, open the production URL and verify the hero prism, logo, profile photo, project evidence panels, case-study routes, dark-mode toggle, and contact form. The public media files are served directly from committed paths under `/assets/portfolio/`; they do not depend on `/manus-storage/*` or Forge image credentials.
 
 ## Production environment variables
 
-Set these in **Vercel → Project Settings → Environment Variables** for **Production**, then redeploy.
+Set the following values in **Vercel → Project Settings → Environment Variables** for Production before testing the contact endpoint. Never commit secret values to the repository.
 
-### Required for portfolio images / video (`/manus-storage/*`)
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | MySQL/TiDB connection used to persist contact inquiries. |
+| `JWT_SECRET` | Session and authentication signing secret. |
+| `OAUTH_SERVER_URL` | OAuth backend base URL. |
+| `OWNER_OPEN_ID` | Owner identity used by the notification and auth flows. |
+| `VITE_APP_ID` | Public OAuth application identifier. |
+| `VITE_OAUTH_PORTAL_URL` | Frontend OAuth login portal URL. |
 
-Hero, logo, profile, project evidence, and motion assets are loaded through the storage proxy. Without these, images return 500/502 on live:
+The built-in Manus/Forge variables may remain available when supplied by the hosting environment because the full-stack template supports optional integrations, but they are **not required to serve the portfolio’s images or video**. The active media references are root-relative paths such as `/assets/portfolio/masterwork-hero-prism.webp`.
 
-- `BUILT_IN_FORGE_API_URL`
-- `BUILT_IN_FORGE_API_KEY`
+## Post-deploy checks
 
-These come from the Manus / Forge storage backend that originally hosted the assets. If you no longer have them, host the files under `client/public/` and change the paths in `client/src/pages/Home.tsx` (and related content files) to static URLs such as `/images/hero.png`.
-
-### Required for contact API / auth (when those features are enabled)
-
-- `DATABASE_URL`
-- `JWT_SECRET`
-- `OAUTH_SERVER_URL`
-- `OWNER_OPEN_ID`
-
-### Optional client build vars (when those features are enabled)
-
-- `VITE_APP_ID`
-- `VITE_FRONTEND_FORGE_API_URL`
-- `VITE_FRONTEND_FORGE_API_KEY`
-- `VITE_OAUTH_PORTAL_URL`
-
-Do not commit secret values to the repository.
-
-## Verify images after deploy
-
-1. Open https://portfolio-nextjs-plum-nine.vercel.app
-2. Confirm hero prism, logo, profile photo, and project evidence images load (not broken icons).
-3. Direct check: `/manus-storage/masterwork-hero-prism_8be4df2b.png` should redirect (307) to a signed storage URL, not 404.
+1. Confirm the homepage loads without broken-image indicators.
+2. Open `/work/route-form`, `/work/signal-desk`, and `/work/pawfect-match` and confirm their evidence images render.
+3. Submit a controlled contact inquiry using the production form and confirm the success state appears.
+4. Confirm the Vercel function responds at `/api/oauth/callback` and `/api/trpc/contactInquiry.submit` according to the application’s auth and validation rules.
+5. If an old deployment still requests `/manus-storage/*`, redeploy the current `main` commit rather than restoring the retired managed-storage asset paths.
