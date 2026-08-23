@@ -98,6 +98,20 @@
 - [x] Push the deployment-detection fix to GitHub main and provide redeployment instructions.
 - [x] Provide Vercel redeployment instructions and list the production environment variables required by the contact API.
 - [x] Trace every broken portfolio image reference after the deployment cleanup.
-- [x] Restore or rehost missing active image assets without reintroducing legacy Next.js detection.
-- [x] Verify image loading in production build and responsive browser views.
+- [x] Replace active frontend image and video references with stable public CDN assets without reintroducing legacy Next.js detection.
+- [x] Verify image loading in production build, direct CDN responses, and responsive browser views.
 - [x] Save the image restoration fix and synchronize the deployment-ready state.
+- [x] Copy the required portfolio images into client/public/assets/portfolio.
+- [x] Replace active managed-storage and temporary CDN image references with root-relative public paths.
+- [x] Add regression coverage for public asset existence and active image references.
+- [x] Validate built asset copies, HTTP responses, desktop/mobile rendering, and broken-image state.
+- [x] Save and push the direct-public-asset fix to GitHub main for Vercel redeployment.
+- [x] Audit inherited template copy, unused scaffold files, and unnecessary dependencies.
+- [ ] Remove only provably unused generated or scaffold material while preserving the running portfolio.
+- [x] Rewrite README.md with accurate project architecture, asset, local development, testing, and Vercel deployment instructions.
+- [x] Validate the cleaned repository and save the update.
+- [x] Remove the stale tw-animate-css stylesheet import after dependency cleanup and restore a passing production build.
+- [x] Optimize portfolio public media and remove redundant oversized originals so checkpointing and Vercel deployment remain reliable.
+- [x] Run final typecheck, unit tests, production build, and portfolio browser regression checks.
+- [ ] Save the final checkpoint and push the cleaned state to GitHub main.
+- [ ] Provide Vercel redeployment handoff instructions.

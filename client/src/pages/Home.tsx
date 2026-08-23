@@ -36,46 +36,46 @@ import {
   X,
 } from "lucide-react";
 
-const HERO_IMAGE = "/manus-storage/masterwork-hero-prism_8be4df2b.png";
-const ORBIT_IMAGE = "/manus-storage/masterwork-expertise-orbit_2f4cf6e6.png";
-const CASE_STUDY_IMAGE = "/manus-storage/masterwork-case-study-plane_b0d573e2.png";
-const LOGO_IMAGE = "/manus-storage/khalid-masterwork-prism-logo_f05fd20b.png";
-const PROFILE_IMAGE = "/manus-storage/khalid-profile_3634e3c4.jpg";
-const RESUME_URL = "/manus-storage/khalid-hasan-meskat-resume_e12a210c.pdf";
+const HERO_IMAGE = "/assets/portfolio/masterwork-hero-prism.webp";
+const ORBIT_IMAGE = "/assets/portfolio/masterwork-expertise-orbit.webp";
+const CASE_STUDY_IMAGE = "/assets/portfolio/masterwork-case-study-plane.webp";
+const LOGO_IMAGE = "/assets/portfolio/khalid-masterwork-prism-logo.webp";
+const PROFILE_IMAGE = "/assets/portfolio/khalid-profile.jpg";
+const RESUME_URL = "/assets/portfolio/khalid-hasan-meskat-resume.pdf";
 const EMAIL = "khalidhasanmeskat@gmail.com";
-const TECH_MOTION_VIDEO = "/manus-storage/masterwork-tech-motion_d89f3d24.mp4";
+const TECH_MOTION_VIDEO = "/assets/portfolio/masterwork-tech-motion-optimized.mp4";
 const ContactForm = lazy(() => import("./ContactForm"));
 
 const projects = [
   {
     index: "01", name: "RouteForm", category: "Interactive", type: "Progressive project estimator",
     detail: "A step-by-step browser tool that helps a client frame the format, priorities, and pace of a project before scope begins to drift.",
-    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/route-form-evidence_8c9ee2c8.png", evidenceLabel: "ESTIMATOR · PROJECT SHAPE", proof: "Every choice updates a shareable delivery route in real time.", live: "https://khalidhasan-m.github.io/route-form/", code: "https://github.com/khalidhasan-m/route-form", caseStudy: "/work/route-form",
+    stack: ["HTML", "CSS", "JavaScript"], evidence: "/assets/portfolio/route-form-evidence.webp", evidenceLabel: "ESTIMATOR · PROJECT SHAPE", proof: "Every choice updates a shareable delivery route in real time.", live: "https://khalidhasan-m.github.io/route-form/", code: "https://github.com/khalidhasan-m/route-form", caseStudy: "/work/route-form",
   },
   {
     index: "02", name: "SignalDesk", category: "Interactive", type: "Interactive project health dashboard",
     detail: "A compact product dashboard that turns workstream status, team updates, and the next best decision into a clear delivery signal.",
-    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/signal-desk-evidence_a5a55295.png", evidenceLabel: "DASHBOARD · DELIVERY SIGNAL", proof: "Health modes, workstreams, and activity filters update without losing context.", live: "https://khalidhasan-m.github.io/signal-desk/", code: "https://github.com/khalidhasan-m/signal-desk", caseStudy: "/work/signal-desk",
+    stack: ["HTML", "CSS", "JavaScript"], evidence: "/assets/portfolio/signal-desk-evidence.webp", evidenceLabel: "DASHBOARD · DELIVERY SIGNAL", proof: "Health modes, workstreams, and activity filters update without losing context.", live: "https://khalidhasan-m.github.io/signal-desk/", code: "https://github.com/khalidhasan-m/signal-desk", caseStudy: "/work/signal-desk",
   },
   {
     index: "03", name: "ScopeSprint", category: "Interactive", type: "Interactive project brief builder",
     detail: "A compact browser experience that turns a loose project idea into a focused direction through live configuration, priority signals, and a shareable summary.",
-    stack: ["HTML", "CSS", "JavaScript"], evidence: "/manus-storage/scopesprint-evidence_0bce8fb4.png", evidenceLabel: "INTERACTIVE BRIEF · LIVE SIGNAL", proof: "Live inputs refresh the client brief in real time.", live: "https://khalidhasan-m.github.io/scope-sprint/", code: "https://github.com/khalidhasan-m/scope-sprint",
+    stack: ["HTML", "CSS", "JavaScript"], evidence: "/assets/portfolio/scopesprint-evidence.webp", evidenceLabel: "INTERACTIVE BRIEF · LIVE SIGNAL", proof: "Live inputs refresh the client brief in real time.", live: "https://khalidhasan-m.github.io/scope-sprint/", code: "https://github.com/khalidhasan-m/scope-sprint",
   },
   {
     index: "04", name: "PawfectMatch", category: "Full stack", type: "Full-stack adoption platform",
     detail: "Search, adoption workflows, owner tools, and a shared status model that keeps public and dashboard views in step.",
-    stack: ["React", "Express", "MongoDB"], evidence: "/manus-storage/pawfectmatch-evidence_276086d8.png", evidenceLabel: "ADOPTION FLOW · DASHBOARD", proof: "One shared adoption status keeps owner and public views in step.", live: "https://pet-adoption-client-gamma.vercel.app/", code: "https://github.com/khalidhasan-m/pet-adoption-client", caseStudy: "/work/pawfect-match",
+    stack: ["React", "Express", "MongoDB"], evidence: "/assets/portfolio/pawfectmatch-evidence.webp", evidenceLabel: "ADOPTION FLOW · DASHBOARD", proof: "One shared adoption status keeps owner and public views in step.", live: "https://pet-adoption-client-gamma.vercel.app/", code: "https://github.com/khalidhasan-m/pet-adoption-client", caseStudy: "/work/pawfect-match",
   },
   {
     index: "05", name: "Wanderlust", category: "Full stack", type: "Authenticated travel platform",
     detail: "A content-rich product with protected authoring flows, ownership-aware CRUD, and intentional App Router boundaries.",
-    stack: ["Next.js", "Better Auth", "MongoDB"], evidence: "/manus-storage/wanderlust-evidence_2517ab74.png", evidenceLabel: "AUTH · OWNERSHIP CONTROLS", proof: "Ownership-aware routes keep private editing separate from browsing.", live: "https://wanderlust-seven-gules.vercel.app/", code: "https://github.com/khalidhasan-m/wanderlust",
+    stack: ["Next.js", "Better Auth", "MongoDB"], evidence: "/assets/portfolio/wanderlust-evidence.webp", evidenceLabel: "AUTH · OWNERSHIP CONTROLS", proof: "Ownership-aware routes keep private editing separate from browsing.", live: "https://wanderlust-seven-gules.vercel.app/", code: "https://github.com/khalidhasan-m/wanderlust",
   },
   {
     index: "06", name: "SunCart", category: "Commerce", type: "Commerce experience",
     detail: "A polished shopping journey that combines OAuth, product discovery, and guarded post-login order flows.",
-    stack: ["Next.js", "HeroUI", "Embla"], evidence: "/manus-storage/suncart-evidence_3265f133.png", evidenceLabel: "CATALOGUE · PROTECTED ORDERS", proof: "OAuth and protected routes keep the order journey secure.", live: "https://assignment8-kappa.vercel.app/", code: "https://github.com/khalidhasan-m/assignment8",
+    stack: ["Next.js", "HeroUI", "Embla"], evidence: "/assets/portfolio/suncart-evidence.webp", evidenceLabel: "CATALOGUE · PROTECTED ORDERS", proof: "OAuth and protected routes keep the order journey secure.", live: "https://assignment8-kappa.vercel.app/", code: "https://github.com/khalidhasan-m/assignment8",
   },
 ];
 

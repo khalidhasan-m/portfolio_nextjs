@@ -4,7 +4,6 @@
  * and restrained 3D depth. Keep interactions direct, fast, and tactile.
  */
 @import "tailwindcss";
-@import "tw-animate-css";
 
 :root { --ink: #151515; --ink-soft: #222221; --paper: #f0eee8; --paper-deep: #d8d4c9; --muted: #9c9a92; --line: rgba(240,238,232,.16); --vermilion: #ff4d2e; --steel: #89a9bf; --ease-out: cubic-bezier(.23,1,.32,1); }
 * { box-sizing: border-box; }

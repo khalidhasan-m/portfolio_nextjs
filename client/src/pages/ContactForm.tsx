@@ -19,7 +19,7 @@ function getContactFieldError(field: ContactValidationField, values: ContactValu
 }
 
 function ContactBrandMark() {
-  return <span className="brand-prism" aria-hidden="true"><img src="/manus-storage/khalid-masterwork-prism-logo_f05fd20b.png" alt="" /><i /><b /></span>;
+  return <span className="brand-prism" aria-hidden="true"><img src="/assets/portfolio/khalid-masterwork-prism-logo.webp" alt="" /><i /><b /></span>;
 }
 
 export default function ContactForm() {

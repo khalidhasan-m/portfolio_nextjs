@@ -7,6 +7,17 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 720 } });
 await page.goto(baseUrl, { waitUntil: "networkidle" });
 await page.waitForSelector(".work-group-featured");
 
+const assertImagesLoaded = async (targetPage, label) => {
+  await targetPage.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await targetPage.waitForTimeout(250);
+  const brokenImages = await targetPage.locator("img").evaluateAll((images) => images
+    .filter((image) => !image.complete || image.naturalWidth === 0)
+    .map((image) => image.currentSrc || image.src));
+  if (brokenImages.length > 0) throw new Error(`${label} has broken images: ${brokenImages.join(", ")}`);
+};
+
+await assertImagesLoaded(page, "Homepage");
+
 const featuredCount = await page.locator(".work-group-featured .project-card").count();
 const supportingCount = await page.locator(".work-group-supporting .project-card").count();
 const routeFormCaseStudyLink = await page.locator('a[href="/work/route-form"]').count();
@@ -50,6 +61,7 @@ await page.goto(`${baseUrl}/work/route-form`, { waitUntil: "networkidle" });
 const caseStudyHeading = await page.locator("h1").textContent();
 if (!caseStudyHeading?.includes("RouteForm")) throw new Error("RouteForm case study did not render.");
 if (await page.locator(".case-study-evidence li").count() < 4) throw new Error("Case-study evidence plate is incomplete.");
+await assertImagesLoaded(page, "RouteForm case study");
 const outcomeNote = await page.locator(".case-study-outcome-note").textContent();
 if (!outcomeNote?.includes("Pending verified project or client data")) throw new Error("Case-study outcome metric disclosure is missing.");
 
