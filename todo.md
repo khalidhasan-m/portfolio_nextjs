@@ -115,5 +115,5 @@
 - [x] Run final typecheck, unit tests, production build, and portfolio browser regression checks.
 - [x] Save the final checkpoint and push the cleaned state to GitHub main.
 - [x] Provide Vercel redeployment handoff instructions.
-- [ ] Create a user-authored metadata update commit so future Vercel deployments identify the portfolio owner.
-- [ ] Push and verify the user-authored commit on GitHub main.
+- [x] Create a user-authored metadata update commit so future Vercel deployments identify the portfolio owner.
+- [x] Push and verify the user-authored commit on GitHub main.
