@@ -5,7 +5,7 @@ export const projects = [
     tagline: "Role-based job marketplace with recruiter and seeker dashboards",
     description:
       "A full-stack hiring platform where seekers discover and apply for jobs, recruiters manage companies and listings, and admins review platform activity. The system connects protected dashboards, role-aware access, applications, saved jobs, and subscription plans across a Next.js client and Express/MongoDB API.",
-    image: "/projects/hireloop.png",
+    image: "/projects/hireloop.webp",
     tech: ["Next.js", "React", "Express.js", "MongoDB", "Better Auth", "Stripe"],
     liveLink: "https://hireloop-client-weld.vercel.app",
     githubLink: "https://github.com/khalidhasan-m/hireloop-client",
