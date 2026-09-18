@@ -47,7 +47,10 @@ export default function Projects() {
                 className="project-card cq-card group rounded-2xl overflow-hidden dark:bg-white/5 bg-white border dark:border-white/10 border-black/10 dark:hover:border-amber-500/30 hover:border-amber-500/30 transition-all duration-300 shadow-sm"
               >
                 <div className="relative cq-card-media overflow-hidden">
-                  <ProjectImage src={project.image} alt={`${project.name} preview`} />
+                  <ProjectImage
+                    src={project.image}
+                    alt={`Screenshot of ${project.name} — ${project.tagline}`}
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" aria-hidden="true" />
                   <div className="absolute bottom-3 left-3 right-3 flex gap-2 z-10">
                     <a

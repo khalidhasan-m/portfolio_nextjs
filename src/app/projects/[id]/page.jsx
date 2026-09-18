@@ -28,7 +28,7 @@ export async function generateMetadata({ params }) {
       images: [
         {
           url: project.image,
-          alt: `${project.name} preview`,
+          alt: `Screenshot of ${project.name} — ${project.tagline}`,
         },
       ],
     },

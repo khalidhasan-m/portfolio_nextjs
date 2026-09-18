@@ -14,7 +14,7 @@ Personal portfolio of **Khalid Hasan Meskat**, a Frontend Developer from Banglad
 - Skip navigation link and accessible controls
 - Hero with profile photo, stats, and CV download
 - Interactive Services picker
-- Skills aligned with GitHub profile (Frontend · Backend · Tools · Learning)
+- Skills synced with resume PDF (Frontend · Backend · Database · Tools · Currently Learning) — qualitative experience labels (Production-ready / Comfortable / Familiar / Learning), no percentage scores
 - Education, experience, and certifications
 - Separate About, Services, Skills, Education, Projects, and Contact pages
 - Project cards with static detail pages + per-project metadata

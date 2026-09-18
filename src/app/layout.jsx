@@ -1,5 +1,7 @@
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Providers from "@/components/Providers";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -19,28 +21,16 @@ const jetbrainsMono = JetBrains_Mono({
 const siteUrl = "https://portfolio-nextjs-plum-nine.vercel.app";
 
 const description =
-  "Frontend developer from Bangladesh building responsive, accessible web apps with React, Next.js, Tailwind CSS, and Better Auth. Open to remote and full-time roles.";
+  "Full-stack developer from Bangladesh building responsive, accessible web apps with React, Next.js, Node.js, Better Auth, and Stripe. Open to remote and full-time roles.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Khalid Hasan Meskat | Frontend Developer",
+    default: "Khalid Hasan Meskat | Full Stack Developer",
     template: "%s | Khalid Hasan Meskat",
   },
   description,
-  keywords: [
-    "Frontend Developer",
-    "React",
-    "Next.js",
-    "Tailwind CSS",
-    "JavaScript",
-    "Bangladesh",
-    "Portfolio",
-    "Web Developer",
-    "Better Auth",
-  ],
-  authors: [{ name: "Khalid Hasan Meskat", url: siteUrl }],
-  creator: "Khalid Hasan Meskat",
+  creators: { Khalid: siteUrl },
   robots: {
     index: true,
     follow: true,
@@ -48,31 +38,26 @@ export const metadata = {
       index: true,
       follow: true,
       "max-image-preview": "large",
-      "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    title: "Khalid Hasan Meskat | Frontend Developer",
+    title: "Khalid Hasan Meskat | Full Stack Developer",
     description,
     url: "/",
     siteName: "Khalid Hasan Meskat",
-    locale: "en_US",
     type: "website",
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Khalid Hasan Meskat — Frontend Developer",
+        alt: "Khalid Hasan Meskat — Full Stack Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Khalid Hasan Meskat | Frontend Developer",
+    title: "Khalid Hasan Meskat | Full Stack Developer",
     description,
     images: ["/twitter-image"],
   },
@@ -126,6 +111,19 @@ const jsonLd = {
     },
   ],
 };
+
+/** Shared page chrome — server-rendered so each route file stays one-liner simple. */
+export function PageShell({ children }) {
+  return (
+    <>
+      <Navbar />
+      <main id="main-content" role="main" tabIndex={-1}>
+        <div className="noise-bg">{children}</div>
+      </main>
+      <Footer />
+    </>
+  );
+}
 
 export default function RootLayout({ children }) {
   return (

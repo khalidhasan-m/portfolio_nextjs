@@ -1,7 +1,13 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { PageShell } from "@/app/layout";
 import Services from "@/components/Services";
 
+export const metadata = {
+  title: "Services",
+  description:
+    "Full-stack development services by Khalid Hasan Meskat — full-stack web apps, API integration, auth, and payment workflows with React, Next.js, Node.js, Express, and Stripe.",
+  alternates: { canonical: "/services" },
+};
+
 export default function ServicesPage() {
-  return <><Navbar /><main id="main-content" role="main" tabIndex={-1}><div className="noise-bg"><Services /></div></main><Footer /></>;
+  return <PageShell><Services /></PageShell>;
 }

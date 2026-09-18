@@ -1,4 +1,4 @@
-import { FiBook, FiBriefcase, FiMapPin, FiAward, FiCheckCircle } from "react-icons/fi";
+import { FiBook, FiBriefcase, FiMapPin, FiAward, FiCheckCircle, FiGlobe } from "react-icons/fi";
 
 /** Server component — static education / experience content (no client JS). */
 export default function Education() {
@@ -35,7 +35,7 @@ export default function Education() {
                       Master&apos;s — English
                     </h3>
                     <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
-                      2024
+                      2025
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-3 text-sm dark:text-gray-300 text-gray-600 mb-2">
@@ -58,7 +58,7 @@ export default function Education() {
                       Bachelor of Arts (Honours) — English
                     </h3>
                     <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
-                      2022
+                      2024
                     </span>
                   </div>
                   <div className="flex flex-wrap gap-3 text-sm dark:text-gray-300 text-gray-600 mb-2">
@@ -147,6 +147,75 @@ export default function Education() {
         <div className="mt-12 sm:mt-16">
           <div className="flex items-center gap-3 mb-6 sm:mb-8">
             <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
+              <FiGlobe size={20} aria-hidden="true" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold dark:text-white text-gray-900 font-mono">
+              Languages
+            </h2>
+          </div>
+
+          <div className="cq-grid">
+            <div className="cq-cols">
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
+                    Bangla
+                  </h3>
+                  <span className="text-xs px-2 py-0.5 rounded-full dark:bg-green-500/10 bg-green-500/15 text-green-600 dark:text-green-400 font-mono whitespace-nowrap">
+                    Native
+                  </span>
+                </div>
+                <p className="text-sm dark:text-gray-300 text-gray-600">First language</p>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
+                    English
+                  </h3>
+                  <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
+                    Professional
+                  </span>
+                </div>
+                <p className="text-sm dark:text-gray-300 text-gray-600">
+                  Comfortable with technical documentation, email communication, and team standups.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 sm:mt-16">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+            <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
+              <FiAward size={20} aria-hidden="true" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold dark:text-white text-gray-900 font-mono">
+              Achievements & Extracurricular
+            </h2>
+          </div>
+
+          <div className="cq-grid">
+            <div className="cq-cols">
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
+                    Product Building Bootcamp
+                  </h3>
+                  <span className="text-xs px-2 py-0.5 rounded-full dark:bg-green-500/10 bg-green-500/15 text-green-600 dark:text-green-400 font-mono flex items-center gap-1">
+                    <FiCheckCircle size={12} aria-hidden="true" />
+                    Completed
+                  </span>
+                </div>
+                <p className="text-sm dark:text-gray-300 text-gray-600">Programming Hero</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 sm:mt-16">
+          <div className="flex items-center gap-3 mb-6 sm:mb-8">
+            <div className="p-2.5 rounded-xl dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 flex-shrink-0">
               <FiAward size={20} aria-hidden="true" />
             </div>
             <h2 className="text-xl sm:text-2xl font-bold dark:text-white text-gray-900 font-mono">
@@ -164,6 +233,18 @@ export default function Education() {
                   <span className="text-xs px-2 py-0.5 rounded-full dark:bg-green-500/10 bg-green-500/15 text-green-600 dark:text-green-400 font-mono flex items-center gap-1">
                     <FiCheckCircle size={12} aria-hidden="true" />
                     Passed
+                  </span>
+                </div>
+                <p className="text-sm dark:text-gray-300 text-gray-600">Programming Hero — Batch 13</p>
+              </div>
+
+              <div className="p-4 sm:p-5 rounded-2xl dark:bg-white/5 bg-white/80 border dark:border-white/10 border-black/8">
+                <div className="flex items-start justify-between gap-2 flex-wrap mb-2">
+                  <h3 className="font-semibold dark:text-white text-gray-900 text-sm sm:text-base">
+                    Next Level Foundation Program — Level 2
+                  </h3>
+                  <span className="text-xs px-2 py-0.5 rounded-full dark:bg-amber-500/10 bg-amber-500/15 text-amber-500 font-mono whitespace-nowrap">
+                    In Progress
                   </span>
                 </div>
                 <p className="text-sm dark:text-gray-300 text-gray-600">Programming Hero</p>

@@ -29,8 +29,6 @@ export default function Navbar() {
     setMounted(true);
     setActive(pathname || "/");
 
-    if (pathname !== "/") return undefined;
-
     const handleScroll = () => setScrolled(window.scrollY > 20);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });

@@ -57,7 +57,7 @@ export default function ProjectDetail({ project }) {
         <div className="relative rounded-2xl overflow-hidden mb-10 border dark:border-white/10 border-black/8 shadow-2xl h-72 sm:h-96">
           <ProjectPreview
             src={project.image}
-            alt={`${project.name} screenshot`}
+            alt={`Screenshot of ${project.name} — ${project.tagline}`}
             sizes="(max-width: 896px) 100vw, 896px"
             priority
             detail
@@ -189,7 +189,7 @@ export default function ProjectDetail({ project }) {
                   <div className="relative w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
                     <Image
                       src={p.image}
-                      alt=""
+                      alt={`${p.name} project preview`}
                       fill
                       sizes="64px"
                       className="object-cover"

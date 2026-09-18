@@ -6,15 +6,16 @@ import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 import { PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
 
-const STATS = [
-  { end: 5, suffix: "+", label: "Shipped apps" },
-  { end: 3, suffix: "", label: "Live demos" },
-  { end: 12, suffix: "+", label: "Technologies" },
-];
+// Hero tagline words — each scrambles from random letters into place.
+const HERO_WORDS = ["LEARN", "BUILD", "DEPLOY", "RESEARCH"];
 
-function GlitchStat({ end, suffix, label, delay = 0 }) {
-  const finalText = `${end}${suffix}`;
-  const [display, setDisplay] = useState("··");
+const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%&";
+
+/** One word that resolves from random glyphs, letter-column style. */
+function ScrambleWord({ word, delay = 0, separator = false }) {
+  const [display, setDisplay] = useState(
+    word.replace(/[^\s]/g, () => SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)])
+  );
   const [done, setDone] = useState(false);
 
   useEffect(() => {
@@ -23,50 +24,60 @@ function GlitchStat({ end, suffix, label, delay = 0 }) {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduce) {
-      setDisplay(finalText);
+      setDisplay(word);
       setDone(true);
       return;
     }
 
     let intervalId = null;
-    let frame = 0;
-    const totalFrames = 22;
+    let settled = 0;
+    const frameMs = 45;
+    const totalFrames = 18;
 
     const timeoutId = window.setTimeout(() => {
       intervalId = window.setInterval(() => {
-        frame += 1;
-        if (frame >= totalFrames) {
+        if (settled >= word.length) {
           window.clearInterval(intervalId);
           intervalId = null;
-          setDisplay(finalText);
+          setDisplay(word);
           setDone(true);
           return;
         }
-        // Scramble: random digits that feel like a glitch before settling
-        const max = Math.max(end * 4, 9);
-        const noise = Math.floor(Math.random() * max) + 1;
-        setDisplay(`${noise}${suffix}`);
-      }, 40);
+        settled += 1;
+        // Lock letters left-to-right; keep scrambling the rest
+        setDisplay(
+          word
+            .split("")
+            .map((ch, i) => {
+              if (ch === " ") return " ";
+              if (i < settled) return ch;
+              return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+            })
+            .join("")
+        );
+      }, frameMs);
     }, delay);
 
     return () => {
       window.clearTimeout(timeoutId);
       if (intervalId) window.clearInterval(intervalId);
     };
-  }, [end, suffix, delay, finalText]);
+  }, [word, delay]);
 
   return (
-    <div className="text-center" role="listitem">
-      <p
-        className={`text-xl sm:text-2xl font-bold text-amber-700 dark:text-amber-400 font-mono tabular-nums min-h-[1.75rem] tracking-tight ${
-          done ? "opacity-100" : "opacity-80"
-        }`}
-        aria-label={`${end}${suffix} ${label}`}
+    <span className="inline-flex items-baseline">
+      <span
+        className={`font-mono font-bold tracking-tight text-lg xs:text-xl sm:text-2xl tabular-nums min-h-[1.6em] ${
+          done
+            ? "text-amber-700 dark:text-amber-400 opacity-100"
+            : "text-gray-500 dark:text-gray-500 opacity-70"
+        } transition-colors duration-300`}
+        aria-hidden="true"
       >
-        <span aria-hidden="true">{display}</span>
-      </p>
-      <p className="text-[10px] sm:text-xs dark:text-gray-400 text-gray-600">{label}</p>
-    </div>
+        {display}
+      </span>
+      <span className="sr-only">{word}</span>
+    </span>
   );
 }
 
@@ -123,14 +134,14 @@ export default function Hero() {
                 aria-hidden="true"
               />
               <p className="text-lg sm:text-xl dark:text-gray-200 text-gray-800 font-medium">
-                Frontend Developer
+                Full Stack Developer 
               </p>
             </div>
 
             <p className="text-sm sm:text-base dark:text-gray-300 text-gray-700 max-w-lg leading-relaxed mx-auto lg:mx-0 text-center lg:text-left">
               I build responsive, accessible interfaces with{" "}
-              <span className="text-amber-700 dark:text-amber-400 font-medium">React</span> &{" "}
-              <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span>
+              <span className="text-amber-700 dark:text-amber-400 font-medium">Next.js</span> &{" "}
+              <span className="text-amber-700 dark:text-amber-400 font-medium">React</span>
               — from auth and APIs to polished UI. Shipping public projects on GitHub and Vercel.
             </p>
 
@@ -218,19 +229,29 @@ export default function Hero() {
               </div>
               {/* Photo badge — stack, not Open Source */}
               <div className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 bg-amber-500 text-black text-[10px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
-                React · Next.js
+                Next.js · React
               </div>
             </div>
 
-            <div className="flex items-center gap-4 sm:gap-6" role="list" aria-label="Highlights">
-              {STATS.map((stat, i) => (
-                <GlitchStat
-                  key={stat.label}
-                  end={stat.end}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                  delay={250 + i * 140}
-                />
+            <div
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5"
+              role="list"
+              aria-label="What I do: learn, build, deploy, research"
+            >
+              {HERO_WORDS.map((word, i) => (
+                <span key={word} className="flex items-center gap-2.5 sm:gap-3.5">
+                  {i > 0 && (
+                    <span
+                      className="text-amber-500/60 dark:text-amber-500/50 font-mono text-sm sm:text-base select-none"
+                      aria-hidden="true"
+                    >
+                      •
+                    </span>
+                  )}
+                  <span role="listitem">
+                    <ScrambleWord word={word} delay={300 + i * 450} />
+                  </span>
+                </span>
               ))}
             </div>
           </motion.div>

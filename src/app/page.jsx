@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import TechMarquee from "@/components/TechMarquee";
 import Footer from "@/components/Footer";
+import AIJourney from "@/components/AIJourney";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <div className="noise-bg">
           <Hero />
           <TechMarquee />
+          {/* <AIJourney /> */}
         </div>
       </main>
       <Footer />

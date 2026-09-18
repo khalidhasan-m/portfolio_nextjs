@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --amber: #f59e0b;
@@ -46,6 +46,32 @@ img, video, svg {
 h1, h2, h3, h4, p, span, a, li {
   overflow-wrap: break-word;
   word-wrap: break-word;
+}
+
+/* Focus visibility — always-on, high-contrast ring for keyboard users.
+   2px solid amber + dark halo keeps focus obvious on any background. */
+:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.dark :focus-visible,
+:where(.dark, .dark *) :focus-visible {
+  outline-color: #fbbf24;
+}
+
+/* Buttons/links that already use focus:ring-* utilities keep them; this
+   fallback guarantees a visible ring everywhere else (nav links, cards). */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
 }
 
 /* Skip navigation — visible only on keyboard focus */
@@ -103,6 +129,15 @@ h1, h2, h3, h4, p, span, a, li {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+}
+
+/* Skills category cards: one card per row, stacked in DOM order.
+   Frontend leads; cards never stretch — each is its natural height. */
+.cq-cols-dense {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
 }
 
 @container grid (min-width: 480px) {
@@ -380,7 +415,7 @@ h1, h2, h3, h4, p, span, a, li {
 .skill-icon {
   transition: transform 0.2s ease;
 }
-.skill-card:hover .skill-icon {
+.skill-chip:hover .skill-icon {
   transform: scale(1.2);
 }
 
@@ -463,7 +498,57 @@ h1, h2, h3, h4, p, span, a, li {
 
   .float-animation,
   .pulse-ring,
-  .gradient-text {
+  .gradient-text,
+  .animate-ping,
+  .animate-pulse {
     animation: none !important;
+  }
+
+  /* Ambient decorative layers are pure ornament — remove outright */
+  .noise-bg::before,
+  .dot-grid {
+    background-image: none !important;
+  }
+
+  .pulse-ring,
+  .animate-ping {
+    display: none !important;
+  }
+
+  /* Hover lifts become static emphasis (no movement) */
+  .project-card:hover,
+  .skill-chip:hover {
+    transform: none !important;
+  }
+}
+
+/* Performance: skip decorative motion and heavy blurs on small/low-end devices
+   (phones commonly lack the GPU headroom for full-screen blur + animation). */
+@media (max-width: 640px) {
+  .float-animation,
+  .pulse-ring {
+    animation: none !important;
+  }
+
+  .animate-ping,
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .pulse-ring {
+    display: none !important;
+  }
+
+  .noise-bg::before {
+    display: none !important;
+  }
+
+  .amber-glow {
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.1);
+  }
+
+  .gradient-text {
+    animation: none;
+    background-size: 100% auto;
   }
 }
