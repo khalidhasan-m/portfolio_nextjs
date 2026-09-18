@@ -13,6 +13,7 @@ import {
   FiCheckCircle,
 } from "react-icons/fi";
 import { projects } from "@/data/projects";
+import ProjectPreview from "@/components/ProjectPreview";
 
 export default function ProjectDetail({ project }) {
   useEffect(() => {
@@ -54,13 +55,12 @@ export default function ProjectDetail({ project }) {
         </div>
 
         <div className="relative rounded-2xl overflow-hidden mb-10 border dark:border-white/10 border-black/8 shadow-2xl h-72 sm:h-96">
-          <Image
+          <ProjectPreview
             src={project.image}
             alt={`${project.name} screenshot`}
-            fill
             sizes="(max-width: 896px) 100vw, 896px"
-            className="object-cover"
             priority
+            detail
           />
         </div>
 

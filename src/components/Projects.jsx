@@ -1,59 +1,17 @@
 "use client";
-import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { FiArrowRight, FiGithub, FiExternalLink, FiImage } from "react-icons/fi";
+import { FiArrowRight, FiGithub, FiExternalLink } from "react-icons/fi";
 import { projects } from "@/data/projects";
 import { useInView, IN_VIEW_EARLY } from "@/hooks/useInView";
+import ProjectPreview from "@/components/ProjectPreview";
 
-const passthroughLoader = ({ src }) => src;
-
+/* Project cards keep their original image behavior; HireLoop gets the shared browser mockup. */
 function ProjectImage({ src, alt }) {
-  const [error, setError] = useState(false);
-  const isHireloop = typeof src === "string" && src.includes("hireloop");
-
-  if (error) {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center dark:bg-white/5 bg-black/5 gap-2">
-        <FiImage size={32} className="text-amber-600/60 dark:text-amber-500/50" aria-hidden="true" />
-        <span className="text-xs dark:text-gray-400 text-gray-600 font-mono">{alt}</span>
-      </div>
-    );
-  }
-
-  return isHireloop ? (
-    <div className="absolute inset-2 rounded-xl overflow-hidden border dark:border-white/15 border-black/10 bg-[#09090d] shadow-2xl">
-      <div className="h-6 px-2.5 flex items-center gap-1.5 border-b dark:border-white/10 border-black/10 bg-black/30" aria-hidden="true">
-        <span className="w-2 h-2 rounded-full bg-red-400/80" />
-        <span className="w-2 h-2 rounded-full bg-amber-300/80" />
-        <span className="w-2 h-2 rounded-full bg-emerald-400/80" />
-        <span className="ml-2 h-3.5 flex-1 rounded-full bg-white/10" />
-      </div>
-      <div className="relative h-[calc(100%-1.5rem)]">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
-          loading="lazy"
-          loader={passthroughLoader}
-          unoptimized
-          onError={() => setError(true)}
-        />
-      </div>
-    </div>
-  ) : (
-    <Image
+  return (
+    <ProjectPreview
       src={src}
       alt={alt}
-      fill
       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-      className="object-cover group-hover:scale-105 transition-transform duration-500"
-      loading="lazy"
-      loader={passthroughLoader}
-      unoptimized
-      onError={() => setError(true)}
     />
   );
 }
