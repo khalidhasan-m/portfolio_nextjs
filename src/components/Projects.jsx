@@ -10,6 +10,7 @@ const passthroughLoader = ({ src }) => src;
 
 function ProjectImage({ src, alt }) {
   const [error, setError] = useState(false);
+  const isHireloop = typeof src === "string" && src.includes("hireloop");
 
   if (error) {
     return (
@@ -20,7 +21,29 @@ function ProjectImage({ src, alt }) {
     );
   }
 
-  return (
+  return isHireloop ? (
+    <div className="absolute inset-2 rounded-xl overflow-hidden border dark:border-white/15 border-black/10 bg-[#09090d] shadow-2xl">
+      <div className="h-6 px-2.5 flex items-center gap-1.5 border-b dark:border-white/10 border-black/10 bg-black/30" aria-hidden="true">
+        <span className="w-2 h-2 rounded-full bg-red-400/80" />
+        <span className="w-2 h-2 rounded-full bg-amber-300/80" />
+        <span className="w-2 h-2 rounded-full bg-emerald-400/80" />
+        <span className="ml-2 h-3.5 flex-1 rounded-full bg-white/10" />
+      </div>
+      <div className="relative h-[calc(100%-1.5rem)]">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover object-top group-hover:scale-[1.02] transition-transform duration-500"
+          loading="lazy"
+          loader={passthroughLoader}
+          unoptimized
+          onError={() => setError(true)}
+        />
+      </div>
+    </div>
+  ) : (
     <Image
       src={src}
       alt={alt}
