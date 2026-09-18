@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 import {
   FiLayout,
   FiSmartphone,
@@ -148,13 +149,13 @@ export default function Services() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="mt-8 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-black text-sm font-semibold transition-colors min-h-[44px]"
               >
                 <FiShield size={16} aria-hidden="true" />
                 Let&apos;s work together
-              </a>
+              </Link>
             </div>
           </div>
         </div>

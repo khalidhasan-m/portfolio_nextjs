@@ -25,7 +25,7 @@ export default function ProjectDetail({ project }) {
       <header className="sticky top-0 z-50 dark:bg-[#0a0a0f]/90 bg-[#f8f7f4]/90 backdrop-blur-xl border-b dark:border-white/5 border-black/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link
-            href="/#projects"
+            href="/projects"
             className="inline-flex items-center gap-2 text-sm dark:text-gray-400 text-gray-600 dark:hover:text-white hover:text-gray-900 transition-colors duration-200 min-h-[44px] px-1"
           >
             <FiArrowLeft size={16} aria-hidden="true" />

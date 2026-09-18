@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiDownload } from "react-icons/fi";
 import { PROFILE_AVATAR_FALLBACK, RESUME_PDF } from "@/data/assets";
@@ -142,12 +143,12 @@ export default function Hero() {
                 <FiDownload size={16} aria-hidden="true" />
                 Download CV
               </a>
-              <a
-                href="#projects"
+              <Link
+                href="/projects"
                 className="inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl border dark:border-white/20 border-black/20 dark:text-white text-gray-900 dark:hover:bg-white/5 hover:bg-black/5 font-semibold text-sm transition-all duration-200 min-h-[44px]"
               >
                 View Projects
-              </a>
+              </Link>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 justify-center lg:justify-start">

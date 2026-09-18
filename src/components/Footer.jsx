@@ -1,15 +1,19 @@
 "use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
 
 const quickLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const isCurrent = (href) => pathname === href;
 
   return (
     <footer className="border-t dark:border-white/10 border-black/10 py-10" role="contentinfo">
@@ -23,12 +27,16 @@ export default function Footer() {
                     ·
                   </span>
                 )}
-                <a
+                <Link
                   href={link.href}
+                  aria-current={isCurrent(link.href) ? "page" : undefined}
+                  onClick={() => {
+                    if (isCurrent(link.href)) scrollTop();
+                  }}
                   className="px-2 py-2 text-sm font-medium dark:text-gray-400 text-gray-600 dark:hover:text-amber-400 hover:text-amber-600 transition-colors duration-200 min-h-[44px] inline-flex items-center"
                 >
                   {link.label}
-                </a>
+                </Link>
               </span>
             ))}
           </nav>
