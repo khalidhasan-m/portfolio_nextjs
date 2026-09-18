@@ -1,5 +1,27 @@
 export const projects = [
   {
+    id: "hireloop",
+    name: "HireLoop",
+    tagline: "Role-based job marketplace with recruiter and seeker dashboards",
+    description:
+      "A full-stack hiring platform where seekers discover and apply for jobs, recruiters manage companies and listings, and admins review platform activity. The system connects protected dashboards, role-aware access, applications, saved jobs, and subscription plans across a Next.js client and Express/MongoDB API.",
+    image: "/projects/hireloop.png",
+    tech: ["Next.js", "React", "Express.js", "MongoDB", "Better Auth", "Stripe"],
+    liveLink: "https://hireloop-client-weld.vercel.app",
+    githubLink: "https://github.com/khalidhasan-m/hireloop-client",
+    features: [
+      "Role-based seeker, recruiter, and admin workflows",
+      "Searchable jobs with filters, saved jobs, and applications",
+      "Recruiter company approval and job management dashboards",
+      "Subscription plans and Stripe payment flows",
+    ],
+    challenges:
+      "The core challenge was keeping permissions and workflow state consistent across three roles: seekers applying for jobs, recruiters managing companies and applications, and admins governing the platform.",
+    improvements:
+      "Next steps: richer recruiter analytics, notification preferences, and a more complete public employer profile experience.",
+    category: "Full Stack",
+  },
+  {
     id: "pawfectmatch",
     name: "PawfectMatch",
     tagline: "Pet adoption platform with owner dashboard",
