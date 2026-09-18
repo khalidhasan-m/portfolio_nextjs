@@ -195,10 +195,13 @@ export default function Hero() {
               />
               <div className="relative w-36 h-36 xs:w-44 xs:h-44 sm:w-52 sm:h-52 md:w-60 md:h-60 lg:w-72 lg:h-72 rounded-full overflow-hidden border-2 border-amber-500/40 amber-glow">
                 {useFallback ? (
-                  <img
+                  <Image
                     src={PROFILE_AVATAR_FALLBACK}
                     alt="Khalid Hasan Meskat"
+                    fill
+                    sizes="(max-width: 640px) 176px, (max-width: 1024px) 240px, 288px"
                     className="absolute inset-0 w-full h-full object-cover"
+                    unoptimized
                   />
                 ) : (
                   <Image

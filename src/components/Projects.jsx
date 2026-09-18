@@ -6,6 +6,8 @@ import { FiArrowRight, FiGithub, FiExternalLink, FiImage } from "react-icons/fi"
 import { projects } from "@/data/projects";
 import { useInView, IN_VIEW_EARLY } from "@/hooks/useInView";
 
+const passthroughLoader = ({ src }) => src;
+
 function ProjectImage({ src, alt }) {
   const [error, setError] = useState(false);
 
@@ -18,29 +20,16 @@ function ProjectImage({ src, alt }) {
     );
   }
 
-  const isLocal = typeof src === "string" && src.startsWith("/");
-
-  if (isLocal) {
-    return (
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        className="object-cover group-hover:scale-105 transition-transform duration-500"
-        loading="lazy"
-        onError={() => setError(true)}
-      />
-    );
-  }
-
   return (
-    <img
+    <Image
       src={src}
       alt={alt}
+      fill
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      className="object-cover group-hover:scale-105 transition-transform duration-500"
       loading="lazy"
-      decoding="async"
-      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      loader={passthroughLoader}
+      unoptimized
       onError={() => setError(true)}
     />
   );

@@ -16,6 +16,7 @@ Personal portfolio of **Khalid Hasan Meskat**, a Frontend Developer from Banglad
 - Interactive Services picker
 - Skills aligned with GitHub profile (Frontend · Backend · Tools · Learning)
 - Education, experience, and certifications
+- Separate About, Services, Skills, Education, Projects, and Contact pages
 - Project cards with static detail pages + per-project metadata
 - Contact section with copy-to-clipboard, socials, and **mailto** CTA (no form backend)
 - Custom loading and 404 pages
@@ -43,6 +44,12 @@ src/
 ├── app/
 │   ├── layout.jsx           # Server layout, fonts, metadata
 │   ├── page.jsx             # Home (dynamic section imports)
+│   ├── about/page.jsx       # About page
+│   ├── services/page.jsx    # Services page
+│   ├── skills/page.jsx      # Skills page
+│   ├── education/page.jsx   # Education page
+│   ├── projects/page.jsx    # Projects index
+│   └── contact/page.jsx     # Contact page
 │   ├── loading.jsx
 │   ├── not-found.jsx
 │   ├── icon.jsx
@@ -50,8 +57,7 @@ src/
 │   ├── twitter-image.jsx
 │   ├── sitemap.js
 │   ├── globals.css
-│   └── projects/[id]/
-│       └── page.jsx
+│   └── projects/[id]/page.jsx # Individual project pages
 ├── components/
 │   ├── Providers.jsx
 │   ├── Navbar.jsx

@@ -2,15 +2,16 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useTheme } from "next-themes";
 import { FiSun, FiMoon, FiMenu, FiX } from "react-icons/fi";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Skills", href: "#skills" },
-  { label: "Education", href: "#education" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Skills", href: "/skills" },
+  { label: "Education", href: "/education" },
+  { label: "Projects", href: "/projects" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -100,8 +101,8 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a
-            href="#home"
+          <Link
+            href="/"
             className="font-mono text-lg font-bold tracking-tight"
             aria-label="Go to home — Khalid Hasan Meskat"
             onClick={onNavClick}
@@ -113,11 +114,11 @@ export default function Navbar() {
             <span className="text-amber-600 dark:text-amber-400" aria-hidden="true">
               {" "}/&gt;
             </span>
-          </a>
+          </Link>
 
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 aria-current={active === link.href.replace("#", "") ? "page" : undefined}
@@ -129,7 +130,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -177,7 +178,7 @@ export default function Navbar() {
         >
           <div className="px-4 py-3 flex flex-col gap-1" role="menu">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
                 role="menuitem"
@@ -190,7 +191,7 @@ export default function Navbar() {
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
